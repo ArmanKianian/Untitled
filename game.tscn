@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://devf2tsrifqye"]
+
+[sub_resource type="Gradient" id="Gradient_mwb40"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.5047361, 0.41673246, 0.27910483, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yw4vu"]
+gradient = SubResource("Gradient_mwb40")
+width = 1920
+height = 1020
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw4vu"]
+size = Vector2(159, 134)
+
+[node name="Game" type="Node2D" unique_id=1207240851]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=764771987]
+zoom = Vector2(0.67, 0.71)
+
+[node name="Background" type="Sprite2D" parent="." unique_id=381845390]
+texture = SubResource("GradientTexture2D_yw4vu")
+
+[node name="Board" type="Sprite2D" parent="." unique_id=1431319865]
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1987545393]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=625637341]
+position = Vector2(-649.5, 250)
+shape = SubResource("RectangleShape2D_yw4vu")

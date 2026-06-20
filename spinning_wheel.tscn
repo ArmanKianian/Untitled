@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dwfrpmk02mafc"]
+
+[ext_resource type="Script" uid="uid://br7lisulkytnv" path="res://spinning_wheel.gd" id="1_x6iqq"]
+
+[node name="Spinning_Wheel" type="Node2D" unique_id=905745828]
+script = ExtResource("1_x6iqq")

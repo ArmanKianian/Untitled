@@ -1,29 +1,179 @@
 [gd_scene format=3 uid="uid://devf2tsrifqye"]
 
+[ext_resource type="PackedScene" uid="uid://dwfrpmk02mafc" path="res://spinning_wheel.tscn" id="1_80nbo"]
+[ext_resource type="Texture2D" uid="uid://c2wuwgsqfu7ge" path="res://icon.svg" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://calip06smc8aq" path="res://drag_drop.gd" id="3_fc0e3"]
+
 [sub_resource type="Gradient" id="Gradient_mwb40"]
 offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.5047361, 0.41673246, 0.27910483, 1)
+colors = PackedColorArray(0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yw4vu"]
 gradient = SubResource("Gradient_mwb40")
 width = 1920
-height = 1020
+height = 1080
+
+[sub_resource type="Gradient" id="Gradient_7jktm"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.9019608, 0.7411765, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ryrav"]
+gradient = SubResource("Gradient_7jktm")
+width = 1280
+height = 720
+
+[sub_resource type="Gradient" id="Gradient_fc0e3"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.32156864, 0.50980395, 0.27058825, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7jktm"]
+gradient = SubResource("Gradient_fc0e3")
+width = 1280
+height = 720
+
+[sub_resource type="Gradient" id="Gradient_80nbo"]
+offsets = PackedFloat32Array(0.9819277, 1)
+colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8nxoa"]
+gradient = SubResource("Gradient_80nbo")
+width = 1280
+height = 720
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.001)
+repeat = 2
+
+[sub_resource type="Gradient" id="Gradient_e2o6t"]
+offsets = PackedFloat32Array(0.6818182, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.6955031, 0.6955032, 0.6955028, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iqw5e"]
+gradient = SubResource("Gradient_e2o6t")
+width = 360
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.51, 0.51)
+repeat = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw4vu"]
-size = Vector2(159, 134)
+size = Vector2(133, 134)
 
 [node name="Game" type="Node2D" unique_id=1207240851]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=764771987]
-zoom = Vector2(0.67, 0.71)
 
 [node name="Background" type="Sprite2D" parent="." unique_id=381845390]
 texture = SubResource("GradientTexture2D_yw4vu")
 
+[node name="Background3" type="Sprite2D" parent="." unique_id=1331767446]
+position = Vector2(-99.99997, -327)
+scale = Vector2(0.709375, 0.058333334)
+texture = SubResource("GradientTexture2D_ryrav")
+
+[node name="Background4" type="Sprite2D" parent="." unique_id=1169896183]
+position = Vector2(-99.99997, 327)
+scale = Vector2(0.709375, 0.05833333)
+texture = SubResource("GradientTexture2D_ryrav")
+
+[node name="Background2" type="Sprite2D" parent="." unique_id=2040180103]
+position = Vector2(-76.500015, 0.4999708)
+scale = Vector2(0.8617187, 0.8180555)
+texture = SubResource("GradientTexture2D_7jktm")
+
 [node name="Board" type="Sprite2D" parent="." unique_id=1431319865]
+
+[node name="Border" type="Sprite2D" parent="." unique_id=689048793]
+visible = false
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="Border2" type="Sprite2D" parent="." unique_id=1168093600]
+visible = false
+position = Vector2(-65, 0)
+scale = Vector2(0.85, 1)
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="Line2D" type="Line2D" parent="." unique_id=552103530]
+points = PackedVector2Array(480, -140, 480, -300, -634, -300, -634, 300, 480, 300, 480, 140)
+width = 12.0
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="Line2D2" type="Line2D" parent="." unique_id=285879562]
+points = PackedVector2Array(360, -312, 360, -354, -560, -354, -560, -312)
+width = 12.0
+default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="Line2D3" type="Line2D" parent="." unique_id=644094988]
+points = PackedVector2Array(360, 312, 360, 354, -560, 354, -560, 312)
+width = 12.0
+default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="Spinning_Wheel" parent="." unique_id=905745828 instance=ExtResource("1_80nbo")]
+position = Vector2(480, 0)
+
+[node name="Button" type="Button" parent="." unique_id=1014765821]
+offset_left = 360.0
+offset_top = -25.0
+offset_right = 598.0
+offset_bottom = 28.0
+text = "SPIN"
+
+[node name="Button2" type="Button" parent="." unique_id=1919210139]
+offset_left = 524.0
+offset_top = 161.0
+offset_right = 607.0
+offset_bottom = 269.0
+text = "Next turn"
 
 [node name="Area2D" type="Area2D" parent="." unique_id=1987545393]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=625637341]
-position = Vector2(-649.5, 250)
+position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Line2D4" type="Line2D" parent="Area2D" unique_id=166707538]
+points = PackedVector2Array(-126, -64, -126, 73, -273, 69, -272, -69)
+width = 12.0
+default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="Area2D2" type="Area2D" parent="." unique_id=1019204836]
+position = Vector2(-200, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=75370600]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Line2D5" type="Line2D" parent="Area2D2" unique_id=1068052273]
+position = Vector2(200, 0)
+points = PackedVector2Array(72, -67, 72, 72, -73, 73, -71, -66)
+width = 12.0
+default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="drag" type="Sprite2D" parent="." unique_id=409651723 node_paths=PackedStringArray("areas")]
+texture = ExtResource("2_feb5d")
+script = ExtResource("3_fc0e3")
+areas = [NodePath("../Area2D"), NodePath("../Area2D2")]

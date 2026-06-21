@@ -2,5 +2,38 @@
 
 [ext_resource type="Script" uid="uid://br7lisulkytnv" path="res://spinning_wheel.gd" id="1_x6iqq"]
 
+[sub_resource type="Gradient" id="Gradient_38e1g"]
+offsets = PackedFloat32Array(0.9698795, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_f3aux"]
+gradient = SubResource("Gradient_38e1g")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.2)
+repeat = 2
+
+[sub_resource type="Gradient" id="Gradient_x6iqq"]
+offsets = PackedFloat32Array(0.42771083, 0.92771083, 1)
+colors = PackedColorArray(0.61339027, 0.61339027, 0.6133901, 1, 0.29586652, 0.2958665, 0.29586646, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yw4vu"]
+gradient = SubResource("Gradient_x6iqq")
+width = 32
+height = 32
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0.2)
+
 [node name="Spinning_Wheel" type="Node2D" unique_id=905745828]
 script = ExtResource("1_x6iqq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2081012508]
+scale = Vector2(15, 15)
+texture = SubResource("GradientTexture2D_f3aux")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=274168648]
+scale = Vector2(15, 15)
+texture = SubResource("GradientTexture2D_yw4vu")

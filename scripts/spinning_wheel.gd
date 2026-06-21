@@ -7,16 +7,16 @@ const CARD = preload("uid://dlsbf8fn82egx")
 var available = false
 # wheel items with chance of getting
 var items: Array = [
-	{"name": "Item1", "chance": 10.0},
-	{"name": "Item2", "chance": 10.0},
-	{"name": "Item3", "chance": 10.0},
-	{"name": "Item4", "chance": 10.0},
-	{"name": "Item5", "chance": 10.0},
-	{"name": "Item6", "chance": 10.0},
-	{"name": "Item7", "chance": 10.0},
-	{"name": "Item8", "chance": 10.0},
-	{"name": "Item9", "chance": 10.0},
-	{"name": "Item10", "chance": 10.0},
+	{"name": "Item1", "level": 1, "chance": 10.0},
+	{"name": "Item2", "level": 1, "chance": 10.0},
+	{"name": "Item3", "level": 1, "chance": 10.0},
+	{"name": "Item4", "level": 1, "chance": 10.0},
+	{"name": "Item5", "level": 1, "chance": 10.0},
+	{"name": "Item6", "level": 1, "chance": 10.0},
+	{"name": "Item7", "level": 1,"chance": 10.0},
+	{"name": "Item8", "level": 1, "chance": 10.0},
+	{"name": "Item9", "level": 1,"chance": 10.0},
+	{"name": "Item10", "level": 1, "chance": 10.0},
 ] 
 
 func spin():
@@ -26,7 +26,7 @@ func spin():
 			break
 	if available == true:
 		var chosen = pick_weighted_random_item()
-		add_card()
+		add_card(chosen["name"], chosen["level"])
 	else:
 		print("inventory is full!")
 	available = false
@@ -47,6 +47,8 @@ func pick_weighted_random_item():
 func _on_button_pressed() -> void:
 	spin()
 
-func add_card():
+func add_card(type, level):
 	var card = CARD.instantiate()
+	card.type = type
+	card.level = level
 	cards.add_child(card)

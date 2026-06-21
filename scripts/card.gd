@@ -1,6 +1,11 @@
 extends Sprite2D
 
 @onready var cards_inventory: Node2D = $"../../inventory"
+@onready var Level: Label = $VBoxContainer/Level
+@onready var Type: Label = $VBoxContainer/Type
+var level
+var type
+
 var areas: Array[Area2D]
 var is_dragged = false
 var mouse_offset
@@ -12,6 +17,8 @@ var current_area: Area2D
 var is_on_slot = false
 
 func _ready() -> void:
+	Level.text = str(level)
+	Type.text = str(type)
 	for child in cards_inventory.get_children():
 		areas.append(child)
 	add_card_to_inventory()
@@ -40,7 +47,17 @@ func _input(event: InputEvent) -> void:
 				start_area = current_area
 				future_position = current_area.position
 			else:
-				future_position = start_area.position
+				if current_area.item == self:
+					future_position = start_area.position
+				elif int(current_area.item.Level.text) == int(Level.text) and current_area.item.type == type :
+					current_area.item.queue_free()
+					start_area.item = null
+					current_area.item = self
+					start_area = current_area
+					future_position = current_area.position
+					Level.text = str(int(Level.text) + 1)
+				else:
+					future_position = start_area.position
 				
 func _on_mouse_entered(area):
 	if is_dragged == true:

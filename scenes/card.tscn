@@ -14,3 +14,30 @@ height = 68
 [node name="card" type="Sprite2D" unique_id=254982057]
 texture = SubResource("GradientTexture2D_fc0e3")
 script = ExtResource("1_d81rb")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1687310917]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_top = -34.0
+offset_right = -16.0
+offset_bottom = -34.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Level" type="Label" parent="VBoxContainer" unique_id=1165069153]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Type" type="Label" parent="VBoxContainer" unique_id=491577081]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1

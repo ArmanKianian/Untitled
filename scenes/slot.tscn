@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://cu816sfuctxvy"]
+
+[ext_resource type="Script" uid="uid://t4jfqi8v1qvp" path="res://scripts/slot.gd" id="1_4v6ba"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yw4vu"]
+size = Vector2(36, 72)
+
+[sub_resource type="Gradient" id="Gradient_feb5d"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3hxyd"]
+gradient = SubResource("Gradient_feb5d")
+width = 36
+height = 72
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[node name="slot" type="Area2D" unique_id=1963932317]
+script = ExtResource("1_4v6ba")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1106983572]
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1301699331]
+texture = SubResource("GradientTexture2D_3hxyd")

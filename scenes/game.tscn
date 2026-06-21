@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://devf2tsrifqye"]
+
+[ext_resource type="PackedScene" uid="uid://dwfrpmk02mafc" path="res://scenes/spinning_wheel.tscn" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://bj4dr8nnahwwh" path="res://scripts/game.gd" id="1_lbhrr"]
+[ext_resource type="Script" uid="uid://cbwy1xbx0js1" path="res://scripts/inventory.gd" id="3_lnu2h"]
+
+[sub_resource type="Gradient" id="Gradient_mwb40"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yw4vu"]
+gradient = SubResource("Gradient_mwb40")
+width = 1920
+height = 1080
+
+[sub_resource type="Gradient" id="Gradient_7jktm"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.9019608, 0.7411765, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ryrav"]
+gradient = SubResource("Gradient_7jktm")
+width = 1280
+height = 720
+
+[sub_resource type="Gradient" id="Gradient_fc0e3"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.32156864, 0.50980395, 0.27058825, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_7jktm"]
+gradient = SubResource("Gradient_fc0e3")
+width = 1280
+height = 720
+
+[sub_resource type="Gradient" id="Gradient_e2o6t"]
+offsets = PackedFloat32Array(0.6818182, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.6955031, 0.6955032, 0.6955028, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iqw5e"]
+gradient = SubResource("Gradient_e2o6t")
+width = 360
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.51, 0.51)
+repeat = 2
+
+[node name="Game" type="Node2D" unique_id=1207240851]
+script = ExtResource("1_lbhrr")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=764771987]
+
+[node name="Background" type="Node2D" parent="." unique_id=1655581937]
+
+[node name="Background" type="Sprite2D" parent="Background" unique_id=381845390]
+texture = SubResource("GradientTexture2D_yw4vu")
+
+[node name="top_section" type="Sprite2D" parent="Background" unique_id=1331767446]
+position = Vector2(-99.99997, -327)
+scale = Vector2(0.709375, 0.058333334)
+texture = SubResource("GradientTexture2D_ryrav")
+
+[node name="center_section" type="Sprite2D" parent="Background" unique_id=2040180103]
+position = Vector2(-76.500015, 0.4999708)
+scale = Vector2(0.8617187, 0.8180555)
+texture = SubResource("GradientTexture2D_7jktm")
+
+[node name="down_section" type="Sprite2D" parent="Background" unique_id=1169896183]
+position = Vector2(-99.99997, 327)
+scale = Vector2(0.709375, 0.05833333)
+texture = SubResource("GradientTexture2D_ryrav")
+
+[node name="Frames" type="Node2D" parent="Background" unique_id=1593404299]
+
+[node name="up_frame" type="Line2D" parent="Background/Frames" unique_id=285879562]
+points = PackedVector2Array(360, -312, 360, -354, -560, -354, -560, -312)
+width = 12.0
+default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="center_frame" type="Line2D" parent="Background/Frames" unique_id=552103530]
+points = PackedVector2Array(480, -140, 480, -300, -634, -300, -634, 300, 480, 300, 480, 140)
+width = 12.0
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="down_frame" type="Line2D" parent="Background/Frames" unique_id=644094988]
+points = PackedVector2Array(360, 312, 360, 354, -560, 354, -560, 312)
+width = 12.0
+default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="Spinning_Wheel" parent="." unique_id=905745828 instance=ExtResource("1_80nbo")]
+position = Vector2(480, 0)
+
+[node name="Spin_Button" type="Button" parent="." unique_id=1014765821]
+offset_left = 360.0
+offset_top = -25.0
+offset_right = 598.0
+offset_bottom = 28.0
+text = "SPIN"
+
+[node name="End_Turn_button" type="Button" parent="." unique_id=1919210139]
+offset_left = 524.0
+offset_top = 161.0
+offset_right = 607.0
+offset_bottom = 269.0
+text = "Next turn"
+
+[node name="inventory" type="Node2D" parent="." unique_id=2128222662]
+script = ExtResource("3_lnu2h")
+
+[node name="cards" type="Node2D" parent="." unique_id=1345714107]
+
+[connection signal="pressed" from="Spin_Button" to="Spinning_Wheel" method="_on_button_pressed"]

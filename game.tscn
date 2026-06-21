@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://devf2tsrifqye"]
 
 [ext_resource type="PackedScene" uid="uid://dwfrpmk02mafc" path="res://spinning_wheel.tscn" id="1_80nbo"]
-[ext_resource type="Texture2D" uid="uid://c2wuwgsqfu7ge" path="res://icon.svg" id="2_feb5d"]
+[ext_resource type="Script" uid="uid://t4jfqi8v1qvp" path="res://inventory_slot.gd" id="2_feb5d"]
 [ext_resource type="Script" uid="uid://calip06smc8aq" path="res://drag_drop.gd" id="3_fc0e3"]
 
 [sub_resource type="Gradient" id="Gradient_mwb40"]
@@ -31,19 +31,6 @@ gradient = SubResource("Gradient_fc0e3")
 width = 1280
 height = 720
 
-[sub_resource type="Gradient" id="Gradient_80nbo"]
-offsets = PackedFloat32Array(0.9819277, 1)
-colors = PackedColorArray(0, 0, 0, 0, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8nxoa"]
-gradient = SubResource("Gradient_80nbo")
-width = 1280
-height = 720
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0.001)
-repeat = 2
-
 [sub_resource type="Gradient" id="Gradient_e2o6t"]
 offsets = PackedFloat32Array(0.6818182, 1)
 colors = PackedColorArray(1, 1, 1, 1, 0.6955031, 0.6955032, 0.6955028, 1)
@@ -57,52 +44,53 @@ fill_to = Vector2(0.51, 0.51)
 repeat = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw4vu"]
-size = Vector2(133, 134)
+size = Vector2(36, 72)
+
+[sub_resource type="Gradient" id="Gradient_feb5d"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3hxyd"]
+gradient = SubResource("Gradient_feb5d")
+width = 36
+height = 72
+fill_from = Vector2(0, 1)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_ryrav"]
+offsets = PackedFloat32Array(0.3192771)
+colors = PackedColorArray(0.66372705, 0.37357214, 0.7283968, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fc0e3"]
+gradient = SubResource("Gradient_ryrav")
+width = 32
+height = 68
 
 [node name="Game" type="Node2D" unique_id=1207240851]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=764771987]
 
-[node name="Background" type="Sprite2D" parent="." unique_id=381845390]
+[node name="Background" type="Node2D" parent="." unique_id=1655581937]
+
+[node name="Background" type="Sprite2D" parent="Background" unique_id=381845390]
 texture = SubResource("GradientTexture2D_yw4vu")
 
-[node name="Background3" type="Sprite2D" parent="." unique_id=1331767446]
+[node name="top_section" type="Sprite2D" parent="Background" unique_id=1331767446]
 position = Vector2(-99.99997, -327)
 scale = Vector2(0.709375, 0.058333334)
 texture = SubResource("GradientTexture2D_ryrav")
 
-[node name="Background4" type="Sprite2D" parent="." unique_id=1169896183]
-position = Vector2(-99.99997, 327)
-scale = Vector2(0.709375, 0.05833333)
-texture = SubResource("GradientTexture2D_ryrav")
-
-[node name="Background2" type="Sprite2D" parent="." unique_id=2040180103]
+[node name="center_section" type="Sprite2D" parent="Background" unique_id=2040180103]
 position = Vector2(-76.500015, 0.4999708)
 scale = Vector2(0.8617187, 0.8180555)
 texture = SubResource("GradientTexture2D_7jktm")
 
-[node name="Board" type="Sprite2D" parent="." unique_id=1431319865]
+[node name="down_section" type="Sprite2D" parent="Background" unique_id=1169896183]
+position = Vector2(-99.99997, 327)
+scale = Vector2(0.709375, 0.05833333)
+texture = SubResource("GradientTexture2D_ryrav")
 
-[node name="Border" type="Sprite2D" parent="." unique_id=689048793]
-visible = false
-texture = SubResource("GradientTexture2D_8nxoa")
+[node name="Frames" type="Node2D" parent="." unique_id=1593404299]
 
-[node name="Border2" type="Sprite2D" parent="." unique_id=1168093600]
-visible = false
-position = Vector2(-65, 0)
-scale = Vector2(0.85, 1)
-texture = SubResource("GradientTexture2D_8nxoa")
-
-[node name="Line2D" type="Line2D" parent="." unique_id=552103530]
-points = PackedVector2Array(480, -140, 480, -300, -634, -300, -634, 300, 480, 300, 480, 140)
-width = 12.0
-texture = SubResource("GradientTexture2D_iqw5e")
-texture_mode = 2
-joint_mode = 1
-begin_cap_mode = 1
-end_cap_mode = 1
-
-[node name="Line2D2" type="Line2D" parent="." unique_id=285879562]
+[node name="up_frame" type="Line2D" parent="Frames" unique_id=285879562]
 points = PackedVector2Array(360, -312, 360, -354, -560, -354, -560, -312)
 width = 12.0
 default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
@@ -112,7 +100,16 @@ joint_mode = 1
 begin_cap_mode = 1
 end_cap_mode = 1
 
-[node name="Line2D3" type="Line2D" parent="." unique_id=644094988]
+[node name="center_frame" type="Line2D" parent="Frames" unique_id=552103530]
+points = PackedVector2Array(480, -140, 480, -300, -634, -300, -634, 300, 480, 300, 480, 140)
+width = 12.0
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="down_frame" type="Line2D" parent="Frames" unique_id=644094988]
 points = PackedVector2Array(360, 312, 360, 354, -560, 354, -560, 312)
 width = 12.0
 default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
@@ -125,55 +122,134 @@ end_cap_mode = 1
 [node name="Spinning_Wheel" parent="." unique_id=905745828 instance=ExtResource("1_80nbo")]
 position = Vector2(480, 0)
 
-[node name="Button" type="Button" parent="." unique_id=1014765821]
+[node name="Spin_Button" type="Button" parent="." unique_id=1014765821]
 offset_left = 360.0
 offset_top = -25.0
 offset_right = 598.0
 offset_bottom = 28.0
 text = "SPIN"
 
-[node name="Button2" type="Button" parent="." unique_id=1919210139]
+[node name="End_Turn_button" type="Button" parent="." unique_id=1919210139]
 offset_left = 524.0
 offset_top = 161.0
 offset_right = 607.0
 offset_bottom = 269.0
 text = "Next turn"
 
-[node name="Area2D" type="Area2D" parent="." unique_id=1987545393]
+[node name="cards_inventory" type="Node2D" parent="." unique_id=2128222662]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=625637341]
-position = Vector2(0.5, 0)
+[node name="slot_1" type="Area2D" parent="cards_inventory" unique_id=1987545393]
+position = Vector2(-530, 342)
+script = ExtResource("2_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_1" unique_id=625637341]
 shape = SubResource("RectangleShape2D_yw4vu")
 
-[node name="Line2D4" type="Line2D" parent="Area2D" unique_id=166707538]
-points = PackedVector2Array(-126, -64, -126, 73, -273, 69, -272, -69)
-width = 12.0
-default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
-texture = SubResource("GradientTexture2D_iqw5e")
-texture_mode = 2
-joint_mode = 1
-begin_cap_mode = 1
-end_cap_mode = 1
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_1" unique_id=2088448484]
+texture = SubResource("GradientTexture2D_3hxyd")
 
-[node name="Area2D2" type="Area2D" parent="." unique_id=1019204836]
-position = Vector2(-200, 0)
+[node name="slot_2" type="Area2D" parent="cards_inventory" unique_id=1019204836]
+position = Vector2(-480, 342)
+script = ExtResource("2_feb5d")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" unique_id=75370600]
-position = Vector2(0.5, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_2" unique_id=75370600]
 shape = SubResource("RectangleShape2D_yw4vu")
 
-[node name="Line2D5" type="Line2D" parent="Area2D2" unique_id=1068052273]
-position = Vector2(200, 0)
-points = PackedVector2Array(72, -67, 72, 72, -73, 73, -71, -66)
-width = 12.0
-default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
-texture = SubResource("GradientTexture2D_iqw5e")
-texture_mode = 2
-joint_mode = 1
-begin_cap_mode = 1
-end_cap_mode = 1
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_2" unique_id=1462904850]
+texture = SubResource("GradientTexture2D_3hxyd")
 
-[node name="drag" type="Sprite2D" parent="." unique_id=409651723 node_paths=PackedStringArray("areas")]
-texture = ExtResource("2_feb5d")
+[node name="slot_3" type="Area2D" parent="cards_inventory" unique_id=260226732]
+position = Vector2(-430, 342)
+script = ExtResource("2_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_3" unique_id=2088061492]
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_3" unique_id=1033113626]
+texture = SubResource("GradientTexture2D_3hxyd")
+
+[node name="slot_4" type="Area2D" parent="cards_inventory" unique_id=1774492250]
+position = Vector2(-380, 342)
+script = ExtResource("2_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_4" unique_id=1401882586]
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_4" unique_id=674933599]
+texture = SubResource("GradientTexture2D_3hxyd")
+
+[node name="slot_5" type="Area2D" parent="cards_inventory" unique_id=1346229803]
+position = Vector2(-330, 342)
+script = ExtResource("2_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_5" unique_id=846739564]
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_5" unique_id=964339881]
+texture = SubResource("GradientTexture2D_3hxyd")
+
+[node name="slot_6" type="Area2D" parent="cards_inventory" unique_id=299714101]
+position = Vector2(-280, 342)
+script = ExtResource("2_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_6" unique_id=1405158027]
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_6" unique_id=1820090303]
+texture = SubResource("GradientTexture2D_3hxyd")
+
+[node name="slot_7" type="Area2D" parent="cards_inventory" unique_id=342968004]
+position = Vector2(-230, 342)
+script = ExtResource("2_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_7" unique_id=1847786743]
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_7" unique_id=1242765345]
+texture = SubResource("GradientTexture2D_3hxyd")
+
+[node name="slot_8" type="Area2D" parent="cards_inventory" unique_id=686744749]
+position = Vector2(-180, 342)
+script = ExtResource("2_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_8" unique_id=2002141647]
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_8" unique_id=1427116278]
+texture = SubResource("GradientTexture2D_3hxyd")
+
+[node name="slot_9" type="Area2D" parent="cards_inventory" unique_id=1256406919]
+position = Vector2(-130, 342)
+script = ExtResource("2_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_9" unique_id=245944827]
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_9" unique_id=1143307390]
+texture = SubResource("GradientTexture2D_3hxyd")
+
+[node name="slot_10" type="Area2D" parent="cards_inventory" unique_id=217684653]
+position = Vector2(-80, 342)
+script = ExtResource("2_feb5d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cards_inventory/slot_10" unique_id=337294029]
+shape = SubResource("RectangleShape2D_yw4vu")
+
+[node name="Sprite2D" type="Sprite2D" parent="cards_inventory/slot_10" unique_id=1299127668]
+texture = SubResource("GradientTexture2D_3hxyd")
+
+[node name="card" type="Sprite2D" parent="." unique_id=409651723 node_paths=PackedStringArray("areas", "current_area")]
+position = Vector2(-530, 342)
+texture = SubResource("GradientTexture2D_fc0e3")
 script = ExtResource("3_fc0e3")
-areas = [NodePath("../Area2D"), NodePath("../Area2D2")]
+areas = [NodePath("../cards_inventory/slot_1"), NodePath("../cards_inventory/slot_2"), NodePath("../cards_inventory/slot_3"), NodePath("../cards_inventory/slot_4"), NodePath("../cards_inventory/slot_5"), NodePath("../cards_inventory/slot_6"), NodePath("../cards_inventory/slot_7"), NodePath("../cards_inventory/slot_8"), NodePath("../cards_inventory/slot_9"), NodePath("../cards_inventory/slot_10")]
+current_area = NodePath("../cards_inventory/slot_1")
+
+[node name="card2" type="Sprite2D" parent="." unique_id=324722042 node_paths=PackedStringArray("areas", "current_area")]
+position = Vector2(-480, 342)
+texture = SubResource("GradientTexture2D_fc0e3")
+script = ExtResource("3_fc0e3")
+areas = [NodePath("../cards_inventory/slot_1"), NodePath("../cards_inventory/slot_2"), NodePath("../cards_inventory/slot_3"), NodePath("../cards_inventory/slot_4"), NodePath("../cards_inventory/slot_5"), NodePath("../cards_inventory/slot_6"), NodePath("../cards_inventory/slot_7"), NodePath("../cards_inventory/slot_8"), NodePath("../cards_inventory/slot_9"), NodePath("../cards_inventory/slot_10")]
+current_area = NodePath("../cards_inventory/slot_2")
+
+[connection signal="pressed" from="Spin_Button" to="Spinning_Wheel" method="_on_button_pressed"]

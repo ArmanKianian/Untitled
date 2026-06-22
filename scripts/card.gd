@@ -1,8 +1,10 @@
 extends Sprite2D
 
+@onready var player_square: Node2D = $"../../war_square/player_square"
 @onready var inventory: Node2D = $"../../inventory"
 @onready var Level: Label = $VBoxContainer/Level
 @onready var Type: Label = $VBoxContainer/Type
+
 var level
 var type
 
@@ -22,6 +24,12 @@ func _ready() -> void:
 	for area in inventory.get_children():
 		area.mouse_entered.connect(_on_mouse_entered.bind(area))
 		area.mouse_exited.connect(_on_mouse_exited)
+	
+	# Connect every player_square slots
+	for area in player_square.get_children():
+		area.mouse_entered.connect(_on_mouse_entered.bind(area))
+		area.mouse_exited.connect(_on_mouse_exited)
+	
 	# add card to inventory, when it's init in the scene
 	add_card_to_inventory()
 	

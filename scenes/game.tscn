@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://bj4dr8nnahwwh" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://crao2hql84nl1" path="res://scripts/camera.gd" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://cbwy1xbx0js1" path="res://scripts/inventory.gd" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://bn155muvteuhc" path="res://scripts/war_square.gd" id="5_iywne"]
 
 [sub_resource type="Gradient" id="Gradient_mwb40"]
 offsets = PackedFloat32Array(0)
@@ -107,6 +108,15 @@ texture = SubResource("GradientTexture2D_ryrav")
 points = PackedVector2Array(360, -312, 360, -354, -560, -354, -560, -312)
 width = 12.0
 default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
+texture = SubResource("GradientTexture2D_iqw5e")
+texture_mode = 2
+joint_mode = 1
+begin_cap_mode = 1
+end_cap_mode = 1
+
+[node name="center_center_frame" type="Line2D" parent="Background/Frames" unique_id=464201990]
+points = PackedVector2Array(475, -295, 261, 0, -640, 0, 261, 0, 475, 298)
+width = 12.0
 texture = SubResource("GradientTexture2D_iqw5e")
 texture_mode = 2
 joint_mode = 1
@@ -222,9 +232,14 @@ text = "Next turn"
 [node name="inventory" type="Node2D" parent="." unique_id=2128222662]
 script = ExtResource("3_lnu2h")
 
-[node name="cards" type="Node2D" parent="." unique_id=1345714107]
-
 [node name="war_square" type="Node2D" parent="." unique_id=246498192]
+script = ExtResource("5_iywne")
+
+[node name="enemy_square" type="Node2D" parent="war_square" unique_id=858666609]
+
+[node name="player_square" type="Node2D" parent="war_square" unique_id=399775970]
+
+[node name="cards" type="Node2D" parent="." unique_id=1345714107]
 
 [connection signal="pressed" from="UI/Spin_Button" to="." method="_on_spin_button_pressed"]
 [connection signal="pressed" from="UI/End_Turn_button" to="." method="_on_end_turn_button_pressed"]

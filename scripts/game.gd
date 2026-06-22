@@ -2,6 +2,8 @@ extends Node2D
 
 const CARD = preload("uid://dlsbf8fn82egx")
 
+@onready var camera: Camera2D = $Camera2D
+
 @onready var inventory: Node2D = $inventory
 @onready var cards: Node2D = $cards
 @onready var spinning_wheel: Node2D = $Spinning_Wheel
@@ -24,6 +26,7 @@ func _on_end_turn_button_pressed() -> void:
 	coin.text = str(int(coin.text) + turn_coin_gain)
 
 func _on_spin_button_pressed() -> void:
+	camera.screen_shake(8, 0.2)
 	if int(coin.text) >= int(spin_cost.text):
 		if add_card():
 			coin.text = str(int(coin.text) - int(spin_cost.text))

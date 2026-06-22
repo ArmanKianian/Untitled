@@ -26,6 +26,7 @@ func spin():
 
 # Normalize Chance then pick one random based on weight(chance)
 func pick_weighted_random_item():
+	randomize()
 	var chance_sum: float = 0
 	for item in items:
 		chance_sum += item["chance"]

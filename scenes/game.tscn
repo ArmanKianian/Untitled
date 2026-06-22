@@ -48,6 +48,21 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.51, 0.51)
 repeat = 2
 
+[sub_resource type="Gradient" id="Gradient_lbhrr"]
+offsets = PackedFloat32Array(0.9939759, 1)
+colors = PackedColorArray(0, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lbhrr"]
+gradient = SubResource("Gradient_lbhrr")
+width = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.47863248, 0.3846154)
+
+[sub_resource type="Curve" id="Curve_iywne"]
+_data = [Vector2(0, 0.764045), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Game" type="Node2D" unique_id=1207240851]
 script = ExtResource("1_lbhrr")
 
@@ -60,7 +75,7 @@ script = ExtResource("2_lbhrr")
 texture = SubResource("GradientTexture2D_yw4vu")
 
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Background" unique_id=1780919590]
-amount = 30
+amount = 10
 emission_shape = 3
 emission_rect_extents = Vector2(960, 540)
 gravity = Vector2(1000, 980)
@@ -123,12 +138,12 @@ position = Vector2(480, 0)
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=506124351]
 position = Vector2(-76.5, -294)
 amount = 5
+texture = SubResource("GradientTexture2D_lbhrr")
 emission_shape = 3
 emission_rect_extents = Vector2(550.5, 0)
 gravity = Vector2(-100, 980)
-scale_amount_min = 2.0
-scale_amount_max = 3.0
-scale_amount_curve = SubResource("Curve_lbhrr")
+scale_amount_max = 2.5
+scale_amount_curve = SubResource("Curve_iywne")
 color = Color(0, 1, 1, 1)
 hue_variation_min = -1.0
 hue_variation_max = 1.0

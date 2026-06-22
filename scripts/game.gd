@@ -21,6 +21,7 @@ func _ready() -> void:
 	coin.text = str(start_coin)
 
 func _on_end_turn_button_pressed() -> void:
+	camera.screen_shake(50, 0.5)
 	spin_cost.text = str(turn_spin_cost)
 	turn.text = str(int(turn.text) + 1)
 	coin.text = str(int(coin.text) + turn_coin_gain)

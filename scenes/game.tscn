@@ -14,6 +14,10 @@ gradient = SubResource("Gradient_mwb40")
 width = 1920
 height = 1080
 
+[sub_resource type="Curve" id="Curve_lbhrr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
 [sub_resource type="Gradient" id="Gradient_7jktm"]
 offsets = PackedFloat32Array(0)
 colors = PackedColorArray(0.9019608, 0.7411765, 0, 1)
@@ -54,6 +58,18 @@ script = ExtResource("2_lbhrr")
 
 [node name="Background" type="Sprite2D" parent="Background" unique_id=381845390]
 texture = SubResource("GradientTexture2D_yw4vu")
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Background" unique_id=1780919590]
+amount = 30
+emission_shape = 3
+emission_rect_extents = Vector2(960, 540)
+gravity = Vector2(1000, 980)
+scale_amount_min = 0.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_lbhrr")
+color = Color(0.45554918, 0.49031997, 0.52986395, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
 
 [node name="top_section" type="Sprite2D" parent="Background" unique_id=1331767446]
 position = Vector2(-99.99997, -327)
@@ -103,6 +119,19 @@ end_cap_mode = 1
 
 [node name="Spinning_Wheel" parent="." unique_id=905745828 instance=ExtResource("1_80nbo")]
 position = Vector2(480, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=506124351]
+position = Vector2(-76.5, -294)
+amount = 5
+emission_shape = 3
+emission_rect_extents = Vector2(550.5, 0)
+gravity = Vector2(-100, 980)
+scale_amount_min = 2.0
+scale_amount_max = 3.0
+scale_amount_curve = SubResource("Curve_lbhrr")
+color = Color(0, 1, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
 
 [node name="UI" type="Control" parent="." unique_id=1450937596]
 custom_minimum_size = Vector2(1280, 820)

@@ -3,8 +3,9 @@ extends Node2D
 const CARD = preload("uid://dlsbf8fn82egx")
 @onready var cards: Node2D = $"../cards"
 @onready var cards_inventory: Node2D = $"../inventory"
+@onready var coin: Label = $"../UI/GridContainer/coin"
+@onready var spin_cost: Label = $"../UI/GridContainer/spin_cost"
 
-var available = false
 # wheel items with chance of getting
 var items: Array = [
 	{"name": "Item1", "level": 1, "chance": 10.0},
@@ -20,16 +21,8 @@ var items: Array = [
 ] 
 
 func spin():
-	for child in cards_inventory.get_children():
-		if child.item == null:
-			available = true
-			break
-	if available == true:
-		var chosen = pick_weighted_random_item()
-		add_card(chosen["name"], chosen["level"])
-	else:
-		print("inventory is full!")
-	available = false
+	var chosen = pick_weighted_random_item()
+	return chosen
 
 # Normalize Chance then pick one random based on weight(chance)
 func pick_weighted_random_item():
@@ -43,9 +36,6 @@ func pick_weighted_random_item():
 		if random_chance <= 0:
 			return item
 	return items[0]
-
-func _on_button_pressed() -> void:
-	spin()
 
 func add_card(type, level):
 	var card = CARD.instantiate()

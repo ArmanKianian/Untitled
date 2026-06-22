@@ -31,6 +31,7 @@ func _process(_delta: float) -> void:
 		future_position = get_global_mouse_position() - mouse_offset
 	global_position.x = move_toward(global_position.x, future_position.x, 30)
 	global_position.y = move_toward(global_position.y, future_position.y, 30)
+
 func _input(event: InputEvent) -> void:
 	# when card is dragged
 	if event.is_action_pressed("LMB") and get_rect().has_point(get_local_mouse_position()):

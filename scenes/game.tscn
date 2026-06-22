@@ -102,18 +102,75 @@ end_cap_mode = 1
 [node name="Spinning_Wheel" parent="." unique_id=905745828 instance=ExtResource("1_80nbo")]
 position = Vector2(480, 0)
 
-[node name="Spin_Button" type="Button" parent="." unique_id=1014765821]
-offset_left = 360.0
-offset_top = -25.0
-offset_right = 598.0
-offset_bottom = 28.0
+[node name="UI" type="Control" parent="." unique_id=1450937596]
+custom_minimum_size = Vector2(1280, 820)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -640.0
+offset_top = -360.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="UI" unique_id=902560111]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="coins_text" type="Label" parent="UI/GridContainer" unique_id=1206440937]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Coins:      "
+
+[node name="turn_text" type="Label" parent="UI/GridContainer" unique_id=1434502165]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Turn:      "
+
+[node name="spin_cost_text" type="Label" parent="UI/GridContainer" unique_id=243890378]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Spin Cost:"
+
+[node name="coin" type="Label" parent="UI/GridContainer" unique_id=619698015]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "12"
+
+[node name="turn" type="Label" parent="UI/GridContainer" unique_id=1264902022]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "0"
+
+[node name="spin_cost" type="Label" parent="UI/GridContainer" unique_id=319299110]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "3"
+
+[node name="Spin_Button" type="Button" parent="UI" unique_id=1014765821]
+layout_mode = 0
+offset_left = 1000.0
+offset_top = 382.0
+offset_right = 1238.0
+offset_bottom = 437.0
 text = "SPIN"
 
-[node name="End_Turn_button" type="Button" parent="." unique_id=1919210139]
-offset_left = 524.0
-offset_top = 161.0
-offset_right = 607.0
-offset_bottom = 269.0
+[node name="End_Turn_button" type="Button" parent="UI" unique_id=1919210139]
+layout_mode = 0
+offset_left = 1024.0
+offset_top = 649.0
+offset_right = 1107.0
+offset_bottom = 697.0
 text = "Next turn"
 
 [node name="inventory" type="Node2D" parent="." unique_id=2128222662]
@@ -121,4 +178,5 @@ script = ExtResource("3_lnu2h")
 
 [node name="cards" type="Node2D" parent="." unique_id=1345714107]
 
-[connection signal="pressed" from="Spin_Button" to="Spinning_Wheel" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Spin_Button" to="." method="_on_spin_button_pressed"]
+[connection signal="pressed" from="UI/End_Turn_button" to="." method="_on_end_turn_button_pressed"]

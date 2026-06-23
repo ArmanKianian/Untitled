@@ -11,6 +11,8 @@ extends Node2D
 @onready var camera: Camera2D = $"../../../Camera2D"
 
 @onready var player_square: Node2D = $"../../../war_square/player_square"
+@onready var square: Node2D
+@onready var enemy_square: Node2D = $"../../../war_square/enemy_square"
 @onready var player_inventory: Node2D = $"../../../inventory/player_inventory"
 @onready var inventory: Node2D
 @onready var enemy_inventory: Node2D = $"../../../inventory/enemy_inventory"
@@ -57,7 +59,7 @@ func _ready() -> void:
 		area.mouse_exited.connect(_on_mouse_exited)
 	
 	# Connect every player_square slots
-	for area in player_square.get_children():
+	for area in square.get_children():
 		area.mouse_entered.connect(_on_mouse_entered.bind(area))
 		area.mouse_exited.connect(_on_mouse_exited)
 	

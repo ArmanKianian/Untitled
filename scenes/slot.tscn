@@ -6,13 +6,15 @@
 size = Vector2(36, 72)
 
 [sub_resource type="Gradient" id="Gradient_feb5d"]
+offsets = PackedFloat32Array(0.92771083, 1)
+colors = PackedColorArray(0, 0, 0, 0.56078434, 0.5649617, 0.5649616, 0.5649616, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3hxyd"]
 gradient = SubResource("Gradient_feb5d")
 width = 36
 height = 72
-fill_from = Vector2(0, 1)
-fill_to = Vector2(0, 0)
+fill = 2
+fill_from = Vector2(0.5, 0.5)
 
 [node name="slot" type="Area2D" unique_id=1963932317]
 script = ExtResource("1_4v6ba")

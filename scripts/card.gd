@@ -1,5 +1,9 @@
 extends Sprite2D
 
+@onready var card_place: AudioStreamPlayer = $"../../card_place"
+@onready var card_pick: AudioStreamPlayer = $"../../card_pick"
+@onready var card_drag: AudioStreamPlayer = $"../../card_drag"
+
 @onready var camera: Camera2D = $"../../Camera2D"
 
 @onready var player_square: Node2D = $"../../war_square/player_square"
@@ -20,6 +24,7 @@ var current_area: Area2D
 var is_on_slot = false
 
 func _ready() -> void:
+	card_pick.play()
 	Level.text = str(level)
 	Type.text = str(type)
 	# Connect every slot area signals for knowing when card is inside slot
@@ -46,6 +51,7 @@ func _input(event: InputEvent) -> void:
 	# when card is dragged
 	if event.is_action_pressed("LMB") and get_rect().has_point(get_local_mouse_position()):
 		mouse_offset = get_local_mouse_position()
+		card_drag.play()
 		is_dragged = true
 		top_level = true
 	# when card is released
@@ -53,6 +59,7 @@ func _input(event: InputEvent) -> void:
 		
 		is_dragged = false
 		top_level = false
+		card_place.play()
 		# card is not on a slot
 		if is_on_slot == false:
 			camera.screen_shake(8, 0.5)

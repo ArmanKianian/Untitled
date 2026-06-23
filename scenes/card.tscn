@@ -3,13 +3,14 @@
 [ext_resource type="Script" uid="uid://calip06smc8aq" path="res://scripts/card.gd" id="1_d81rb"]
 
 [sub_resource type="Gradient" id="Gradient_ryrav"]
-offsets = PackedFloat32Array(0.3192771)
-colors = PackedColorArray(0.66372705, 0.37357214, 0.7283968, 1)
+offsets = PackedFloat32Array(0.3192771, 0.73493975)
+colors = PackedColorArray(1, 0.8039216, 0, 1, 0.37737352, 0.26735178, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fc0e3"]
 gradient = SubResource("Gradient_ryrav")
 width = 32
 height = 68
+fill_to = Vector2(1, 1)
 
 [node name="card" type="Sprite2D" unique_id=254982057]
 texture = SubResource("GradientTexture2D_fc0e3")

@@ -64,6 +64,15 @@ fill_to = Vector2(0.47863248, 0.3846154)
 _data = [Vector2(0, 0.764045), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="Gradient" id="Gradient_iywne"]
+colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8nxoa"]
+gradient = SubResource("Gradient_iywne")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
 [node name="Game" type="Node2D" unique_id=1207240851]
 script = ExtResource("1_lbhrr")
 
@@ -115,7 +124,7 @@ begin_cap_mode = 1
 end_cap_mode = 1
 
 [node name="center_center_frame" type="Line2D" parent="Background/Frames" unique_id=464201990]
-points = PackedVector2Array(475, -295, 261, 0, -640, 0, 261, 0, 475, 298)
+points = PackedVector2Array(390, -101, 261, 0, -640, 0, 261, 0, 382, 97)
 width = 12.0
 texture = SubResource("GradientTexture2D_iqw5e")
 texture_mode = 2
@@ -240,6 +249,49 @@ script = ExtResource("5_iywne")
 [node name="player_square" type="Node2D" parent="war_square" unique_id=399775970]
 
 [node name="cards" type="Node2D" parent="." unique_id=1345714107]
+
+[node name="Lightings" type="Node2D" parent="." unique_id=388862978]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lightings" unique_id=1077789834]
+color = Color(0, 0, 0, 1)
+energy = 0.7
+blend_mode = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Lightings" unique_id=2112795559]
+position = Vector2(488.5, -0.50000143)
+scale = Vector2(4.953125, 4.890625)
+energy = 0.55
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lightings" unique_id=1171839525]
+position = Vector2(-153.49997, -3.5000153)
+scale = Vector2(14.484374, 9.265625)
+energy = 0.5
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lightings" unique_id=1927416260]
+position = Vector2(-153.49997, 159.5)
+scale = Vector2(14.484374, 7.8593745)
+energy = 0.5
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lightings" unique_id=963801954]
+position = Vector2(-153.49997, -138.50002)
+scale = Vector2(14.484374, 7.6718745)
+energy = 0.5
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Lightings" unique_id=543279182]
+position = Vector2(-537.5, -385.5)
+scale = Vector2(6.2343745, 0.9531246)
+energy = 0.5
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Lightings" unique_id=1749836136]
+position = Vector2(-18.499954, 289.5)
+scale = Vector2(24.734377, 4.453125)
+energy = 0.5
+texture = SubResource("GradientTexture2D_8nxoa")
 
 [connection signal="pressed" from="UI/Spin_Button" to="." method="_on_spin_button_pressed"]
 [connection signal="pressed" from="UI/End_Turn_button" to="." method="_on_end_turn_button_pressed"]

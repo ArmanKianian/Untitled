@@ -2,6 +2,18 @@
 
 [ext_resource type="Script" uid="uid://calip06smc8aq" path="res://scripts/card.gd" id="1_d81rb"]
 
+[sub_resource type="Gradient" id="Gradient_d81rb"]
+colors = PackedColorArray(0.8784314, 0.64705884, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ktuci"]
+gradient = SubResource("Gradient_d81rb")
+width = 1
+height = 1
+
+[sub_resource type="Curve" id="Curve_d81rb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [sub_resource type="Gradient" id="Gradient_ryrav"]
 offsets = PackedFloat32Array(0.3192771, 0.73493975)
 colors = PackedColorArray(1, 0.8039216, 0, 1, 0.37737352, 0.26735178, 0, 1)
@@ -12,11 +24,27 @@ width = 32
 height = 68
 fill_to = Vector2(1, 1)
 
-[node name="card" type="Sprite2D" unique_id=254982057]
-texture = SubResource("GradientTexture2D_fc0e3")
+[node name="Card" type="Node2D" unique_id=1222866304]
 script = ExtResource("1_d81rb")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1687310917]
+[node name="Card_Particles" type="CPUParticles2D" parent="." unique_id=1174871998]
+emitting = false
+texture = SubResource("GradientTexture2D_ktuci")
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 5.0
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_d81rb")
+
+[node name="Card" type="Sprite2D" parent="." unique_id=1623035432]
+texture = SubResource("GradientTexture2D_fc0e3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Card" unique_id=1687310917]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -27,7 +55,7 @@ offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Level" type="Label" parent="VBoxContainer" unique_id=1165069153]
+[node name="Level" type="Label" parent="Card/VBoxContainer" unique_id=1165069153]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -35,7 +63,7 @@ text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Type" type="Label" parent="VBoxContainer" unique_id=491577081]
+[node name="Type" type="Label" parent="Card/VBoxContainer" unique_id=491577081]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6

@@ -1,4 +1,8 @@
-extends Sprite2D
+extends Node2D
+
+@onready var card: Sprite2D = $Card
+
+@onready var card_particles: CPUParticles2D = $Card_Particles
 
 @onready var card_place: AudioStreamPlayer = $"../../card_place"
 @onready var card_pick: AudioStreamPlayer = $"../../card_pick"
@@ -8,8 +12,8 @@ extends Sprite2D
 
 @onready var player_square: Node2D = $"../../war_square/player_square"
 @onready var inventory: Node2D = $"../../inventory"
-@onready var Level: Label = $VBoxContainer/Level
-@onready var Type: Label = $VBoxContainer/Type
+@onready var Level: Label = $Card/VBoxContainer/Level
+@onready var Type: Label = $Card/VBoxContainer/Type
 
 var level
 var type
@@ -53,7 +57,7 @@ func _ready() -> void:
 	add_card_to_inventory()
 	
 func _process(delta: float) -> void:
-	if get_rect().has_point(get_local_mouse_position()) and is_dragged == false:
+	if card.get_rect().has_point(get_local_mouse_position()) and is_dragged == false:
 		rotation_degrees = -5
 	else:
 		rotation_degrees = 0
@@ -67,24 +71,25 @@ func _process(delta: float) -> void:
 		shake_time += delta * shake_time_speed
 		active_shake_time -= delta
 		
-		offset = Vector2(
+		card.offset = Vector2(
 			noise.get_noise_2d(shake_time, 0) * shake_intensity,
 			noise.get_noise_2d(0, shake_time) * shake_intensity,
 		)
 		
 		shake_intensity = max(shake_intensity - shake_decay * delta, 0)
 	else:
-		offset = lerp(offset, Vector2.ZERO, 10.5 * delta)
+		card.offset = lerp(card.offset, Vector2.ZERO, 10.5 * delta)
 
 func _input(event: InputEvent) -> void:
 	# when card is dragged
-	if event.is_action_pressed("LMB") and get_rect().has_point(get_local_mouse_position()):
+	if event.is_action_pressed("LMB") and card.get_rect().has_point(get_local_mouse_position()):
 		mouse_offset = get_local_mouse_position()
 		card_drag.play()
 		is_dragged = true
 		top_level = true
 	# when card is released
 	elif event.is_action_released("LMB") and is_dragged == true:
+		card_particles.emitting = true
 		shake(10, 0.3)
 		is_dragged = false
 		top_level = false

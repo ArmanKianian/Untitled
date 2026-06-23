@@ -23,6 +23,18 @@ var current_area: Area2D
 
 var is_on_slot = false
 
+
+# --- shake ---
+var shake_intensity: float = 0.0
+var active_shake_time: float = 0.0
+
+var shake_decay: float = 5.0
+
+var shake_time: float = 0.0
+var shake_time_speed: float = 20.0
+
+var noise = FastNoiseLite.new()
+
 func _ready() -> void:
 	card_pick.play()
 	Level.text = str(level)
@@ -40,12 +52,29 @@ func _ready() -> void:
 	# add card to inventory, when it's init in the scene
 	add_card_to_inventory()
 	
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
+	if get_rect().has_point(get_local_mouse_position()) and is_dragged == false:
+		rotation_degrees = -5
+	else:
+		rotation_degrees = 0
 	# move toward the place card must be
 	if is_dragged == true:
 		future_position = get_global_mouse_position() - mouse_offset
 	global_position.x = move_toward(global_position.x, future_position.x, 30)
 	global_position.y = move_toward(global_position.y, future_position.y, 30)
+	
+	if active_shake_time > 0:
+		shake_time += delta * shake_time_speed
+		active_shake_time -= delta
+		
+		offset = Vector2(
+			noise.get_noise_2d(shake_time, 0) * shake_intensity,
+			noise.get_noise_2d(0, shake_time) * shake_intensity,
+		)
+		
+		shake_intensity = max(shake_intensity - shake_decay * delta, 0)
+	else:
+		offset = lerp(offset, Vector2.ZERO, 10.5 * delta)
 
 func _input(event: InputEvent) -> void:
 	# when card is dragged
@@ -56,7 +85,7 @@ func _input(event: InputEvent) -> void:
 		top_level = true
 	# when card is released
 	elif event.is_action_released("LMB") and is_dragged == true:
-		
+		shake(10, 0.3)
 		is_dragged = false
 		top_level = false
 		card_place.play()
@@ -86,9 +115,8 @@ func _input(event: InputEvent) -> void:
 					future_position = start_area.position
 				
 func _on_mouse_entered(area):
-	if is_dragged == true:
-		current_area = area
-		is_on_slot = true
+	current_area = area
+	is_on_slot = true
 
 func _on_mouse_exited():
 	current_area = start_area
@@ -110,3 +138,13 @@ func place_card():
 	current_area.item = self
 	start_area = current_area
 	future_position = current_area.position
+	
+func shake(intensity: int, time: float):
+	randomize()
+	noise.seed = randi()
+	noise.frequency = 2.0
+	
+	shake_intensity = intensity
+	active_shake_time = time
+	shake_time = 0.0
+	

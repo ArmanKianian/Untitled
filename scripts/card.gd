@@ -1,5 +1,7 @@
 extends Sprite2D
 
+@onready var camera: Camera2D = $"../../Camera2D"
+
 @onready var player_square: Node2D = $"../../war_square/player_square"
 @onready var inventory: Node2D = $"../../inventory"
 @onready var Level: Label = $VBoxContainer/Level
@@ -48,14 +50,17 @@ func _input(event: InputEvent) -> void:
 		top_level = true
 	# when card is released
 	elif event.is_action_released("LMB") and is_dragged == true:
+		
 		is_dragged = false
 		top_level = false
 		# card is not on a slot
 		if is_on_slot == false:
+			camera.screen_shake(8, 0.5)
 			future_position = start_area.position
 		# card is on a slot
 		else:
 			# slot is free
+			camera.screen_shake(8, 0.05)
 			if current_area.item == null:
 				place_card()
 			# there is a card in slot
@@ -65,6 +70,7 @@ func _input(event: InputEvent) -> void:
 					future_position = start_area.position
 				# level and type of slot card and dragged card are same
 				elif int(current_area.item.Level.text) == int(Level.text) and current_area.item.type == type :
+					camera.screen_shake(8, 0.1)
 					current_area.item.queue_free()
 					place_card()
 					Level.text = str(int(Level.text) + 1)

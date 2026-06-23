@@ -4,7 +4,7 @@ const SLOT = preload("uid://cu816sfuctxvy")
 
 @export var slots_count = 10
 @export var slot_position = Vector2(-530, 342.0)
-@export var slot_distance = 50
+@export var slot_distance = 72
 
 func _ready() -> void:
 	for i in range(slots_count):

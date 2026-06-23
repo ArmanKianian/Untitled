@@ -4,17 +4,22 @@ extends Node2D
 
 @onready var card_particles: CPUParticles2D = $Card_Particles
 
-@onready var card_place: AudioStreamPlayer = $"../../card_place"
-@onready var card_pick: AudioStreamPlayer = $"../../card_pick"
-@onready var card_drag: AudioStreamPlayer = $"../../card_drag"
+@onready var card_place: AudioStreamPlayer = $"../../../Audios/card_place"
+@onready var card_pick: AudioStreamPlayer = $"../../../Audios/card_pick"
+@onready var card_drag: AudioStreamPlayer = $"../../../Audios/card_drag"
 
-@onready var camera: Camera2D = $"../../Camera2D"
+@onready var camera: Camera2D = $"../../../Camera2D"
 
-@onready var player_square: Node2D = $"../../war_square/player_square"
-@onready var inventory: Node2D = $"../../inventory"
-@onready var Level: Label = $Card/VBoxContainer/Level
+@onready var player_square: Node2D = $"../../../war_square/player_square"
+@onready var player_inventory: Node2D = $"../../../inventory/player_inventory"
+@onready var inventory: Node2D
+@onready var enemy_inventory: Node2D = $"../../../inventory/enemy_inventory"
+@onready var Level: Label = $Card/VBoxContainer/HBoxContainer/Level
+@onready var Health: Label = $Card/VBoxContainer/HBoxContainer/Health
+@onready var Damage: Label = $Card/VBoxContainer/HBoxContainer/Damage
 @onready var Type: Label = $Card/VBoxContainer/Type
-
+var health
+var damage
 var level
 var type
 
@@ -27,6 +32,7 @@ var current_area: Area2D
 
 var is_on_slot = false
 
+var is_played = false
 
 # --- shake ---
 var shake_intensity: float = 0.0
@@ -41,6 +47,8 @@ var noise = FastNoiseLite.new()
 
 func _ready() -> void:
 	card_pick.play()
+	Health.text = str(health)
+	Damage.text = str(damage)
 	Level.text = str(level)
 	Type.text = str(type)
 	# Connect every slot area signals for knowing when card is inside slot
@@ -57,7 +65,7 @@ func _ready() -> void:
 	add_card_to_inventory()
 	
 func _process(delta: float) -> void:
-	if card.get_rect().has_point(get_local_mouse_position()) and is_dragged == false:
+	if card.get_rect().has_point(get_local_mouse_position()) and is_dragged == false and inventory ==  player_inventory:
 		rotation_degrees = -5
 	else:
 		rotation_degrees = 0
@@ -81,6 +89,8 @@ func _process(delta: float) -> void:
 		card.offset = lerp(card.offset, Vector2.ZERO, 10.5 * delta)
 
 func _input(event: InputEvent) -> void:
+	if inventory !=  player_inventory:
+		return
 	# when card is dragged
 	if event.is_action_pressed("LMB") and card.get_rect().has_point(get_local_mouse_position()):
 		mouse_offset = get_local_mouse_position()

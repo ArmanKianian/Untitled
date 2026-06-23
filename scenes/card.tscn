@@ -24,6 +24,12 @@ width = 32
 height = 68
 fill_to = Vector2(1, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_yw4vu"]
+font_color = Color(0.98039216, 0, 0.06666667, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8nxoa"]
+font_color = Color(0, 1, 0, 1)
+
 [node name="Card" type="Node2D" unique_id=1222866304]
 script = ExtResource("1_d81rb")
 
@@ -55,11 +61,34 @@ offset_bottom = -34.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Level" type="Label" parent="Card/VBoxContainer" unique_id=1165069153]
+[node name="HBoxContainer" type="HBoxContainer" parent="Card/VBoxContainer" unique_id=196588101]
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_vertical = 3
+alignment = 1
+
+[node name="Damage" type="Label" parent="Card/VBoxContainer/HBoxContainer" unique_id=497807791]
+layout_mode = 2
+size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "1"
+label_settings = SubResource("LabelSettings_yw4vu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Level" type="Label" parent="Card/VBoxContainer/HBoxContainer" unique_id=1165069153]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Health" type="Label" parent="Card/VBoxContainer/HBoxContainer" unique_id=768959155]
+layout_mode = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+text = "1"
+label_settings = SubResource("LabelSettings_8nxoa")
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,23 +1,17 @@
 extends Node2D
 
-const CARD = preload("uid://dlsbf8fn82egx")
-@onready var cards: Node2D = $"../cards"
-@onready var cards_inventory: Node2D = $"../inventory"
-@onready var coin: Label = $"../UI/GridContainer/coin"
-@onready var spin_cost: Label = $"../UI/GridContainer/spin_cost"
-
 # wheel items with chance of getting
 var items: Array = [
-	{"name": "Item1", "level": 1, "chance": 10.0},
-	{"name": "Item2", "level": 1, "chance": 10.0},
-	{"name": "Item3", "level": 1, "chance": 10.0},
-	{"name": "Item4", "level": 1, "chance": 10.0},
-	{"name": "Item5", "level": 1, "chance": 10.0},
-	{"name": "Item6", "level": 1, "chance": 10.0},
-	{"name": "Item7", "level": 1,"chance": 10.0},
-	{"name": "Item8", "level": 1, "chance": 10.0},
-	{"name": "Item9", "level": 1,"chance": 10.0},
-	{"name": "Item10", "level": 1, "chance": 10.0},
+	{"name": "Item1", "level": 1, "damage": 2, "health": 3, "chance": 10.0},
+	{"name": "Item2", "level": 1, "damage": 1, "health": 1, "chance": 10.0},
+	{"name": "Item3", "level": 1, "damage": 2, "health": 1, "chance": 10.0},
+	{"name": "Item4", "level": 1, "damage": 1, "health": 2, "chance": 10.0},
+	{"name": "Item5", "level": 1, "damage": 3, "health": 1, "chance": 10.0},
+	{"name": "Item6", "level": 1, "damage": 1, "health": 3, "chance": 10.0},
+	{"name": "Item7", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
+	{"name": "Item8", "level": 1, "damage": 4, "health": 1, "chance": 10.0},
+	{"name": "Item9", "level": 1, "damage": 1, "health": 4, "chance": 10.0},
+	{"name": "Item10", "level": 1, "damage": 3, "health": 3, "chance": 10.0},
 ] 
 
 func spin():
@@ -37,9 +31,3 @@ func pick_weighted_random_item():
 		if random_chance <= 0:
 			return item
 	return items[0]
-
-func add_card(type, level):
-	var card = CARD.instantiate()
-	card.type = type
-	card.level = level
-	cards.add_child(card)

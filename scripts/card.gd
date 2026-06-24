@@ -126,8 +126,7 @@ func _input(event: InputEvent) -> void:
 					camera.screen_shake(8, 0.1)
 					current_area.item.queue_free()
 					place_card()
-					level += 1
-					# Level.text = str(int(Level.text) + 1)
+					level_up()
 				# level and types are different
 				else:
 					future_position = start_area.position
@@ -166,3 +165,7 @@ func shake(intensity: int, time: float):
 	active_shake_time = time
 	shake_time = 0.0
 	
+func level_up():
+	level += 1
+	health += 1
+	damage += 1

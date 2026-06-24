@@ -166,7 +166,7 @@ func shake(intensity: int, time: float):
 	active_shake_time = time
 	shake_time = 0.0
 	
-func level_up(card):
+func level_up(merged_card):
 	level += 1
-	health += card.health
-	damage += card.damage
+	health += merged_card.health
+	damage += merged_card.damage

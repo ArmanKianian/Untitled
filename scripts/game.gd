@@ -27,10 +27,10 @@ var enemy_coin = 12
 var enemy_spin_cost = 3
 
 func _ready() -> void:
-	enemy_move()
 	enemy_coin = start_coin
 	enemy_spin_cost = turn_spin_cost
 	coin.text = str(start_coin)
+	enemy_move()
 
 func _on_end_turn_button_pressed() -> void:
 	camera.screen_shake(50, 0.5)
@@ -39,6 +39,7 @@ func _on_end_turn_button_pressed() -> void:
 	coin.text = str(int(coin.text) + turn_coin_gain)
 	
 	enemy_move()
+	check_win()
 
 func _on_spin_button_pressed() -> void:
 	camera.screen_shake(8, 0.2)
@@ -94,3 +95,20 @@ func enemy_move():
 					choice.future_position = choice.current_area.position
 					choice.current_area.item = choice
 					break
+
+func check_win():
+	var enemy_slots = enemy_square.get_children()
+	var player_slots = player_square.get_children()
+	for i in range(enemy_slots.size()):
+		if enemy_slots[i].item:
+			if player_slots[i].item:
+				player_slots[i].item.health -= enemy_slots[i].item.damage
+				enemy_slots[i].item.health -= player_slots[i].item.damage
+				if enemy_slots[i].item.health <= 0:
+					enemy_slots[i].item.queue_free()
+					enemy_slots[i].item = null
+				if player_slots[i].item.health <= 0:
+					player_slots[i].item.queue_free()
+					player_slots[i].item = null
+			
+	

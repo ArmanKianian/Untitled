@@ -49,10 +49,6 @@ var noise = FastNoiseLite.new()
 
 func _ready() -> void:
 	card_pick.play()
-	Health.text = str(health)
-	Damage.text = str(damage)
-	Level.text = str(level)
-	Type.text = str(type)
 	# Connect every slot area signals for knowing when card is inside slot
 	for area in inventory.get_children():
 		area.mouse_entered.connect(_on_mouse_entered.bind(area))
@@ -67,6 +63,10 @@ func _ready() -> void:
 	add_card_to_inventory()
 	
 func _process(delta: float) -> void:
+	Health.text = str(health)
+	Damage.text = str(damage)
+	Level.text = str(level)
+	Type.text = str(type)
 	if card.get_rect().has_point(get_local_mouse_position()) and is_dragged == false and inventory ==  player_inventory:
 		rotation_degrees = -5
 	else:
@@ -126,7 +126,8 @@ func _input(event: InputEvent) -> void:
 					camera.screen_shake(8, 0.1)
 					current_area.item.queue_free()
 					place_card()
-					Level.text = str(int(Level.text) + 1)
+					level += 1
+					# Level.text = str(int(Level.text) + 1)
 				# level and types are different
 				else:
 					future_position = start_area.position

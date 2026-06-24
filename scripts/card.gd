@@ -124,9 +124,10 @@ func _input(event: InputEvent) -> void:
 				# level and type of slot card and dragged card are same
 				elif int(current_area.item.Level.text) == int(Level.text) and current_area.item.type == type :
 					camera.screen_shake(8, 0.1)
+					level_up(current_area.item)
 					current_area.item.queue_free()
 					place_card()
-					level_up()
+					
 				# level and types are different
 				else:
 					future_position = start_area.position
@@ -165,7 +166,7 @@ func shake(intensity: int, time: float):
 	active_shake_time = time
 	shake_time = 0.0
 	
-func level_up():
+func level_up(card):
 	level += 1
-	health += 1
-	damage += 1
+	health += card.health
+	damage += card.damage

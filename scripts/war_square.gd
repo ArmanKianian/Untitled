@@ -6,9 +6,9 @@ const SLOT = preload("uid://cu816sfuctxvy")
 @onready var player_square: Node2D = $player_square
 
 @export var line_count = 5
-@export var first_slot_position = Vector2(-600, 250.0)
-@export var slot_x_distance = 220
-@export var slot_y_distance = 80
+@export var first_slot_position = Vector2(-600, 295.0)
+@export var slot_x_distance = 250
+@export var slot_y_distance = 110
 
 
 var slot_position
@@ -23,7 +23,7 @@ func _ready() -> void:
 	
 	# enemy square slots
 	line = 0
-	first_slot_position = Vector2(-600, -250.0)
+	first_slot_position = Vector2(-600, -393.0)
 	while line < line_count:
 		slot_position = first_slot_position + Vector2(0, line * slot_y_distance)
 		for i in range(line, line_count - line):

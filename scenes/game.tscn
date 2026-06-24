@@ -3,11 +3,17 @@
 [ext_resource type="PackedScene" uid="uid://dwfrpmk02mafc" path="res://scenes/spinning_wheel.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bj4dr8nnahwwh" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://crao2hql84nl1" path="res://scripts/camera.gd" id="2_lbhrr"]
+[ext_resource type="Texture2D" uid="uid://c2xu6471u3y5v" path="res://Assets/info panel.png" id="3_ir15t"]
 [ext_resource type="Script" uid="uid://cbwy1xbx0js1" path="res://scripts/inventory.gd" id="3_lnu2h"]
+[ext_resource type="Texture2D" uid="uid://hdfq62nevqd3" path="res://Assets/info box1.png" id="4_ca42v"]
 [ext_resource type="Script" uid="uid://bn155muvteuhc" path="res://scripts/war_square.gd" id="5_iywne"]
+[ext_resource type="Texture2D" uid="uid://du30xwu76i4r7" path="res://Assets/Traits panel.png" id="5_rysoc"]
 [ext_resource type="AudioStream" uid="uid://bx86sb33rkcla" path="res://SoundPack/Audio/card-place-1.ogg" id="6_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://brhciaqrdudrh" path="res://Assets/inventory.png" id="6_ssvqc"]
 [ext_resource type="AudioStream" uid="uid://b8wcgqf2hihk8" path="res://SoundPack/Audio/card-place-2.ogg" id="7_vtaks"]
+[ext_resource type="Texture2D" uid="uid://p0ayad5ehax7" path="res://Assets/button2.png" id="8_1kice"]
 [ext_resource type="AudioStream" uid="uid://qjfqhhgtkerx" path="res://SoundPack/Audio/card-place-3.ogg" id="8_kvpfn"]
+[ext_resource type="Texture2D" uid="uid://cajsope7ay1nn" path="res://Assets/button1.png" id="9_5newe"]
 [ext_resource type="AudioStream" uid="uid://ckop4gkphux3k" path="res://SoundPack/Audio/card-place-4.ogg" id="9_dinhu"]
 [ext_resource type="AudioStream" uid="uid://kruw5qacssu4" path="res://SoundPack/Audio/cards-pack-take-out-1.ogg" id="10_kvpfn"]
 [ext_resource type="AudioStream" uid="uid://doi2btmik488o" path="res://SoundPack/Audio/cards-pack-take-out-2.ogg" id="11_dinhu"]
@@ -28,36 +34,6 @@ height = 1080
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[sub_resource type="Gradient" id="Gradient_7jktm"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.9019608, 0.7411765, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_ryrav"]
-gradient = SubResource("Gradient_7jktm")
-width = 1280
-height = 720
-
-[sub_resource type="Gradient" id="Gradient_fc0e3"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0.32156864, 0.50980395, 0.27058825, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_7jktm"]
-gradient = SubResource("Gradient_fc0e3")
-width = 1280
-height = 720
-
-[sub_resource type="Gradient" id="Gradient_e2o6t"]
-offsets = PackedFloat32Array(0.6818182, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.6955031, 0.6955032, 0.6955028, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_iqw5e"]
-gradient = SubResource("Gradient_e2o6t")
-width = 360
-fill = 2
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.51, 0.51)
-repeat = 2
-
 [sub_resource type="Gradient" id="Gradient_lbhrr"]
 offsets = PackedFloat32Array(0.9939759, 1)
 colors = PackedColorArray(0, 1, 1, 1, 0, 0, 0, 0)
@@ -73,6 +49,15 @@ fill_to = Vector2(0.47863248, 0.3846154)
 _data = [Vector2(0, 0.764045), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="LabelSettings" id="LabelSettings_ssvqc"]
+font_size = 9
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssvqc"]
+texture = ExtResource("8_1kice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1kice"]
+texture = ExtResource("9_5newe")
+
 [sub_resource type="Gradient" id="Gradient_iywne"]
 colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
 
@@ -81,6 +66,12 @@ gradient = SubResource("Gradient_iywne")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1kice"]
+gradient = SubResource("Gradient_iywne")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yw4vu"]
 streams_count = 4
@@ -137,70 +128,44 @@ color = Color(0.45554918, 0.49031997, 0.52986395, 1)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
-[node name="top_section" type="Sprite2D" parent="Background" unique_id=1331767446]
-position = Vector2(-99.99997, -327)
-scale = Vector2(0.709375, 0.058333334)
-texture = SubResource("GradientTexture2D_ryrav")
+[node name="Panels" type="Node2D" parent="." unique_id=86920020]
 
-[node name="center_section" type="Sprite2D" parent="Background" unique_id=2040180103]
-position = Vector2(-76.500015, 0.4999708)
-scale = Vector2(0.8617187, 0.8180555)
-texture = SubResource("GradientTexture2D_7jktm")
+[node name="Info_panel" type="Sprite2D" parent="Panels" unique_id=690042183]
+position = Vector2(0, -492)
+scale = Vector2(3, 3)
+texture = ExtResource("3_ir15t")
 
-[node name="down_section" type="Sprite2D" parent="Background" unique_id=1169896183]
-position = Vector2(-99.99997, 327)
-scale = Vector2(0.709375, 0.05833333)
-texture = SubResource("GradientTexture2D_ryrav")
+[node name="Info_box_1" type="Sprite2D" parent="Panels/Info_panel" unique_id=803070973]
+position = Vector2(-273.33334, 0)
+texture = ExtResource("4_ca42v")
 
-[node name="Frames" type="Node2D" parent="Background" unique_id=1593404299]
+[node name="Info_box_2" type="Sprite2D" parent="Panels/Info_panel" unique_id=1678069965]
+position = Vector2(-220, 0)
+texture = ExtResource("4_ca42v")
 
-[node name="up_frame" type="Line2D" parent="Background/Frames" unique_id=285879562]
-points = PackedVector2Array(360, -312, 360, -354, -560, -354, -560, -312)
-width = 12.0
-default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
-texture = SubResource("GradientTexture2D_iqw5e")
-texture_mode = 2
-joint_mode = 1
-begin_cap_mode = 1
-end_cap_mode = 1
+[node name="Info_box_3" type="Sprite2D" parent="Panels/Info_panel" unique_id=1729028806]
+position = Vector2(-166.66667, 0)
+texture = ExtResource("4_ca42v")
 
-[node name="center_center_frame" type="Line2D" parent="Background/Frames" unique_id=464201990]
-points = PackedVector2Array(480, -200, 261, 0, -640, 0, 261, 0, 480, 191)
-width = 12.0
-texture = SubResource("GradientTexture2D_iqw5e")
-texture_mode = 2
-joint_mode = 1
-begin_cap_mode = 1
-end_cap_mode = 1
+[node name="Traits_panel" type="Sprite2D" parent="Panels" unique_id=2046574109]
+position = Vector2(-840, 0)
+scale = Vector2(3, 3)
+texture = ExtResource("5_rysoc")
 
-[node name="center_frame" type="Line2D" parent="Background/Frames" unique_id=552103530]
-points = PackedVector2Array(480, -140, 480, -300, -634, -300, -634, 300, 480, 300, 480, 140)
-width = 12.0
-texture = SubResource("GradientTexture2D_iqw5e")
-texture_mode = 2
-joint_mode = 1
-begin_cap_mode = 1
-end_cap_mode = 1
-
-[node name="down_frame" type="Line2D" parent="Background/Frames" unique_id=644094988]
-points = PackedVector2Array(360, 312, 360, 354, -560, 354, -560, 312)
-width = 12.0
-default_color = Color(0.61338997, 0.6133903, 0.61339027, 1)
-texture = SubResource("GradientTexture2D_iqw5e")
-texture_mode = 2
-joint_mode = 1
-begin_cap_mode = 1
-end_cap_mode = 1
+[node name="Inventory_panel" type="Sprite2D" parent="Panels" unique_id=1808974895]
+position = Vector2(0, 442)
+scale = Vector2(3, 3)
+texture = ExtResource("6_ssvqc")
 
 [node name="Spinning_Wheel" parent="." unique_id=905745828 instance=ExtResource("1_80nbo")]
-position = Vector2(480, 0)
+position = Vector2(750, 0)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=506124351]
-position = Vector2(-76.5, -294)
+position = Vector2(-840, 360)
 amount = 5
 texture = SubResource("GradientTexture2D_lbhrr")
 emission_shape = 3
-emission_rect_extents = Vector2(550.5, 0)
+emission_rect_extents = Vector2(100, 0)
 gravity = Vector2(-100, 980)
 scale_amount_max = 2.5
 scale_amount_curve = SubResource("Curve_iywne")
@@ -209,74 +174,105 @@ hue_variation_min = -1.0
 hue_variation_max = 1.0
 
 [node name="UI" type="Control" parent="." unique_id=1450937596]
-custom_minimum_size = Vector2(1280, 820)
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -640.0
-offset_top = -360.0
-offset_right = 640.0
-offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="GridContainer" type="GridContainer" parent="UI" unique_id=902560111]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-columns = 3
-
-[node name="coins_text" type="Label" parent="UI/GridContainer" unique_id=1206440937]
-layout_mode = 2
+[node name="coins_text" type="Label" parent="UI" unique_id=1206440937]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 32.0
+offset_right = 116.0
+offset_bottom = 64.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Coins:      "
+text = "Coins:"
+vertical_alignment = 1
 
-[node name="turn_text" type="Label" parent="UI/GridContainer" unique_id=1434502165]
-layout_mode = 2
+[node name="turn_text" type="Label" parent="UI" unique_id=1434502165]
+layout_mode = 0
+offset_left = 228.0
+offset_top = 29.0
+offset_right = 269.0
+offset_bottom = 64.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "Turn:      "
+text = "Turn:"
+vertical_alignment = 1
 
-[node name="spin_cost_text" type="Label" parent="UI/GridContainer" unique_id=243890378]
-layout_mode = 2
+[node name="spin_cost_text" type="Label" parent="UI" unique_id=243890378]
+layout_mode = 0
+offset_left = 388.0
+offset_top = 29.0
+offset_right = 464.0
+offset_bottom = 64.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Spin Cost:"
+label_settings = SubResource("LabelSettings_ssvqc")
+vertical_alignment = 1
 
-[node name="coin" type="Label" parent="UI/GridContainer" unique_id=619698015]
-layout_mode = 2
+[node name="coin" type="Label" parent="UI" unique_id=619698015]
+layout_mode = 0
+offset_left = 70.0
+offset_top = 29.0
+offset_right = 211.0
+offset_bottom = 66.0
 size_flags_horizontal = 0
 text = "12"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="turn" type="Label" parent="UI/GridContainer" unique_id=1264902022]
-layout_mode = 2
+[node name="turn" type="Label" parent="UI" unique_id=1264902022]
+layout_mode = 0
+offset_left = 229.0
+offset_top = 30.0
+offset_right = 370.0
+offset_bottom = 64.0
 size_flags_horizontal = 0
 text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="spin_cost" type="Label" parent="UI/GridContainer" unique_id=319299110]
-layout_mode = 2
+[node name="spin_cost" type="Label" parent="UI" unique_id=319299110]
+layout_mode = 0
+offset_left = 389.0
+offset_top = 29.0
+offset_right = 532.0
+offset_bottom = 64.0
 size_flags_horizontal = 0
 text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Spin_Button" type="Button" parent="UI" unique_id=1014765821]
 layout_mode = 0
-offset_left = 1000.0
-offset_top = 382.0
-offset_right = 1238.0
-offset_bottom = 437.0
+offset_left = 1512.0
+offset_top = 747.0
+offset_right = 1704.0
+offset_bottom = 870.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ssvqc")
 text = "SPIN"
 
 [node name="End_Turn_button" type="Button" parent="UI" unique_id=1919210139]
 layout_mode = 0
-offset_left = 1024.0
-offset_top = 649.0
-offset_right = 1107.0
-offset_bottom = 697.0
+offset_left = 1714.0
+offset_top = 747.0
+offset_right = 1904.0
+offset_bottom = 868.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ssvqc")
 text = "Next turn"
 
 [node name="inventory" type="Node2D" parent="." unique_id=2128222662]
@@ -285,8 +281,10 @@ text = "Next turn"
 script = ExtResource("3_lnu2h")
 
 [node name="enemy_inventory" type="Node2D" parent="inventory" unique_id=1019144622]
+visible = false
 script = ExtResource("3_lnu2h")
-slot_position = Vector2(-530, -342)
+slot_position = Vector2(550, -390)
+slot_distance = 10
 
 [node name="war_square" type="Node2D" parent="." unique_id=246498192]
 script = ExtResource("5_iywne")
@@ -309,40 +307,39 @@ energy = 0.7
 blend_mode = 2
 
 [node name="PointLight2D" type="PointLight2D" parent="Lightings" unique_id=2112795559]
-position = Vector2(488.5, -0.50000143)
-scale = Vector2(4.953125, 4.890625)
+position = Vector2(750.5, 5.000002)
+scale = Vector2(5.752841, 5.6534085)
 energy = 0.8
 texture = SubResource("GradientTexture2D_8nxoa")
 texture_scale = 1.1
 
 [node name="PointLight2D2" type="PointLight2D" parent="Lightings" unique_id=1171839525]
-position = Vector2(-153.49997, -3.5000153)
-scale = Vector2(14.484374, 9.265625)
-energy = 0.5
+position = Vector2(-841.49994, -3.499998)
+scale = Vector2(3.0468755, 11.203124)
+energy = 0.8
 texture = SubResource("GradientTexture2D_8nxoa")
 
 [node name="PointLight2D3" type="PointLight2D" parent="Lightings" unique_id=1927416260]
-position = Vector2(-153.49997, 159.5)
-scale = Vector2(14.484374, 7.8593745)
-energy = 0.5
+position = Vector2(-1.4999695, -490.5)
+scale = Vector2(29.265625, 1.3281251)
+energy = 0.7
 texture = SubResource("GradientTexture2D_8nxoa")
 
 [node name="PointLight2D4" type="PointLight2D" parent="Lightings" unique_id=963801954]
-position = Vector2(-153.49997, -138.50002)
-scale = Vector2(14.484374, 7.6718745)
+position = Vector2(-1.9999685, 441)
+scale = Vector2(22.468752, 2.9062502)
 energy = 0.5
 texture = SubResource("GradientTexture2D_8nxoa")
 
 [node name="PointLight2D5" type="PointLight2D" parent="Lightings" unique_id=543279182]
-position = Vector2(-537.5, -385.5)
-scale = Vector2(6.2343745, 0.9531246)
-energy = 0.5
-texture = SubResource("GradientTexture2D_8nxoa")
+position = Vector2(-97.5, -52.500015)
+scale = Vector2(19.984375, 12.234374)
+texture = SubResource("GradientTexture2D_1kice")
 
 [node name="PointLight2D6" type="PointLight2D" parent="Lightings" unique_id=1749836136]
-position = Vector2(-18.499954, 289.5)
-scale = Vector2(24.734377, 4.453125)
-energy = 0.5
+position = Vector2(750.5, 261)
+scale = Vector2(6.515625, 2.40625)
+energy = 0.9
 texture = SubResource("GradientTexture2D_8nxoa")
 
 [node name="Audios" type="Node" parent="." unique_id=1854606385]

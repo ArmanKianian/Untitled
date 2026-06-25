@@ -183,6 +183,7 @@ texture = SubResource("GradientTexture2D_8nxoa")
 texture = SubResource("GradientTexture2D_yw4vu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1712898480]
+modulate = Color(0.75398386, 0.75398386, 0.75398374, 1)
 position = Vector2(0, -50)
 texture = SubResource("NoiseTexture2D_iqw5e")
 

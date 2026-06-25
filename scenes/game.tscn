@@ -21,73 +21,6 @@
 [ext_resource type="AudioStream" uid="uid://cbtr8n46fnd5d" path="res://SoundPack/Audio/card-shove-2.ogg" id="13_ca42v"]
 [ext_resource type="AudioStream" uid="uid://c87awitx7cjog" path="res://SoundPack/Audio/card-shove-3.ogg" id="14_rysoc"]
 
-[sub_resource type="Gradient" id="Gradient_mwb40"]
-offsets = PackedFloat32Array(0)
-colors = PackedColorArray(0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_yw4vu"]
-gradient = SubResource("Gradient_mwb40")
-width = 1920
-height = 1080
-
-[sub_resource type="Curve" id="Curve_lbhrr"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Gradient" id="Gradient_upehx"]
-offsets = PackedFloat32Array(0, 0.45783132, 1)
-colors = PackedColorArray(0, 1, 0, 1, 0.26776242, 0.6844512, 0, 1, 0.78431374, 1, 0, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_x437s"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iqw5e"]
-width = 1150
-height = 850
-noise = SubResource("FastNoiseLite_x437s")
-color_ramp = SubResource("Gradient_upehx")
-
-[sub_resource type="Gradient" id="Gradient_lbhrr"]
-offsets = PackedFloat32Array(0.9939759, 1)
-colors = PackedColorArray(0, 1, 1, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_lbhrr"]
-gradient = SubResource("Gradient_lbhrr")
-width = 16
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.47863248, 0.3846154)
-
-[sub_resource type="Curve" id="Curve_iywne"]
-_data = [Vector2(0, 0.764045), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="LabelSettings" id="LabelSettings_ssvqc"]
-font_size = 9
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssvqc"]
-texture = ExtResource("8_1kice")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1kice"]
-texture = ExtResource("9_5newe")
-
-[sub_resource type="Gradient" id="Gradient_1kice"]
-colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_8nxoa"]
-gradient = SubResource("Gradient_1kice")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.5, 0)
-
-[sub_resource type="Gradient" id="Gradient_iywne"]
-colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1kice"]
-gradient = SubResource("Gradient_iywne")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0, 0)
-
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yw4vu"]
 streams_count = 4
 stream_0/stream = ExtResource("6_0tnpc")
@@ -120,39 +53,145 @@ stream_1/stream = ExtResource("13_ca42v")
 stream_2/stream = ExtResource("14_rysoc")
 stream_3/stream = SubResource("AudioStreamOggVorbis_trtic")
 
+[sub_resource type="Gradient" id="Gradient_1kice"]
+colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8nxoa"]
+gradient = SubResource("Gradient_1kice")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_iywne"]
+colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1kice"]
+gradient = SubResource("Gradient_iywne")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[sub_resource type="Gradient" id="Gradient_mwb40"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_yw4vu"]
+gradient = SubResource("Gradient_mwb40")
+width = 1920
+height = 1080
+
+[sub_resource type="Gradient" id="Gradient_upehx"]
+offsets = PackedFloat32Array(0, 0.030120483, 0.9518072)
+colors = PackedColorArray(0, 1, 0, 1, 0.26776242, 0.6844512, 0, 1, 0, 1, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_x437s"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_iqw5e"]
+width = 1150
+height = 850
+noise = SubResource("FastNoiseLite_x437s")
+color_ramp = SubResource("Gradient_upehx")
+
+[sub_resource type="Gradient" id="Gradient_lbhrr"]
+offsets = PackedFloat32Array(0.9939759, 1)
+colors = PackedColorArray(0, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lbhrr"]
+gradient = SubResource("Gradient_lbhrr")
+width = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.47863248, 0.3846154)
+
+[sub_resource type="Curve" id="Curve_iywne"]
+_data = [Vector2(0, 0.764045), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_lbhrr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssvqc"]
+texture = ExtResource("8_1kice")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1kice"]
+texture = ExtResource("9_5newe")
+
+[sub_resource type="LabelSettings" id="LabelSettings_ssvqc"]
+
 [node name="Game" type="Node2D" unique_id=1207240851]
 script = ExtResource("1_lbhrr")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=764771987]
 script = ExtResource("2_lbhrr")
 
+[node name="Audios" type="Node" parent="." unique_id=1854606385]
+
+[node name="card_place" type="AudioStreamPlayer" parent="Audios" unique_id=1889623333]
+stream = SubResource("AudioStreamRandomizer_yw4vu")
+
+[node name="card_pick" type="AudioStreamPlayer" parent="Audios" unique_id=1753782895]
+stream = SubResource("AudioStreamRandomizer_8nxoa")
+
+[node name="card_drag" type="AudioStreamPlayer" parent="Audios" unique_id=1257906305]
+stream = SubResource("AudioStreamRandomizer_3hxyd")
+
+[node name="Lightings" type="Node2D" parent="." unique_id=388862978]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lightings" unique_id=1077789834]
+color = Color(0, 0, 0, 1)
+energy = 0.7
+blend_mode = 2
+
+[node name="PointLight2D" type="PointLight2D" parent="Lightings" unique_id=2112795559]
+position = Vector2(747.49994, -50.500008)
+scale = Vector2(5.9517045, 5.5823855)
+energy = 1.2
+texture = SubResource("GradientTexture2D_8nxoa")
+texture_scale = 1.1
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lightings" unique_id=1171839525]
+position = Vector2(-842.5, -1.5000153)
+scale = Vector2(4.0156236, 13.546875)
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="PointLight2D3" type="PointLight2D" parent="Lightings" unique_id=1927416260]
+position = Vector2(-110.999985, -495.5)
+scale = Vector2(46.09375, 1.421875)
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="PointLight2D4" type="PointLight2D" parent="Lightings" unique_id=963801954]
+position = Vector2(-14.0000725, 448.5)
+scale = Vector2(25.374998, 4.015624)
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="PointLight2D5" type="PointLight2D" parent="Lightings" unique_id=543279182]
+position = Vector2(-97.5, -52.500015)
+scale = Vector2(19.984375, 12.234374)
+energy = 0.2
+texture = SubResource("GradientTexture2D_1kice")
+
+[node name="PointLight2D6" type="PointLight2D" parent="Lightings" unique_id=1749836136]
+position = Vector2(845.5, 432.5)
+scale = Vector2(3.5468743, 2.9531255)
+energy = 0.9
+texture = SubResource("GradientTexture2D_8nxoa")
+
 [node name="Background" type="Node2D" parent="." unique_id=1655581937]
 
 [node name="Background" type="Sprite2D" parent="Background" unique_id=381845390]
 texture = SubResource("GradientTexture2D_yw4vu")
 
-[node name="CPUParticles2D2" type="CPUParticles2D" parent="Background" unique_id=1780919590]
-amount = 10
-emission_shape = 3
-emission_rect_extents = Vector2(960, 540)
-gravity = Vector2(1000, 980)
-scale_amount_min = 0.0
-scale_amount_max = 20.0
-scale_amount_curve = SubResource("Curve_lbhrr")
-color = Color(0.45554918, 0.49031997, 0.52986395, 1)
-hue_variation_min = -1.0
-hue_variation_max = 1.0
-
 [node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1712898480]
-position = Vector2(-102, -50)
+position = Vector2(0, -50)
 texture = SubResource("NoiseTexture2D_iqw5e")
 
 [node name="Line2D" type="Line2D" parent="Background" unique_id=853755570]
-points = PackedVector2Array(-680, -450, -680, 360)
+points = PackedVector2Array(-580, -451, -580, 358)
 default_color = Color(0.6119493, 0.2979383, 0, 1)
 
 [node name="Line2D2" type="Line2D" parent="Background" unique_id=616691457]
-points = PackedVector2Array(480, -451, 480, 360)
+points = PackedVector2Array(580, -454, 580, 363)
 default_color = Color(0.6119493, 0.2979383, 0, 1)
 
 [node name="Panels" type="Node2D" parent="." unique_id=86920020]
@@ -170,10 +209,6 @@ texture = ExtResource("4_ca42v")
 position = Vector2(-220, 0)
 texture = ExtResource("4_ca42v")
 
-[node name="Info_box_3" type="Sprite2D" parent="Panels/Info_panel" unique_id=1729028806]
-position = Vector2(-166.66667, 0)
-texture = ExtResource("4_ca42v")
-
 [node name="Traits_panel" type="Sprite2D" parent="Panels" unique_id=2046574109]
 position = Vector2(-840, 0)
 scale = Vector2(3, 3)
@@ -185,9 +220,11 @@ scale = Vector2(3, 3)
 texture = ExtResource("6_ssvqc")
 
 [node name="Spinning_Wheel" parent="." unique_id=905745828 instance=ExtResource("1_80nbo")]
-position = Vector2(750, 0)
+position = Vector2(750, -50)
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=506124351]
+[node name="Particles" type="Node2D" parent="." unique_id=1385573782]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Particles" unique_id=506124351]
 position = Vector2(-840, 360)
 amount = 5
 texture = SubResource("GradientTexture2D_lbhrr")
@@ -197,6 +234,19 @@ gravity = Vector2(-100, 980)
 scale_amount_max = 2.5
 scale_amount_curve = SubResource("Curve_iywne")
 color = Color(0, 1, 1, 1)
+hue_variation_min = -1.0
+hue_variation_max = 1.0
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="Particles" unique_id=1780919590]
+top_level = true
+amount = 10
+emission_shape = 3
+emission_rect_extents = Vector2(960, 540)
+gravity = Vector2(1000, 980)
+scale_amount_min = 0.0
+scale_amount_max = 20.0
+scale_amount_curve = SubResource("Curve_lbhrr")
+color = Color(0.45554918, 0.49031997, 0.52986395, 1)
 hue_variation_min = -1.0
 hue_variation_max = 1.0
 
@@ -231,18 +281,6 @@ size_flags_vertical = 0
 text = "Turn:"
 vertical_alignment = 1
 
-[node name="spin_cost_text" type="Label" parent="UI" unique_id=243890378]
-layout_mode = 0
-offset_left = 388.0
-offset_top = 29.0
-offset_right = 464.0
-offset_bottom = 64.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Spin Cost:"
-label_settings = SubResource("LabelSettings_ssvqc")
-vertical_alignment = 1
-
 [node name="coin" type="Label" parent="UI" unique_id=619698015]
 layout_mode = 0
 offset_left = 70.0
@@ -265,36 +303,47 @@ text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="spin_cost" type="Label" parent="UI" unique_id=319299110]
-layout_mode = 0
-offset_left = 389.0
-offset_top = 29.0
-offset_right = 532.0
-offset_bottom = 64.0
-size_flags_horizontal = 0
-text = "3"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Spin_Button" type="Button" parent="UI" unique_id=1014765821]
 layout_mode = 0
-offset_left = 1512.0
-offset_top = 747.0
-offset_right = 1704.0
-offset_bottom = 870.0
+offset_left = 1719.0
+offset_top = 896.0
+offset_right = 1899.0
+offset_bottom = 969.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ssvqc")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1kice")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ssvqc")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_1kice")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_ssvqc")
-text = "SPIN"
+
+[node name="spin_cost_text" type="Label" parent="UI/Spin_Button" unique_id=243890378]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 4.0
+offset_right = 168.0
+offset_bottom = 53.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Spin"
+label_settings = SubResource("LabelSettings_ssvqc")
+vertical_alignment = 1
+
+[node name="spin_cost" type="Label" parent="UI/Spin_Button" unique_id=319299110]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 6.0
+offset_right = 76.0
+offset_bottom = 50.0
+size_flags_horizontal = 0
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="End_Turn_button" type="Button" parent="UI" unique_id=1919210139]
 layout_mode = 0
 offset_left = 1714.0
-offset_top = 747.0
+offset_top = 981.0
 offset_right = 1904.0
-offset_bottom = 868.0
+offset_bottom = 1057.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_ssvqc")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_1kice")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ssvqc")
@@ -310,7 +359,7 @@ script = ExtResource("3_lnu2h")
 [node name="enemy_inventory" type="Node2D" parent="inventory" unique_id=1019144622]
 visible = false
 script = ExtResource("3_lnu2h")
-slot_position = Vector2(550, -390)
+slot_position = Vector2(650, -390)
 slot_distance = 10
 
 [node name="war_square" type="Node2D" parent="." unique_id=246498192]
@@ -325,58 +374,6 @@ script = ExtResource("5_iywne")
 [node name="enemy_cards" type="Node2D" parent="cards" unique_id=734597135]
 
 [node name="player_cards" type="Node2D" parent="cards" unique_id=2115140470]
-
-[node name="Lightings" type="Node2D" parent="." unique_id=388862978]
-
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Lightings" unique_id=1077789834]
-color = Color(0, 0, 0, 1)
-energy = 0.7
-blend_mode = 2
-
-[node name="PointLight2D" type="PointLight2D" parent="Lightings" unique_id=2112795559]
-position = Vector2(750.5, 5.000002)
-scale = Vector2(5.752841, 5.6534085)
-energy = 1.2
-texture = SubResource("GradientTexture2D_8nxoa")
-texture_scale = 1.1
-
-[node name="PointLight2D2" type="PointLight2D" parent="Lightings" unique_id=1171839525]
-position = Vector2(-842.5, -1.5000153)
-scale = Vector2(4.0156236, 13.546875)
-texture = SubResource("GradientTexture2D_8nxoa")
-
-[node name="PointLight2D3" type="PointLight2D" parent="Lightings" unique_id=1927416260]
-position = Vector2(-110.999985, -495.5)
-scale = Vector2(46.09375, 1.421875)
-texture = SubResource("GradientTexture2D_8nxoa")
-
-[node name="PointLight2D4" type="PointLight2D" parent="Lightings" unique_id=963801954]
-position = Vector2(-14.0000725, 448.5)
-scale = Vector2(25.374998, 4.015624)
-texture = SubResource("GradientTexture2D_8nxoa")
-
-[node name="PointLight2D5" type="PointLight2D" parent="Lightings" unique_id=543279182]
-position = Vector2(-97.5, -52.500015)
-scale = Vector2(19.984375, 12.234374)
-energy = 0.2
-texture = SubResource("GradientTexture2D_1kice")
-
-[node name="PointLight2D6" type="PointLight2D" parent="Lightings" unique_id=1749836136]
-position = Vector2(750.5, 261)
-scale = Vector2(6.515625, 2.40625)
-energy = 0.9
-texture = SubResource("GradientTexture2D_8nxoa")
-
-[node name="Audios" type="Node" parent="." unique_id=1854606385]
-
-[node name="card_place" type="AudioStreamPlayer" parent="Audios" unique_id=1889623333]
-stream = SubResource("AudioStreamRandomizer_yw4vu")
-
-[node name="card_pick" type="AudioStreamPlayer" parent="Audios" unique_id=1753782895]
-stream = SubResource("AudioStreamRandomizer_8nxoa")
-
-[node name="card_drag" type="AudioStreamPlayer" parent="Audios" unique_id=1257906305]
-stream = SubResource("AudioStreamRandomizer_3hxyd")
 
 [connection signal="pressed" from="UI/Spin_Button" to="." method="_on_spin_button_pressed"]
 [connection signal="pressed" from="UI/End_Turn_button" to="." method="_on_end_turn_button_pressed"]

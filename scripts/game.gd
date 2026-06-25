@@ -14,7 +14,7 @@ const CARD = preload("uid://dlsbf8fn82egx")
 
 @onready var spinning_wheel: Node2D = $Spinning_Wheel
 
-@onready var spin_cost: Label = $UI/spin_cost
+@onready var spin_cost: Label = $UI/Spin_Button/spin_cost
 @onready var turn: Label = $UI/turn
 @onready var coin: Label = $UI/coin
 

@@ -28,7 +28,7 @@ func _ready() -> void:
 	
 	# enemy square slots
 	line = 0
-	first_slot_position = Vector2(-600, -400.0)
+	first_slot_position = Vector2(-600, -395.0)
 	while line < line_count:
 		slot_position = first_slot_position + Vector2(0, line * slot_y_distance)
 		for i in range(line, line_count - line):

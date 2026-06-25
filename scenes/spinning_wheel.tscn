@@ -1,7 +1,12 @@
 [gd_scene format=3 uid="uid://dwfrpmk02mafc"]
 
 [ext_resource type="Script" uid="uid://br7lisulkytnv" path="res://scripts/spinning_wheel.gd" id="1_skc0w"]
-[ext_resource type="Texture2D" uid="uid://282qnlu4cqy4" path="res://Assets/spin.png" id="2_7u85o"]
+[ext_resource type="Texture2D" uid="uid://282qnlu4cqy4" path="res://Assets/UI/spin.png" id="2_7u85o"]
+[ext_resource type="Texture2D" uid="uid://m1e2sxmmqvbh" path="res://Assets/Traits/Undead trait.png" id="3_bqp8g"]
+[ext_resource type="Texture2D" uid="uid://cogevuph1nl51" path="res://Assets/Traits/shield trait.png" id="4_o0vlv"]
+[ext_resource type="Texture2D" uid="uid://bqwrofmhg2nks" path="res://Assets/Traits/inferno.png" id="5_o0vlv"]
+[ext_resource type="Texture2D" uid="uid://ybqx5algql3t" path="res://Assets/Traits/Assasins Trait.png" id="6_47rxl"]
+[ext_resource type="Texture2D" uid="uid://k8q6816j20u3" path="res://Assets/Traits/arcane trait.png" id="7_xqj4p"]
 
 [node name="Spinning_Wheel" type="Node2D" unique_id=905745828]
 script = ExtResource("1_skc0w")
@@ -9,3 +14,23 @@ script = ExtResource("1_skc0w")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=631670254]
 scale = Vector2(3, 3)
 texture = ExtResource("2_7u85o")
+
+[node name="Undead" type="Sprite2D" parent="." unique_id=184730800]
+position = Vector2(120, 50)
+texture = ExtResource("3_bqp8g")
+
+[node name="Shield" type="Sprite2D" parent="." unique_id=1040412833]
+position = Vector2(120, -50)
+texture = ExtResource("4_o0vlv")
+
+[node name="Inferno" type="Sprite2D" parent="." unique_id=1546158424]
+position = Vector2(50, -120)
+texture = ExtResource("5_o0vlv")
+
+[node name="Assasins" type="Sprite2D" parent="." unique_id=1599337284]
+position = Vector2(50, 120)
+texture = ExtResource("6_47rxl")
+
+[node name="Arcane" type="Sprite2D" parent="." unique_id=706831022]
+position = Vector2(-50, -120)
+texture = ExtResource("7_xqj4p")

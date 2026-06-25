@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djxpbnt3imyaf"
-path="res://.godot/imported/inventory box.png-7610cc2966a473fbcbf987905903a93f.ctex"
+uid="uid://282qnlu4cqy4"
+path="res://.godot/imported/spin.png-e1c645cf48ca2f496be3dddd1a0aec7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/inventory box.png"
-dest_files=["res://.godot/imported/inventory box.png-7610cc2966a473fbcbf987905903a93f.ctex"]
+source_file="res://Assets/UI/spin.png"
+dest_files=["res://.godot/imported/spin.png-e1c645cf48ca2f496be3dddd1a0aec7c.ctex"]
 
 [params]
 

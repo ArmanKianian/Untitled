@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cmsy1754hhagx"
-path="res://.godot/imported/player_stand.png-eeb44c7e2339ffd0580b1cdcbd0fbfd5.ctex"
+uid="uid://djxpbnt3imyaf"
+path="res://.godot/imported/inventory box.png-a233ba50bbb5b813b9d2ab08ceb7d82f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/player_stand.png"
-dest_files=["res://.godot/imported/player_stand.png-eeb44c7e2339ffd0580b1cdcbd0fbfd5.ctex"]
+source_file="res://Assets/UI/inventory box.png"
+dest_files=["res://.godot/imported/inventory box.png-a233ba50bbb5b813b9d2ab08ceb7d82f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cannd6mcrlcrh"
-path="res://.godot/imported/enemy_stand.png-be6beabd845cd6738a0d32462bda6fda.ctex"
+uid="uid://bqwrofmhg2nks"
+path="res://.godot/imported/inferno.png-5ebc7fa2798ea22b327d2a2c258dc983.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/enemy_stand.png"
-dest_files=["res://.godot/imported/enemy_stand.png-be6beabd845cd6738a0d32462bda6fda.ctex"]
+source_file="res://Assets/Traits/inferno.png"
+dest_files=["res://.godot/imported/inferno.png-5ebc7fa2798ea22b327d2a2c258dc983.ctex"]
 
 [params]
 

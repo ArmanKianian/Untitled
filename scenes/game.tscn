@@ -3,23 +3,24 @@
 [ext_resource type="PackedScene" uid="uid://dwfrpmk02mafc" path="res://scenes/spinning_wheel.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bj4dr8nnahwwh" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://crao2hql84nl1" path="res://scripts/camera.gd" id="2_lbhrr"]
-[ext_resource type="Texture2D" uid="uid://c2xu6471u3y5v" path="res://Assets/info panel.png" id="3_ir15t"]
+[ext_resource type="Texture2D" uid="uid://c2xu6471u3y5v" path="res://Assets/UI/info panel.png" id="3_ir15t"]
 [ext_resource type="Script" uid="uid://cbwy1xbx0js1" path="res://scripts/inventory.gd" id="3_lnu2h"]
-[ext_resource type="Texture2D" uid="uid://hdfq62nevqd3" path="res://Assets/info box1.png" id="4_ca42v"]
+[ext_resource type="Texture2D" uid="uid://hdfq62nevqd3" path="res://Assets/UI/info box1.png" id="4_ca42v"]
 [ext_resource type="Script" uid="uid://bn155muvteuhc" path="res://scripts/war_square.gd" id="5_iywne"]
-[ext_resource type="Texture2D" uid="uid://du30xwu76i4r7" path="res://Assets/Traits panel.png" id="5_rysoc"]
+[ext_resource type="Texture2D" uid="uid://du30xwu76i4r7" path="res://Assets/UI/Traits panel.png" id="5_rysoc"]
 [ext_resource type="AudioStream" uid="uid://bx86sb33rkcla" path="res://SoundPack/Audio/card-place-1.ogg" id="6_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://brhciaqrdudrh" path="res://Assets/inventory.png" id="6_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://brhciaqrdudrh" path="res://Assets/UI/inventory.png" id="6_ssvqc"]
 [ext_resource type="AudioStream" uid="uid://b8wcgqf2hihk8" path="res://SoundPack/Audio/card-place-2.ogg" id="7_vtaks"]
-[ext_resource type="Texture2D" uid="uid://p0ayad5ehax7" path="res://Assets/button2.png" id="8_1kice"]
+[ext_resource type="Texture2D" uid="uid://p0ayad5ehax7" path="res://Assets/UI/button2.png" id="8_1kice"]
 [ext_resource type="AudioStream" uid="uid://qjfqhhgtkerx" path="res://SoundPack/Audio/card-place-3.ogg" id="8_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://cajsope7ay1nn" path="res://Assets/button1.png" id="9_5newe"]
+[ext_resource type="Texture2D" uid="uid://cajsope7ay1nn" path="res://Assets/UI/button1.png" id="9_5newe"]
 [ext_resource type="AudioStream" uid="uid://ckop4gkphux3k" path="res://SoundPack/Audio/card-place-4.ogg" id="9_dinhu"]
 [ext_resource type="AudioStream" uid="uid://kruw5qacssu4" path="res://SoundPack/Audio/cards-pack-take-out-1.ogg" id="10_kvpfn"]
 [ext_resource type="AudioStream" uid="uid://doi2btmik488o" path="res://SoundPack/Audio/cards-pack-take-out-2.ogg" id="11_dinhu"]
 [ext_resource type="AudioStream" uid="uid://clhtgol0nroxx" path="res://SoundPack/Audio/card-shove-1.ogg" id="12_ir15t"]
 [ext_resource type="AudioStream" uid="uid://cbtr8n46fnd5d" path="res://SoundPack/Audio/card-shove-2.ogg" id="13_ca42v"]
 [ext_resource type="AudioStream" uid="uid://c87awitx7cjog" path="res://SoundPack/Audio/card-shove-3.ogg" id="14_rysoc"]
+[ext_resource type="Texture2D" uid="uid://j2hdy0xvuw6r" path="res://Assets/forest trait.png" id="17_5newe"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yw4vu"]
 streams_count = 4
@@ -107,9 +108,10 @@ fill_to = Vector2(0.47863248, 0.3846154)
 _data = [Vector2(0, 0.764045), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="Curve" id="Curve_lbhrr"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
-point_count = 3
+[sub_resource type="Curve" id="Curve_5newe"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 28.314636), 0.0, 0.0, 0, 0, Vector2(1, 44.494415), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssvqc"]
 texture = ExtResource("8_1kice")
@@ -241,15 +243,15 @@ hue_variation_max = 1.0
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Particles" unique_id=1780919590]
 top_level = true
 amount = 10
+texture = ExtResource("17_5newe")
+lifetime = 10.0
 emission_shape = 3
 emission_rect_extents = Vector2(960, 540)
-gravity = Vector2(1000, 980)
-scale_amount_min = 0.0
-scale_amount_max = 20.0
-scale_amount_curve = SubResource("Curve_lbhrr")
-color = Color(0.45554918, 0.49031997, 0.52986395, 1)
-hue_variation_min = -1.0
-hue_variation_max = 1.0
+gravity = Vector2(100, 98)
+angle_min = -180.0
+angle_max = 180.0
+angle_curve = SubResource("Curve_5newe")
+scale_amount_min = 0.5
 
 [node name="UI" type="Control" parent="." unique_id=1450937596]
 custom_minimum_size = Vector2(1920, 1080)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://282qnlu4cqy4"
-path="res://.godot/imported/spin.png-7d3189709249ec5d22558fdd842abf50.ctex"
+uid="uid://cannd6mcrlcrh"
+path="res://.godot/imported/enemy_stand.png-f20876b8a49a5e3dd75565000303fbdb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/spin.png"
-dest_files=["res://.godot/imported/spin.png-7d3189709249ec5d22558fdd842abf50.ctex"]
+source_file="res://Assets/UI/enemy_stand.png"
+dest_files=["res://.godot/imported/enemy_stand.png-f20876b8a49a5e3dd75565000303fbdb.ctex"]
 
 [params]
 

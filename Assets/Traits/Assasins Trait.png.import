@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cajsope7ay1nn"
-path="res://.godot/imported/button1.png-b8b3ebc810bb1f7eedfd4f3ca0463851.ctex"
+uid="uid://ybqx5algql3t"
+path="res://.godot/imported/Assasins Trait.png-339a28f5e1310874e2bf6f26d0eaf47d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/button1.png"
-dest_files=["res://.godot/imported/button1.png-b8b3ebc810bb1f7eedfd4f3ca0463851.ctex"]
+source_file="res://Assets/Traits/Assasins Trait.png"
+dest_files=["res://.godot/imported/Assasins Trait.png-339a28f5e1310874e2bf6f26d0eaf47d.ctex"]
 
 [params]
 

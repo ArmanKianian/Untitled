@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://p0ayad5ehax7"
-path="res://.godot/imported/button2.png-944df8aee151c2f93abcbebadf43819c.ctex"
+uid="uid://k8q6816j20u3"
+path="res://.godot/imported/arcane trait.png-bc8f2f09a6c9af6af74572b58e4e5257.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/button2.png"
-dest_files=["res://.godot/imported/button2.png-944df8aee151c2f93abcbebadf43819c.ctex"]
+source_file="res://Assets/Traits/arcane trait.png"
+dest_files=["res://.godot/imported/arcane trait.png-bc8f2f09a6c9af6af74572b58e4e5257.ctex"]
 
 [params]
 

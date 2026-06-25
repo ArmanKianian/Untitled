@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://ctuyshu8kwaeb"]
+
+[ext_resource type="Script" uid="uid://t4jfqi8v1qvp" path="res://scripts/slot.gd" id="1_hyckq"]
+[ext_resource type="Texture2D" uid="uid://cannd6mcrlcrh" path="res://Assets/enemy_stand.png" id="2_hyckq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyckq"]
+size = Vector2(106, 94)
+
+[sub_resource type="Gradient" id="Gradient_iywne"]
+colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_hyckq"]
+gradient = SubResource("Gradient_iywne")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="player_stand" type="Area2D" unique_id=1963932317]
+script = ExtResource("1_hyckq")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=184291915]
+position = Vector2(0, 20)
+scale = Vector2(3, 3)
+texture = ExtResource("2_hyckq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=325315918]
+shape = SubResource("RectangleShape2D_hyckq")
+
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=1705164163]
+position = Vector2(0.49999833, 7.4999967)
+scale = Vector2(2.0028408, 2.002841)
+energy = 0.4
+texture = SubResource("GradientTexture2D_hyckq")
+texture_scale = 1.1

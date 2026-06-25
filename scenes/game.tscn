@@ -58,14 +58,17 @@ texture = ExtResource("8_1kice")
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1kice"]
 texture = ExtResource("9_5newe")
 
-[sub_resource type="Gradient" id="Gradient_iywne"]
+[sub_resource type="Gradient" id="Gradient_1kice"]
 colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_8nxoa"]
-gradient = SubResource("Gradient_iywne")
+gradient = SubResource("Gradient_1kice")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.5, 0)
+
+[sub_resource type="Gradient" id="Gradient_iywne"]
+colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1kice"]
 gradient = SubResource("Gradient_iywne")
@@ -334,6 +337,7 @@ texture = SubResource("GradientTexture2D_8nxoa")
 [node name="PointLight2D5" type="PointLight2D" parent="Lightings" unique_id=543279182]
 position = Vector2(-97.5, -52.500015)
 scale = Vector2(19.984375, 12.234374)
+energy = 0.2
 texture = SubResource("GradientTexture2D_1kice")
 
 [node name="PointLight2D6" type="PointLight2D" parent="Lightings" unique_id=1749836136]

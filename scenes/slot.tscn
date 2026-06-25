@@ -4,15 +4,15 @@
 [ext_resource type="Texture2D" uid="uid://djxpbnt3imyaf" path="res://Assets/inventory box.png" id="2_ic0fu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yw4vu"]
-size = Vector2(88, 87)
+size = Vector2(87, 87)
 
 [node name="slot" type="Area2D" unique_id=1963932317]
 script = ExtResource("1_4v6ba")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=184291915]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=184291915]
 scale = Vector2(3, 3)
 texture = ExtResource("2_ic0fu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1106983572]
-position = Vector2(3, 0.5)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_yw4vu")

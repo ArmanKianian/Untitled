@@ -38,8 +38,8 @@ func _on_end_turn_button_pressed() -> void:
 	turn.text = str(int(turn.text) + 1)
 	coin.text = str(int(coin.text) + turn_coin_gain)
 	
-	enemy_move()
 	check_win()
+	enemy_move()
 
 func _on_spin_button_pressed() -> void:
 	camera.screen_shake(8, 0.2)
@@ -76,6 +76,13 @@ func enemy_move():
 	var max_stat
 	var choice
 	var enemy_slots = enemy_square.get_children()
+	
+	for card in enemy_cards.get_children():
+			for card2 in enemy_cards.get_children():
+				if card != card2 and card.type == card2.type and card.level == card2.level:
+					card.level_up(card2)
+					card2.queue_free()
+	
 	for y in range(enemy_cards.get_child_count()):
 		max_stat = -1
 		choice = null
@@ -84,6 +91,7 @@ func enemy_move():
 				if max_stat < card.health + card.damage:
 					max_stat = card.health + card.damage
 					choice = card
+			
 		if choice:
 			choice.is_played = true
 			

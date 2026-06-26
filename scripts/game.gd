@@ -35,6 +35,16 @@ var enemy_spin_cost = 3
 var enemy_line_count = 1
 var player_line_count = 1
 
+@onready var Arcane_count: Label = $Panels/Traits_panel/VBoxContainer/Arcane/count
+@onready var Inventor_count: Label = $Panels/Traits_panel/VBoxContainer/Inventor/count
+@onready var Guardian_count: Label = $Panels/Traits_panel/VBoxContainer/Guardian/count
+@onready var Forest_count: Label = $Panels/Traits_panel/VBoxContainer/Forest/count
+@onready var Assasins_count: Label = $Panels/Traits_panel/VBoxContainer/Assasins/count
+@onready var Undead_count: Label = $Panels/Traits_panel/VBoxContainer/Undead/count
+@onready var Shield_count: Label = $Panels/Traits_panel/VBoxContainer/Shield/count
+@onready var Inferno_count: Label = $Panels/Traits_panel/VBoxContainer/Inferno/count
+
+
 func _ready() -> void:
 	spin_button.disabled = true
 	end_turn_button.disabled = true
@@ -66,6 +76,7 @@ func _on_spin_button_pressed() -> void:
 		if await add_card(player_cards, player_inventory, player_square):
 			coin.text = str(int(coin.text) - int(spin_cost.text))
 			spin_cost.text = str(int(spin_cost.text) + spin_cost_gain)
+	check_traits()
 	spin_button.disabled = false
 	end_turn_button.disabled = false
 
@@ -229,3 +240,31 @@ func check_win():
 				
 			break
 	
+
+func check_traits():
+	Arcane_count.text = "0"
+	Inventor_count.text = "0"
+	Guardian_count.text = "0"
+	Forest_count.text = "0"
+	Assasins_count.text = "0"
+	Undead_count.text = "0"
+	Shield_count.text = "0"
+	Inferno_count.text = "0"
+	var Traits = [[0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0], [0, 0, 0]]
+	var Trait_counts = [Arcane_count, Inventor_count, Guardian_count, Forest_count, Assasins_count, Undead_count, Shield_count, Inferno_count]
+	for card in player_cards.get_children():
+		for i in range(Traits.size()):
+			if card.type == spinning_wheel.Traits[i]["units"][0]["name"]:
+				Traits[i][0] = 1
+			if card.type == spinning_wheel.Traits[i]["units"][1]["name"]:
+				Traits[i][1] = 1
+			if card.type == spinning_wheel.Traits[i]["units"][2]["name"]:
+				Traits[i][2] = 1
+
+	for i in range(Trait_counts.size()):
+		if Traits[i][0]:
+			Trait_counts[i].text = str(int(Trait_counts[i].text) + 1)
+		if Traits[i][1]:
+			Trait_counts[i].text = str(int(Trait_counts[i].text) + 1)
+		if Traits[i][2]:
+			Trait_counts[i].text = str(int(Trait_counts[i].text) + 1)

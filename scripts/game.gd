@@ -154,16 +154,22 @@ func check_win():
 				if player_slots.size() > i:
 					if player_slots[i].item:
 						is_there_any = true
-						player_slots[i].item.health -= enemy_slots[i].item.damage
-						enemy_slots[i].item.health -= player_slots[i].item.damage
-						if enemy_slots[i].item.health <= 0:
-							player_point += 1
-							enemy_slots[i].item.queue_free()
-							enemy_slots[i].item = null
-						if player_slots[i].item.health <= 0:
-							enemy_point += 1
-							player_slots[i].item.queue_free()
-							player_slots[i].item = null
+						var end = false
+						while true:
+							player_slots[i].item.health -= enemy_slots[i].item.damage
+							enemy_slots[i].item.health -= player_slots[i].item.damage
+							if enemy_slots[i].item.health <= 0:
+								player_point += 1
+								enemy_slots[i].item.queue_free()
+								enemy_slots[i].item = null
+								end = true
+							if player_slots[i].item.health <= 0:
+								enemy_point += 1
+								player_slots[i].item.queue_free()
+								player_slots[i].item = null
+								end = true
+							if end:
+								break
 						
 		if is_there_any == false:
 			var enemy_square_slots = enemy_square.get_children()

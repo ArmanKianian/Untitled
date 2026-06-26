@@ -2,45 +2,45 @@ extends Node2D
 
 # wheel items with chance of getting
 var Traits: Array = [
-	{"name": "Arcane", "chance": 10.0, "units": [
-	{"name": "Arcane1", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Arcane2", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Arcane3", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
+	{"name": "Arcane", "chance": 12.0, "units": [
+	{"name": "Mage", "level": 1, "damage": 12, "health": 60, "chance": 60.0},
+	{"name": "Wizard", "level": 1, "damage": 22, "health": 90, "chance": 30.0},
+	{"name": "Archmage", "level": 1, "damage": 40, "health": 120, "chance": 10.0},
 ]},
-	{"name": "Inventor", "chance": 10.0, "units": [
-	{"name": "Inventor1", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Inventor2", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Inventor3", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
+	{"name": "Inventor", "chance": 13.0, "units": [
+	{"name": "Mechanic", "level": 1, "damage": 10, "health": 70, "chance": 60.0},
+	{"name": "Engineer", "level": 1, "damage": 20, "health": 105, "chance": 30.0},
+	{"name": "Mecha-Master", "level": 1, "damage": 36, "health": 145, "chance": 10.0},
 ]},
-	{"name": "Guardian", "chance": 10.0, "units": [
-	{"name": "Guardian1", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Guardian2", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Guardian3", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
+	{"name": "Guardian", "chance": 14.0, "units": [
+	{"name": "Squire", "level": 1, "damage": 8, "health": 100, "chance": 60.0},
+	{"name": "Knight", "level": 1, "damage": 16, "health": 150, "chance": 30.0},
+	{"name": "Paladin", "level": 1, "damage": 28, "health": 230, "chance": 10.0},
 ]},
-	{"name": "Forest", "chance": 10.0, "units": [
-	{"name": "Forest1", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Forest2", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Forest3", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
+	{"name": "Forest", "chance": 13.0, "units": [
+	{"name": "Dryad", "level": 1, "damage": 11, "health": 65, "chance": 60.0},
+	{"name": "Ranger", "level": 1, "damage": 21, "health": 95, "chance": 30.0},
+	{"name": "Treant", "level": 1, "damage": 34, "health": 180, "chance": 10.0},
 ]},
-	{"name": "Assasins", "chance": 10.0, "units": [
-	{"name": "Assasins1", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Assasins2", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Assasins3", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
+	{"name": "Assasins", "chance": 12.0, "units": [
+	{"name": "Rogue", "level": 1, "damage": 18, "health": 50, "chance": 60.0},
+	{"name": "Shadowblade", "level": 1, "damage": 30, "health": 70, "chance": 30.0},
+	{"name": "Phantom", "level": 1, "damage": 52, "health": 90, "chance": 10.0},
 ]},
-	{"name": "Undead", "chance": 10.0, "units": [
-	{"name": "Undead1", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Undead2", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Undead3", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
+	{"name": "Undead", "chance": 12.0, "units": [
+	{"name": "Skeleton", "level": 1, "damage": 9, "health": 80, "chance": 60.0},
+	{"name": "Ghoul", "level": 1, "damage": 18, "health": 130, "chance": 30.0},
+	{"name": "Lich", "level": 1, "damage": 35, "health": 160, "chance": 10.0},
 ]},
-	{"name": "Shield", "chance": 10.0, "units": [
-	{"name": "Shield1", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Shield2", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Shield3", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
+	{"name": "Shield", "chance": 12.0, "units": [
+	{"name": "Defender", "level": 1, "damage": 6, "health": 110, "chance": 60.0},
+	{"name": "Bulwark", "level": 1, "damage": 14, "health": 180, "chance": 30.0},
+	{"name": "Fortress", "level": 1, "damage": 24, "health": 280, "chance": 10.0},
 ]},
-	{"name": "Inferno", "chance": 10.0, "units": [
-	{"name": "Inferno1", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Inferno2", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
-	{"name": "Inferno3", "level": 1, "damage": 3, "health": 2, "chance": 10.0},
+	{"name": "Inferno", "chance": 12.0, "units": [
+	{"name": "Imp", "level": 1, "damage": 14, "health": 55, "chance": 60.0},
+	{"name": "Demon", "level": 1, "damage": 28, "health": 90, "chance": 30.0},
+	{"name": "Infernal-Lord", "level": 1, "damage": 48, "health": 140, "chance": 10.0},
 ]},
 ]
 

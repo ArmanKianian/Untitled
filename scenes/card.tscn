@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dlsbf8fn82egx"]
 
 [ext_resource type="Script" uid="uid://calip06smc8aq" path="res://scripts/card.gd" id="1_d81rb"]
+[ext_resource type="FontFile" uid="uid://cu8e33mndwc28" path="res://pixel-font/tinypixel.otf" id="2_6u4wf"]
 
 [sub_resource type="Gradient" id="Gradient_d81rb"]
 colors = PackedColorArray(0.8784314, 0.64705884, 0, 1, 1, 1, 1, 1)
@@ -25,10 +26,18 @@ height = 68
 fill_to = Vector2(1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_yw4vu"]
+font = ExtResource("2_6u4wf")
 font_color = Color(0.98039216, 0, 0.06666667, 1)
 
+[sub_resource type="LabelSettings" id="LabelSettings_gxtfn"]
+font = ExtResource("2_6u4wf")
+
 [sub_resource type="LabelSettings" id="LabelSettings_8nxoa"]
+font = ExtResource("2_6u4wf")
 font_color = Color(0, 1, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_twgab"]
+font = ExtResource("2_6u4wf")
 
 [sub_resource type="Gradient" id="Gradient_v7bkm"]
 colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
@@ -89,6 +98,7 @@ layout_mode = 2
 size_flags_horizontal = 6
 size_flags_vertical = 6
 text = "1"
+label_settings = SubResource("LabelSettings_gxtfn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -106,6 +116,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 text = "1"
+label_settings = SubResource("LabelSettings_twgab")
 horizontal_alignment = 1
 vertical_alignment = 1
 

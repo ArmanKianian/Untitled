@@ -7,30 +7,42 @@
 [ext_resource type="Texture2D" uid="uid://bqwrofmhg2nks" path="res://Assets/Traits/inferno.png" id="5_o0vlv"]
 [ext_resource type="Texture2D" uid="uid://ybqx5algql3t" path="res://Assets/Traits/Assasins Trait.png" id="6_47rxl"]
 [ext_resource type="Texture2D" uid="uid://k8q6816j20u3" path="res://Assets/Traits/arcane trait.png" id="7_xqj4p"]
+[ext_resource type="Texture2D" uid="uid://j2hdy0xvuw6r" path="res://Assets/Traits/forest trait.png" id="8_qdpr3"]
 
 [node name="Spinning_Wheel" type="Node2D" unique_id=905745828]
 script = ExtResource("1_skc0w")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=631670254]
+position = Vector2(1, -3)
 scale = Vector2(3, 3)
 texture = ExtResource("2_7u85o")
 
 [node name="Undead" type="Sprite2D" parent="." unique_id=184730800]
 position = Vector2(120, 50)
+rotation = 1.9198622
 texture = ExtResource("3_bqp8g")
 
 [node name="Shield" type="Sprite2D" parent="." unique_id=1040412833]
 position = Vector2(120, -50)
+rotation = 1.2217305
 texture = ExtResource("4_o0vlv")
 
 [node name="Inferno" type="Sprite2D" parent="." unique_id=1546158424]
 position = Vector2(50, -120)
+rotation = 0.43633232
 texture = ExtResource("5_o0vlv")
 
 [node name="Assasins" type="Sprite2D" parent="." unique_id=1599337284]
 position = Vector2(50, 120)
+rotation = 2.6179938
 texture = ExtResource("6_47rxl")
 
 [node name="Arcane" type="Sprite2D" parent="." unique_id=706831022]
 position = Vector2(-50, -120)
+rotation = -0.4660029
 texture = ExtResource("7_xqj4p")
+
+[node name="Forest" type="Sprite2D" parent="." unique_id=281921391]
+position = Vector2(-50, 120)
+rotation = 3.4906585
+texture = ExtResource("8_qdpr3")

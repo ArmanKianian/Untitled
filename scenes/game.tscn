@@ -20,7 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://clhtgol0nroxx" path="res://SoundPack/Audio/card-shove-1.ogg" id="12_ir15t"]
 [ext_resource type="AudioStream" uid="uid://cbtr8n46fnd5d" path="res://SoundPack/Audio/card-shove-2.ogg" id="13_ca42v"]
 [ext_resource type="AudioStream" uid="uid://c87awitx7cjog" path="res://SoundPack/Audio/card-shove-3.ogg" id="14_rysoc"]
-[ext_resource type="Texture2D" uid="uid://j2hdy0xvuw6r" path="res://Assets/forest trait.png" id="17_5newe"]
+[ext_resource type="Texture2D" uid="uid://j2hdy0xvuw6r" path="res://Assets/Traits/forest trait.png" id="17_5newe"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yw4vu"]
 streams_count = 4

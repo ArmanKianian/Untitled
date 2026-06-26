@@ -11,6 +11,8 @@ const CARD = preload("uid://dlsbf8fn82egx")
 @onready var player_square: Node2D = $war_square/player_square
 @onready var enemy_square: Node2D = $war_square/enemy_square
 
+@onready var spin_button: Button = $UI/Spin_Button
+@onready var end_turn_button: Button = $UI/End_Turn_button
 
 @onready var spinning_wheel: Node2D = $Spinning_Wheel
 
@@ -27,26 +29,38 @@ var enemy_coin = 12
 var enemy_spin_cost = 3
 
 func _ready() -> void:
+	spin_button.disabled = true
+	end_turn_button.disabled = true
 	enemy_coin = start_coin
 	enemy_spin_cost = turn_spin_cost
 	coin.text = str(start_coin)
-	enemy_move()
+	await enemy_move()
+	spin_button.disabled = false
+	end_turn_button.disabled = false
 
 func _on_end_turn_button_pressed() -> void:
+	spin_button.disabled = true
+	end_turn_button.disabled = true
 	camera.screen_shake(50, 0.5)
 	spin_cost.text = str(turn_spin_cost)
 	turn.text = str(int(turn.text) + 1)
 	coin.text = str(int(coin.text) + turn_coin_gain)
 	
-	check_win()
-	enemy_move()
+	await check_win()
+	await enemy_move()
+	spin_button.disabled = false
+	end_turn_button.disabled = false
 
 func _on_spin_button_pressed() -> void:
+	spin_button.disabled = true
+	end_turn_button.disabled = true
 	camera.screen_shake(8, 0.2)
 	if int(coin.text) >= int(spin_cost.text):
 		if await add_card(player_cards, player_inventory, player_square):
 			coin.text = str(int(coin.text) - int(spin_cost.text))
 			spin_cost.text = str(int(spin_cost.text) + spin_cost_gain)
+	spin_button.disabled = false
+	end_turn_button.disabled = false
 
 func add_card(cards, inventory, square):
 	for child in inventory.get_children():
@@ -107,16 +121,39 @@ func enemy_move():
 func check_win():
 	var enemy_slots = enemy_square.get_children()
 	var player_slots = player_square.get_children()
+	var is_there_any = false
+	var enemy_point = 0
+	var player_point = 0
 	for i in range(enemy_slots.size()):
+		if player_slots[i].item:
+				if enemy_slots[i].item == null:
+					player_point+=1
 		if enemy_slots[i].item:
-			if player_slots[i].item:
-				player_slots[i].item.health -= enemy_slots[i].item.damage
-				enemy_slots[i].item.health -= player_slots[i].item.damage
-				if enemy_slots[i].item.health <= 0:
-					enemy_slots[i].item.queue_free()
-					enemy_slots[i].item = null
-				if player_slots[i].item.health <= 0:
-					player_slots[i].item.queue_free()
-					player_slots[i].item = null
-			
+				if player_slots[i].item == null:
+					enemy_point+=1
+	while true:
+		for i in range(enemy_slots.size()):
+			is_there_any = false
+			if enemy_slots[i].item:
+				if player_slots[i].item:
+					is_there_any = true
+					player_slots[i].item.health -= enemy_slots[i].item.damage
+					enemy_slots[i].item.health -= player_slots[i].item.damage
+					if enemy_slots[i].item.health <= 0:
+						player_point += 1
+						enemy_slots[i].item.queue_free()
+						enemy_slots[i].item = null
+					if player_slots[i].item.health <= 0:
+						enemy_point += 1
+						player_slots[i].item.queue_free()
+						player_slots[i].item = null
+						
+		if is_there_any == false:
+			print("enemy: ", enemy_point)
+			print("player: ", player_point)
+			if player_point > enemy_point:
+				pass
+			elif player_point < enemy_point:
+				pass
+			break
 	

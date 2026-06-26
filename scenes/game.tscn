@@ -31,6 +31,8 @@
 [ext_resource type="Texture2D" uid="uid://cxpvk8wbdothy" path="res://Assets/Traits/Inventor trait.png" id="21_js0lu"]
 [ext_resource type="Texture2D" uid="uid://dyw330y8ot6jq" path="res://Assets/Traits/guardian trait.png" id="22_gxtfn"]
 [ext_resource type="FontFile" uid="uid://cu8e33mndwc28" path="res://pixel-font/tinypixel.otf" id="27_wljb1"]
+[ext_resource type="Texture2D" uid="uid://ddckw86072bt4" path="res://Assets/tree leaf.png" id="28_js0lu"]
+[ext_resource type="Texture2D" uid="uid://c5dvhivnm8sk7" path="res://Assets/tree leaf2.png" id="29_gxtfn"]
 [ext_resource type="Texture2D" uid="uid://y13f88wmdmhf" path="res://Assets/spin arrow.png" id="29_wljb1"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yw4vu"]
@@ -632,7 +634,20 @@ hue_variation_max = 1.0
 [node name="CPUParticles2D2" type="CPUParticles2D" parent="Particles" unique_id=1780919590]
 top_level = true
 amount = 10
-texture = ExtResource("17_5newe")
+texture = ExtResource("28_js0lu")
+lifetime = 10.0
+emission_shape = 3
+emission_rect_extents = Vector2(960, 540)
+gravity = Vector2(100, 98)
+angle_min = -180.0
+angle_max = 180.0
+angle_curve = SubResource("Curve_5newe")
+scale_amount_min = 0.5
+
+[node name="CPUParticles2D3" type="CPUParticles2D" parent="Particles" unique_id=356556951]
+top_level = true
+amount = 10
+texture = ExtResource("29_gxtfn")
 lifetime = 10.0
 emission_shape = 3
 emission_rect_extents = Vector2(960, 540)

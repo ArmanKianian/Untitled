@@ -163,8 +163,8 @@ scale = Vector2(46.09375, 1.421875)
 texture = SubResource("GradientTexture2D_8nxoa")
 
 [node name="PointLight2D4" type="PointLight2D" parent="Lightings" unique_id=963801954]
-position = Vector2(-14.0000725, 448.5)
-scale = Vector2(25.374998, 4.015624)
+position = Vector2(-14.0000725, 440.50003)
+scale = Vector2(25.374998, 2.9218748)
 texture = SubResource("GradientTexture2D_8nxoa")
 
 [node name="PointLight2D5" type="PointLight2D" parent="Lightings" unique_id=543279182]

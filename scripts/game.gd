@@ -28,6 +28,9 @@ const CARD = preload("uid://dlsbf8fn82egx")
 var enemy_coin = 12
 var enemy_spin_cost = 3
 
+var enemy_line_count = 1
+var player_line_count = 1
+
 func _ready() -> void:
 	spin_button.disabled = true
 	end_turn_button.disabled = true
@@ -125,35 +128,59 @@ func check_win():
 	var enemy_point = 0
 	var player_point = 0
 	for i in range(enemy_slots.size()):
-		if player_slots[i].item:
-				if enemy_slots[i].item == null:
-					player_point+=1
 		if enemy_slots[i].item:
+			if player_slots.size() > i:
 				if player_slots[i].item == null:
 					enemy_point+=1
+			else:
+				enemy_point+=1
+	
+	for i in range(player_slots.size()):
+		if player_slots[i].item:
+			if enemy_slots.size() > i:
+				if enemy_slots[i].item == null:
+					player_point+=1
+			else:
+				player_point+=1
+	
 	while true:
 		for i in range(enemy_slots.size()):
 			is_there_any = false
 			if enemy_slots[i].item:
-				if player_slots[i].item:
-					is_there_any = true
-					player_slots[i].item.health -= enemy_slots[i].item.damage
-					enemy_slots[i].item.health -= player_slots[i].item.damage
-					if enemy_slots[i].item.health <= 0:
-						player_point += 1
-						enemy_slots[i].item.queue_free()
-						enemy_slots[i].item = null
-					if player_slots[i].item.health <= 0:
-						enemy_point += 1
-						player_slots[i].item.queue_free()
-						player_slots[i].item = null
+				if player_slots.size() > i:
+					if player_slots[i].item:
+						is_there_any = true
+						player_slots[i].item.health -= enemy_slots[i].item.damage
+						enemy_slots[i].item.health -= player_slots[i].item.damage
+						if enemy_slots[i].item.health <= 0:
+							player_point += 1
+							enemy_slots[i].item.queue_free()
+							enemy_slots[i].item = null
+						if player_slots[i].item.health <= 0:
+							enemy_point += 1
+							player_slots[i].item.queue_free()
+							player_slots[i].item = null
 						
 		if is_there_any == false:
-			print("enemy: ", enemy_point)
-			print("player: ", player_point)
+			var enemy_square_slots = enemy_square.get_children()
+			var player_square_slots = player_square.get_children()
 			if player_point > enemy_point:
-				pass
+				if enemy_square.get_child_count() > 0:
+					for i in range(1, enemy_line_count+1):
+						enemy_square_slots = enemy_square.get_children()
+						if enemy_square_slots[-i]:
+							if enemy_square_slots[-i].item:
+								enemy_square_slots[-i].item.queue_free()
+							enemy_square_slots[-i].queue_free()
+					enemy_line_count += 1
 			elif player_point < enemy_point:
-				pass
+				if player_square.get_child_count() > 0:
+					for i in range(1, player_line_count+1):
+						player_square_slots = player_square.get_children()
+						if player_square_slots[-i]:
+							if player_square_slots[-i].item:
+								player_square_slots[-i].item.queue_free()
+							player_square_slots[-i].queue_free()
+					player_line_count += 1
 			break
 	

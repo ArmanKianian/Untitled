@@ -27,6 +27,7 @@ texture = ExtResource("2_hyckq")
 shape = SubResource("RectangleShape2D_hyckq")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=1705164163]
+visible = false
 position = Vector2(0.49999833, 7.4999967)
 scale = Vector2(2.0028408, 2.002841)
 energy = 0.4

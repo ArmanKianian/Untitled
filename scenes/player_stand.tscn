@@ -27,6 +27,7 @@ texture = ExtResource("2_v7bkm")
 shape = SubResource("RectangleShape2D_yw4vu")
 
 [node name="PointLight2D" type="PointLight2D" parent="." unique_id=195798241]
+visible = false
 position = Vector2(0.49999833, 7.4999967)
 scale = Vector2(2.0028408, 2.002841)
 energy = 0.4

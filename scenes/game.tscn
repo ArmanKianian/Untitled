@@ -70,7 +70,7 @@ colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1kice"]
 gradient = SubResource("Gradient_iywne")
 fill = 1
-fill_from = Vector2(0.5, 0.5)
+fill_from = Vector2(0.5, 1)
 fill_to = Vector2(0, 0)
 
 [sub_resource type="Gradient" id="Gradient_mwb40"]
@@ -83,8 +83,8 @@ width = 1920
 height = 1080
 
 [sub_resource type="Gradient" id="Gradient_upehx"]
-offsets = PackedFloat32Array(0, 0.030120483, 0.9518072)
-colors = PackedColorArray(0, 1, 0, 1, 0.26776242, 0.6844512, 0, 1, 0, 1, 0, 1)
+offsets = PackedFloat32Array(0, 0.18674698, 1)
+colors = PackedColorArray(0.9843137, 0.52156866, 0.19215687, 1, 0.26776242, 0.6844512, 0, 1, 0, 1, 0, 1)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_x437s"]
 
@@ -169,9 +169,9 @@ scale = Vector2(25.374998, 2.9218748)
 texture = SubResource("GradientTexture2D_8nxoa")
 
 [node name="PointLight2D5" type="PointLight2D" parent="Lightings" unique_id=543279182]
-position = Vector2(-97.5, -52.500015)
-scale = Vector2(19.984375, 12.234374)
-energy = 0.2
+position = Vector2(-4.5000076, -43.499996)
+scale = Vector2(18.171875, 12.515625)
+energy = 0.3
 texture = SubResource("GradientTexture2D_1kice")
 
 [node name="PointLight2D6" type="PointLight2D" parent="Lightings" unique_id=1749836136]
@@ -191,8 +191,8 @@ texture = SubResource("GradientTexture2D_8nxoa")
 [node name="Background" type="Sprite2D" parent="Background" unique_id=381845390]
 texture = SubResource("GradientTexture2D_yw4vu")
 
-[node name="Sprite2D" type="Sprite2D" parent="Background" unique_id=1712898480]
-modulate = Color(0.75398386, 0.75398386, 0.75398374, 1)
+[node name="Board" type="Sprite2D" parent="Background" unique_id=1712898480]
+modulate = Color(0.45064795, 0.45064843, 0.450648, 1)
 position = Vector2(0, -50)
 texture = SubResource("NoiseTexture2D_iqw5e")
 

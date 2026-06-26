@@ -19,6 +19,7 @@
 [ext_resource type="AudioStream" uid="uid://doi2btmik488o" path="res://SoundPack/Audio/cards-pack-take-out-2.ogg" id="11_dinhu"]
 [ext_resource type="AudioStream" uid="uid://clhtgol0nroxx" path="res://SoundPack/Audio/card-shove-1.ogg" id="12_ir15t"]
 [ext_resource type="AudioStream" uid="uid://cbtr8n46fnd5d" path="res://SoundPack/Audio/card-shove-2.ogg" id="13_ca42v"]
+[ext_resource type="Texture2D" uid="uid://dyqretf4oi0bn" path="res://Assets/coin.png" id="14_qouja"]
 [ext_resource type="AudioStream" uid="uid://c87awitx7cjog" path="res://SoundPack/Audio/card-shove-3.ogg" id="14_rysoc"]
 [ext_resource type="Texture2D" uid="uid://m1e2sxmmqvbh" path="res://Assets/Traits/Undead trait.png" id="15_suyxu"]
 [ext_resource type="Texture2D" uid="uid://djxpbnt3imyaf" path="res://Assets/UI/inventory box.png" id="16_37s47"]
@@ -29,6 +30,8 @@
 [ext_resource type="Texture2D" uid="uid://k8q6816j20u3" path="res://Assets/Traits/arcane trait.png" id="19_v2yb1"]
 [ext_resource type="Texture2D" uid="uid://cxpvk8wbdothy" path="res://Assets/Traits/Inventor trait.png" id="21_js0lu"]
 [ext_resource type="Texture2D" uid="uid://dyw330y8ot6jq" path="res://Assets/Traits/guardian trait.png" id="22_gxtfn"]
+[ext_resource type="FontFile" uid="uid://cu8e33mndwc28" path="res://pixel-font/tinypixel.otf" id="27_wljb1"]
+[ext_resource type="Texture2D" uid="uid://y13f88wmdmhf" path="res://Assets/spin arrow.png" id="29_wljb1"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yw4vu"]
 streams_count = 4
@@ -101,6 +104,10 @@ height = 850
 noise = SubResource("FastNoiseLite_x437s")
 color_ramp = SubResource("Gradient_upehx")
 
+[sub_resource type="LabelSettings" id="LabelSettings_8a11m"]
+font = ExtResource("27_wljb1")
+font_size = 64
+
 [sub_resource type="Gradient" id="Gradient_lbhrr"]
 offsets = PackedFloat32Array(0.9939759, 1)
 colors = PackedColorArray(0, 1, 1, 1, 0, 0, 0, 0)
@@ -121,13 +128,23 @@ _limits = [-360.0, 360.0, 0.0, 1.0]
 _data = [Vector2(0, 28.314636), 0.0, 0.0, 0, 0, Vector2(1, 44.494415), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="LabelSettings" id="LabelSettings_wljb1"]
+font = ExtResource("27_wljb1")
+
+[sub_resource type="LabelSettings" id="LabelSettings_v2yb1"]
+font = ExtResource("27_wljb1")
+
+[sub_resource type="LabelSettings" id="LabelSettings_js0lu"]
+font = ExtResource("27_wljb1")
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssvqc"]
 texture = ExtResource("8_1kice")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1kice"]
 texture = ExtResource("9_5newe")
 
-[sub_resource type="LabelSettings" id="LabelSettings_ssvqc"]
+[sub_resource type="LabelSettings" id="LabelSettings_gxtfn"]
+font = ExtResource("27_wljb1")
 
 [node name="Game" type="Node2D" unique_id=1207240851]
 script = ExtResource("1_lbhrr")
@@ -222,6 +239,11 @@ texture = ExtResource("3_ir15t")
 position = Vector2(-273.33334, 0)
 texture = ExtResource("4_ca42v")
 
+[node name="coin_icon" type="Sprite2D" parent="Panels/Info_panel/Info_box_1" unique_id=1055908255]
+position = Vector2(-10, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("14_qouja")
+
 [node name="Info_box_2" type="Sprite2D" parent="Panels/Info_panel" unique_id=1678069965]
 position = Vector2(-220, 0)
 texture = ExtResource("4_ca42v")
@@ -260,22 +282,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -12.0
-offset_bottom = 11.0
+offset_left = -31.0
+offset_top = -7.0
+offset_right = 15.0
+offset_bottom = 67.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "0"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="max" type="Label" parent="Panels/Traits_panel/VBoxContainer/Control" unique_id=1793822080]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 36.0
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 79.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "/3"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Control2" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=1243720867]
 custom_minimum_size = Vector2(16, 16)
@@ -294,22 +324,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -12.0
-offset_bottom = 11.0
+offset_left = -31.0
+offset_top = -7.0
+offset_right = 15.0
+offset_bottom = 67.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "0"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="max" type="Label" parent="Panels/Traits_panel/VBoxContainer/Control2" unique_id=37177965]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 36.0
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 79.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "/3"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Control3" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=729830917]
 custom_minimum_size = Vector2(16, 16)
@@ -328,22 +366,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -12.0
-offset_bottom = 11.0
+offset_left = -31.0
+offset_top = -7.0
+offset_right = 15.0
+offset_bottom = 67.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "0"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="max" type="Label" parent="Panels/Traits_panel/VBoxContainer/Control3" unique_id=239058877]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 36.0
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 79.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "/3"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Control4" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=333638055]
 custom_minimum_size = Vector2(16, 16)
@@ -362,22 +408,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -12.5
-offset_bottom = 10.5
+offset_left = -31.0
+offset_top = -7.5
+offset_right = 15.0
+offset_bottom = 66.5
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "0"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="max" type="Label" parent="Panels/Traits_panel/VBoxContainer/Control4" unique_id=2097647028]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 36.0
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 79.0
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "/3"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Control5" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=1408465520]
 custom_minimum_size = Vector2(16, 16)
@@ -396,22 +450,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -12.0
-offset_bottom = 11.0
+offset_left = -31.0
+offset_top = -7.0
+offset_right = 15.0
+offset_bottom = 67.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "0"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="max" type="Label" parent="Panels/Traits_panel/VBoxContainer/Control5" unique_id=1022554706]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 36.0
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 79.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "/3"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Control6" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=852384024]
 custom_minimum_size = Vector2(16, 16)
@@ -430,22 +492,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -12.0
-offset_bottom = 11.0
+offset_left = -31.0
+offset_top = -7.0
+offset_right = 15.0
+offset_bottom = 67.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "0"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="max" type="Label" parent="Panels/Traits_panel/VBoxContainer/Control6" unique_id=573538007]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 36.0
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 79.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "/3"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Control7" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=848283283]
 custom_minimum_size = Vector2(16, 16)
@@ -464,22 +534,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -12.0
-offset_bottom = 11.0
+offset_left = -31.0
+offset_top = -7.0
+offset_right = 15.0
+offset_bottom = 67.0
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "0"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="max" type="Label" parent="Panels/Traits_panel/VBoxContainer/Control7" unique_id=35999230]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 36.0
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 79.0
+offset_bottom = 55.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "/3"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Control8" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=1497552596]
 custom_minimum_size = Vector2(16, 16)
@@ -498,23 +576,30 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -26.0
-offset_top = -12.5
-offset_bottom = 10.5
+offset_left = -31.0
+offset_top = -7.5
+offset_right = 15.0
+offset_bottom = 66.5
 grow_horizontal = 0
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "0"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="max" type="Label" parent="Panels/Traits_panel/VBoxContainer/Control8" unique_id=875783807]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 36.0
-offset_bottom = -2.0
+offset_left = 30.0
+offset_top = 5.0
+offset_right = 79.0
+offset_bottom = 54.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.2, 0.2)
 text = "/3"
+label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Inventory_panel" type="Sprite2D" parent="Panels" unique_id=1808974895]
 position = Vector2(0, 442)
@@ -566,17 +651,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="coins_text" type="Label" parent="UI" unique_id=1206440937]
-layout_mode = 0
-offset_left = 69.0
-offset_top = 32.0
-offset_right = 116.0
-offset_bottom = 64.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-text = "Coins:"
-vertical_alignment = 1
-
 [node name="turn_text" type="Label" parent="UI" unique_id=1434502165]
 layout_mode = 0
 offset_left = 228.0
@@ -586,6 +660,7 @@ offset_bottom = 64.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Turn:"
+label_settings = SubResource("LabelSettings_wljb1")
 vertical_alignment = 1
 
 [node name="coin" type="Label" parent="UI" unique_id=619698015]
@@ -596,6 +671,7 @@ offset_right = 211.0
 offset_bottom = 66.0
 size_flags_horizontal = 0
 text = "12"
+label_settings = SubResource("LabelSettings_v2yb1")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -607,6 +683,7 @@ offset_right = 370.0
 offset_bottom = 64.0
 size_flags_horizontal = 0
 text = "0"
+label_settings = SubResource("LabelSettings_js0lu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -624,26 +701,38 @@ theme_override_styles/disabled = SubResource("StyleBoxTexture_ssvqc")
 
 [node name="spin_cost_text" type="Label" parent="UI/Spin_Button" unique_id=243890378]
 layout_mode = 0
-offset_left = 75.0
+offset_left = 9.0
 offset_top = 4.0
 offset_right = 168.0
-offset_bottom = 53.0
+offset_bottom = 27.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Spin"
-label_settings = SubResource("LabelSettings_ssvqc")
+label_settings = SubResource("LabelSettings_gxtfn")
+horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="spin_cost" type="Label" parent="UI/Spin_Button" unique_id=319299110]
 layout_mode = 0
-offset_left = 35.0
-offset_top = 6.0
-offset_right = 76.0
-offset_bottom = 50.0
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 170.0
+offset_bottom = 54.0
 size_flags_horizontal = 0
 text = "3"
+label_settings = SubResource("LabelSettings_gxtfn")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="coin_icon" type="Sprite2D" parent="UI/Spin_Button" unique_id=382218846]
+position = Vector2(65, 40)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("14_qouja")
+
+[node name="spin_icon" type="Sprite2D" parent="UI/Spin_Button" unique_id=370597282]
+position = Vector2(50, 15)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("29_wljb1")
 
 [node name="End_Turn_button" type="Button" parent="UI" unique_id=1919210139]
 layout_mode = 0
@@ -656,7 +745,15 @@ theme_override_styles/pressed = SubResource("StyleBoxTexture_1kice")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ssvqc")
 theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_1kice")
 theme_override_styles/disabled = SubResource("StyleBoxTexture_ssvqc")
-text = "Next turn"
+
+[node name="Label" type="Label" parent="UI/End_Turn_button" unique_id=702257563]
+layout_mode = 0
+offset_left = 45.0
+offset_top = 20.0
+offset_right = 136.0
+offset_bottom = 39.0
+text = "Next Turn"
+label_settings = SubResource("LabelSettings_wljb1")
 
 [node name="inventory" type="Node2D" parent="." unique_id=2128222662]
 

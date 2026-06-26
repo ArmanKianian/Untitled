@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ctuyshu8kwaeb"]
 
 [ext_resource type="Script" uid="uid://t4jfqi8v1qvp" path="res://scripts/slot.gd" id="1_hyckq"]
-[ext_resource type="Texture2D" uid="uid://cannd6mcrlcrh" path="res://Assets/UI/enemy_stand.png" id="2_hyckq"]
+[ext_resource type="Texture2D" uid="uid://cannd6mcrlcrh" path="res://Assets/UI/stands/enemy_stand.png" id="2_hyckq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyckq"]
 size = Vector2(106, 94)

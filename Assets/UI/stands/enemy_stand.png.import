@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxj6iuq2y2b0r"
-path="res://.godot/imported/unit3 shield.png-56d6ec32fc9e3be85ca9dbc3da4def47.ctex"
+uid="uid://cannd6mcrlcrh"
+path="res://.godot/imported/enemy_stand.png-857d10a4162f4ddb0479acab792e0eb2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/unit3 shield.png"
-dest_files=["res://.godot/imported/unit3 shield.png-56d6ec32fc9e3be85ca9dbc3da4def47.ctex"]
+source_file="res://Assets/UI/stands/enemy_stand.png"
+dest_files=["res://.godot/imported/enemy_stand.png-857d10a4162f4ddb0479acab792e0eb2.ctex"]
 
 [params]
 

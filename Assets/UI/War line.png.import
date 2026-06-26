@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyqretf4oi0bn"
-path="res://.godot/imported/coin.png-23e506fc535e1e81a67b247520f1351a.ctex"
+uid="uid://5vv8yv6e7kif"
+path="res://.godot/imported/War line.png-34a0eb2ead9ed7cb689163cdf4e8a222.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/coin.png"
-dest_files=["res://.godot/imported/coin.png-23e506fc535e1e81a67b247520f1351a.ctex"]
+source_file="res://Assets/UI/War line.png"
+dest_files=["res://.godot/imported/War line.png-34a0eb2ead9ed7cb689163cdf4e8a222.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://5vv8yv6e7kif"
-path="res://.godot/imported/War line.png-d90961571b7908c78501b775786cb5e4.ctex"
+uid="uid://c6ke12jjs1pm2"
+path="res://.godot/imported/unit1 shield.png-cc14256b01f3f0f51cca6365a5419c52.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/War line.png"
-dest_files=["res://.godot/imported/War line.png-d90961571b7908c78501b775786cb5e4.ctex"]
+source_file="res://Assets/Units/shield/unit1 shield.png"
+dest_files=["res://.godot/imported/unit1 shield.png-cc14256b01f3f0f51cca6365a5419c52.ctex"]
 
 [params]
 

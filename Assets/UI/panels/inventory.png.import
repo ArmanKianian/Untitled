@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddckw86072bt4"
-path="res://.godot/imported/tree leaf.png-b3de4d99683996dac52d485d3610c10c.ctex"
+uid="uid://brhciaqrdudrh"
+path="res://.godot/imported/inventory.png-6823161c368abc41690f2d322f66debb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/tree leaf.png"
-dest_files=["res://.godot/imported/tree leaf.png-b3de4d99683996dac52d485d3610c10c.ctex"]
+source_file="res://Assets/UI/panels/inventory.png"
+dest_files=["res://.godot/imported/inventory.png-6823161c368abc41690f2d322f66debb.ctex"]
 
 [params]
 

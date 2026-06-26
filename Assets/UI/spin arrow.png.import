@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dalq6vjaeqx23"
-path="res://.godot/imported/unit2 shield.png-5cf95181524a0fc1aa335043c796a6f0.ctex"
+uid="uid://y13f88wmdmhf"
+path="res://.godot/imported/spin arrow.png-17283373605f747db64735aea5049f91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/unit2 shield.png"
-dest_files=["res://.godot/imported/unit2 shield.png-5cf95181524a0fc1aa335043c796a6f0.ctex"]
+source_file="res://Assets/UI/spin arrow.png"
+dest_files=["res://.godot/imported/spin arrow.png-17283373605f747db64735aea5049f91.ctex"]
 
 [params]
 

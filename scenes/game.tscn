@@ -3,26 +3,27 @@
 [ext_resource type="PackedScene" uid="uid://dwfrpmk02mafc" path="res://scenes/spinning_wheel.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://bj4dr8nnahwwh" path="res://scripts/game.gd" id="1_lbhrr"]
 [ext_resource type="Script" uid="uid://crao2hql84nl1" path="res://scripts/camera.gd" id="2_lbhrr"]
-[ext_resource type="Texture2D" uid="uid://c2xu6471u3y5v" path="res://Assets/UI/info panel.png" id="3_ir15t"]
+[ext_resource type="Texture2D" uid="uid://c2xu6471u3y5v" path="res://Assets/UI/panels/info panel.png" id="3_ir15t"]
 [ext_resource type="Script" uid="uid://cbwy1xbx0js1" path="res://scripts/inventory.gd" id="3_lnu2h"]
-[ext_resource type="Texture2D" uid="uid://hdfq62nevqd3" path="res://Assets/UI/info box1.png" id="4_ca42v"]
+[ext_resource type="Texture2D" uid="uid://hdfq62nevqd3" path="res://Assets/UI/panels/info box1.png" id="4_ca42v"]
 [ext_resource type="Script" uid="uid://bn155muvteuhc" path="res://scripts/war_square.gd" id="5_iywne"]
-[ext_resource type="Texture2D" uid="uid://du30xwu76i4r7" path="res://Assets/UI/Traits panel.png" id="5_rysoc"]
+[ext_resource type="Texture2D" uid="uid://du30xwu76i4r7" path="res://Assets/UI/panels/Traits panel.png" id="5_rysoc"]
 [ext_resource type="AudioStream" uid="uid://bx86sb33rkcla" path="res://SoundPack/Audio/card-place-1.ogg" id="6_0tnpc"]
-[ext_resource type="Texture2D" uid="uid://brhciaqrdudrh" path="res://Assets/UI/inventory.png" id="6_ssvqc"]
+[ext_resource type="Texture2D" uid="uid://brhciaqrdudrh" path="res://Assets/UI/panels/inventory.png" id="6_ssvqc"]
 [ext_resource type="AudioStream" uid="uid://b8wcgqf2hihk8" path="res://SoundPack/Audio/card-place-2.ogg" id="7_vtaks"]
-[ext_resource type="Texture2D" uid="uid://p0ayad5ehax7" path="res://Assets/UI/button2.png" id="8_1kice"]
+[ext_resource type="Texture2D" uid="uid://p0ayad5ehax7" path="res://Assets/UI/panels/button2.png" id="8_1kice"]
 [ext_resource type="AudioStream" uid="uid://qjfqhhgtkerx" path="res://SoundPack/Audio/card-place-3.ogg" id="8_kvpfn"]
-[ext_resource type="Texture2D" uid="uid://cajsope7ay1nn" path="res://Assets/UI/button1.png" id="9_5newe"]
+[ext_resource type="Texture2D" uid="uid://cajsope7ay1nn" path="res://Assets/UI/panels/button1.png" id="9_5newe"]
 [ext_resource type="AudioStream" uid="uid://ckop4gkphux3k" path="res://SoundPack/Audio/card-place-4.ogg" id="9_dinhu"]
 [ext_resource type="AudioStream" uid="uid://kruw5qacssu4" path="res://SoundPack/Audio/cards-pack-take-out-1.ogg" id="10_kvpfn"]
 [ext_resource type="AudioStream" uid="uid://doi2btmik488o" path="res://SoundPack/Audio/cards-pack-take-out-2.ogg" id="11_dinhu"]
+[ext_resource type="Texture2D" uid="uid://5vv8yv6e7kif" path="res://Assets/UI/War line.png" id="12_gxtfn"]
 [ext_resource type="AudioStream" uid="uid://clhtgol0nroxx" path="res://SoundPack/Audio/card-shove-1.ogg" id="12_ir15t"]
 [ext_resource type="AudioStream" uid="uid://cbtr8n46fnd5d" path="res://SoundPack/Audio/card-shove-2.ogg" id="13_ca42v"]
-[ext_resource type="Texture2D" uid="uid://dyqretf4oi0bn" path="res://Assets/coin.png" id="14_qouja"]
+[ext_resource type="Texture2D" uid="uid://dyqretf4oi0bn" path="res://Assets/UI/coin.png" id="14_qouja"]
 [ext_resource type="AudioStream" uid="uid://c87awitx7cjog" path="res://SoundPack/Audio/card-shove-3.ogg" id="14_rysoc"]
 [ext_resource type="Texture2D" uid="uid://m1e2sxmmqvbh" path="res://Assets/Traits/Undead trait.png" id="15_suyxu"]
-[ext_resource type="Texture2D" uid="uid://djxpbnt3imyaf" path="res://Assets/UI/inventory box.png" id="16_37s47"]
+[ext_resource type="Texture2D" uid="uid://djxpbnt3imyaf" path="res://Assets/UI/panels/inventory box.png" id="16_37s47"]
 [ext_resource type="Texture2D" uid="uid://cogevuph1nl51" path="res://Assets/Traits/shield trait.png" id="16_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://j2hdy0xvuw6r" path="res://Assets/Traits/forest trait.png" id="17_5newe"]
 [ext_resource type="Texture2D" uid="uid://bqwrofmhg2nks" path="res://Assets/Traits/inferno.png" id="17_qouja"]
@@ -31,9 +32,9 @@
 [ext_resource type="Texture2D" uid="uid://cxpvk8wbdothy" path="res://Assets/Traits/Inventor trait.png" id="21_js0lu"]
 [ext_resource type="Texture2D" uid="uid://dyw330y8ot6jq" path="res://Assets/Traits/guardian trait.png" id="22_gxtfn"]
 [ext_resource type="FontFile" uid="uid://cu8e33mndwc28" path="res://pixel-font/tinypixel.otf" id="27_wljb1"]
-[ext_resource type="Texture2D" uid="uid://ddckw86072bt4" path="res://Assets/tree leaf.png" id="28_js0lu"]
-[ext_resource type="Texture2D" uid="uid://c5dvhivnm8sk7" path="res://Assets/tree leaf2.png" id="29_gxtfn"]
-[ext_resource type="Texture2D" uid="uid://y13f88wmdmhf" path="res://Assets/spin arrow.png" id="29_wljb1"]
+[ext_resource type="Texture2D" uid="uid://ddckw86072bt4" path="res://Assets/effects/tree leaf.png" id="28_js0lu"]
+[ext_resource type="Texture2D" uid="uid://c5dvhivnm8sk7" path="res://Assets/effects/tree leaf2.png" id="29_gxtfn"]
+[ext_resource type="Texture2D" uid="uid://y13f88wmdmhf" path="res://Assets/UI/spin arrow.png" id="29_wljb1"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yw4vu"]
 streams_count = 4
@@ -229,6 +230,100 @@ default_color = Color(0.6119493, 0.2979383, 0, 1)
 [node name="Line2D2" type="Line2D" parent="Background" unique_id=616691457]
 points = PackedVector2Array(580, -454, 580, 363)
 default_color = Color(0.6119493, 0.2979383, 0, 1)
+
+[node name="War_Line" type="Node2D" parent="." unique_id=2082311415]
+position = Vector2(0, -50)
+scale = Vector2(2, 2)
+
+[node name="Line" type="Sprite2D" parent="War_Line" unique_id=1081783667]
+position = Vector2(-536, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line2" type="Sprite2D" parent="War_Line" unique_id=453770166]
+position = Vector2(-472, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line3" type="Sprite2D" parent="War_Line" unique_id=1389297449]
+position = Vector2(-408, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line4" type="Sprite2D" parent="War_Line" unique_id=844629560]
+position = Vector2(-344, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line5" type="Sprite2D" parent="War_Line" unique_id=1281064316]
+position = Vector2(-280, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line6" type="Sprite2D" parent="War_Line" unique_id=2108983856]
+position = Vector2(-216, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line7" type="Sprite2D" parent="War_Line" unique_id=1129193117]
+position = Vector2(-152, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line8" type="Sprite2D" parent="War_Line" unique_id=1768834505]
+position = Vector2(-88, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line9" type="Sprite2D" parent="War_Line" unique_id=121891878]
+position = Vector2(-24, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line10" type="Sprite2D" parent="War_Line" unique_id=985312556]
+position = Vector2(40, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line11" type="Sprite2D" parent="War_Line" unique_id=225332143]
+position = Vector2(104, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line12" type="Sprite2D" parent="War_Line" unique_id=1664948071]
+position = Vector2(168, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line13" type="Sprite2D" parent="War_Line" unique_id=1549400329]
+position = Vector2(232, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line14" type="Sprite2D" parent="War_Line" unique_id=1762747125]
+position = Vector2(296, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line15" type="Sprite2D" parent="War_Line" unique_id=1168467139]
+position = Vector2(360, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line16" type="Sprite2D" parent="War_Line" unique_id=1178815196]
+position = Vector2(424, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line17" type="Sprite2D" parent="War_Line" unique_id=1314919011]
+position = Vector2(488, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("12_gxtfn")
+
+[node name="Line18" type="Sprite2D" parent="War_Line" unique_id=133966589]
+position = Vector2(544.3, 0)
+scale = Vector2(0.23984371, 0.3)
+texture = ExtResource("12_gxtfn")
 
 [node name="Panels" type="Node2D" parent="." unique_id=86920020]
 
@@ -740,7 +835,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="coin_icon" type="Sprite2D" parent="UI/Spin_Button" unique_id=382218846]
-position = Vector2(65, 40)
+position = Vector2(65, 38)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("14_qouja")
 
@@ -767,7 +862,7 @@ offset_left = 45.0
 offset_top = 20.0
 offset_right = 136.0
 offset_bottom = 39.0
-text = "Next Turn"
+text = "End Turn"
 label_settings = SubResource("LabelSettings_wljb1")
 
 [node name="inventory" type="Node2D" parent="." unique_id=2128222662]

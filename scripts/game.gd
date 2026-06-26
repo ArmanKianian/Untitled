@@ -17,6 +17,8 @@ const CARD = preload("uid://dlsbf8fn82egx")
 @onready var spinning_wheel: Node2D = $Spinning_Wheel
 
 @onready var war_square: Node2D = $war_square
+@onready var war_line: Node2D = $War_Line
+
 
 @onready var spin_cost: Label = $UI/Spin_Button/spin_cost
 @onready var turn: Label = $UI/turn
@@ -174,6 +176,8 @@ func check_win():
 							if enemy_square_slots[-i]:
 								if enemy_square_slots[-i].item:
 									enemy_square_slots[-i].item.queue_free()
+								var tween = create_tween()
+								tween.tween_property(war_line, "position", Vector2(0, enemy_square_slots[-i].position.y + 20), 0.3)
 								enemy_square_slots[-i].queue_free()
 						enemy_line_count += 1
 				
@@ -182,6 +186,8 @@ func check_win():
 					war_square.line_spawn(war_square.player_square, war_square.PLAYER_STAND, first_slot_position, player_line_count-1)
 					
 					player_square_slots = player_square.get_children()
+					var tween = create_tween()
+					tween.tween_property(war_line, "position", Vector2(0, player_square_slots[-1].position.y - war_square.slot_y_distance), 0.3)
 					for card in player_cards.get_children():
 						for i in range(1, player_line_count):
 							card.detect_area(player_square_slots[-i])
@@ -195,6 +201,8 @@ func check_win():
 							if player_square_slots[-i]:
 								if player_square_slots[-i].item:
 									player_square_slots[-i].item.queue_free()
+								var tween = create_tween()
+								tween.tween_property(war_line, "position", Vector2(0, player_square_slots[-i].position.y), 0.3)
 								player_square_slots[-i].queue_free()
 						player_line_count += 1
 				
@@ -204,6 +212,8 @@ func check_win():
 					war_square.line_spawn(war_square.enemy_square, war_square.ENEMY_STAND, first_slot_position, enemy_line_count-1)
 					
 					enemy_square_slots = enemy_square.get_children()
+					var tween = create_tween()
+					tween.tween_property(war_line, "position", Vector2(0, enemy_square_slots[-1].position.y + war_square.slot_y_distance + 20), 0.3)
 					for card in player_cards.get_children():
 						for i in range(1, enemy_line_count):
 							card.detect_area(enemy_square_slots[-i])

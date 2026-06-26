@@ -44,14 +44,14 @@ func _on_end_turn_button_pressed() -> void:
 func _on_spin_button_pressed() -> void:
 	camera.screen_shake(8, 0.2)
 	if int(coin.text) >= int(spin_cost.text):
-		if add_card(player_cards, player_inventory, player_square):
+		if await add_card(player_cards, player_inventory, player_square):
 			coin.text = str(int(coin.text) - int(spin_cost.text))
 			spin_cost.text = str(int(spin_cost.text) + spin_cost_gain)
 
 func add_card(cards, inventory, square):
 	for child in inventory.get_children():
 		if child.item == null:
-			var chosen = spinning_wheel.spin()
+			var chosen = await spinning_wheel.spin()
 			var card = CARD.instantiate()
 			card.inventory = inventory
 			card.square = square
@@ -65,7 +65,7 @@ func add_card(cards, inventory, square):
 
 func enemy_move():
 	while enemy_coin >= enemy_spin_cost:
-		if add_card(enemy_cards, enemy_inventory, enemy_square):
+		if await add_card(enemy_cards, enemy_inventory, enemy_square):
 			enemy_coin -= enemy_spin_cost
 			enemy_spin_cost += spin_cost_gain
 		else:

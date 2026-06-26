@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://clhtgol0nroxx" path="res://SoundPack/Audio/card-shove-1.ogg" id="12_ir15t"]
 [ext_resource type="AudioStream" uid="uid://cbtr8n46fnd5d" path="res://SoundPack/Audio/card-shove-2.ogg" id="13_ca42v"]
 [ext_resource type="AudioStream" uid="uid://c87awitx7cjog" path="res://SoundPack/Audio/card-shove-3.ogg" id="14_rysoc"]
+[ext_resource type="Texture2D" uid="uid://djxpbnt3imyaf" path="res://Assets/UI/inventory box.png" id="16_37s47"]
 [ext_resource type="Texture2D" uid="uid://j2hdy0xvuw6r" path="res://Assets/Traits/forest trait.png" id="17_5newe"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_yw4vu"]
@@ -179,6 +180,12 @@ scale = Vector2(3.5468743, 2.9531255)
 energy = 0.9
 texture = SubResource("GradientTexture2D_8nxoa")
 
+[node name="PointLight2D7" type="PointLight2D" parent="Lightings" unique_id=696340313]
+position = Vector2(698.5, -390.5)
+scale = Vector2(2.3593755, 1.4843748)
+energy = 0.4
+texture = SubResource("GradientTexture2D_8nxoa")
+
 [node name="Background" type="Node2D" parent="." unique_id=1655581937]
 
 [node name="Background" type="Sprite2D" parent="Background" unique_id=381845390]
@@ -221,6 +228,11 @@ texture = ExtResource("5_rysoc")
 position = Vector2(0, 442)
 scale = Vector2(3, 3)
 texture = ExtResource("6_ssvqc")
+
+[node name="Enemy_inventory" type="Sprite2D" parent="Panels" unique_id=2003498211]
+position = Vector2(699, -390)
+scale = Vector2(4.611112, 3)
+texture = ExtResource("16_37s47")
 
 [node name="Spinning_Wheel" parent="." unique_id=905745828 instance=ExtResource("1_80nbo")]
 position = Vector2(750, -50)

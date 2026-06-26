@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://ybqx5algql3t" path="res://Assets/Traits/Assasins Trait.png" id="6_47rxl"]
 [ext_resource type="Texture2D" uid="uid://k8q6816j20u3" path="res://Assets/Traits/arcane trait.png" id="7_xqj4p"]
 [ext_resource type="Texture2D" uid="uid://j2hdy0xvuw6r" path="res://Assets/Traits/forest trait.png" id="8_qdpr3"]
+[ext_resource type="Texture2D" uid="uid://cxpvk8wbdothy" path="res://Assets/Traits/Inventor trait.png" id="9_ylglt"]
+[ext_resource type="Texture2D" uid="uid://dyw330y8ot6jq" path="res://Assets/Traits/guardian trait.png" id="10_xj600"]
 
 [node name="Spinning_Wheel" type="Node2D" unique_id=905745828]
 script = ExtResource("1_skc0w")
@@ -46,3 +48,13 @@ texture = ExtResource("7_xqj4p")
 position = Vector2(-50, 120)
 rotation = 3.4906585
 texture = ExtResource("8_qdpr3")
+
+[node name="Inventor" type="Sprite2D" parent="." unique_id=1317476161]
+position = Vector2(-120, -50)
+rotation = 5.061455
+texture = ExtResource("9_ylglt")
+
+[node name="Guardian" type="Sprite2D" parent="." unique_id=809133612]
+position = Vector2(-120, 50)
+rotation = 4.363323
+texture = ExtResource("10_xj600")

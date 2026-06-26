@@ -370,9 +370,8 @@ grow_vertical = 2
 localize_numeral_system = false
 
 [node name="Arcane" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=1408465520]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24.5)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Arcane" type="Sprite2D" parent="Panels/Traits_panel/VBoxContainer/Arcane" unique_id=300360434]
 position = Vector2(8, 12)
@@ -381,16 +380,14 @@ texture = ExtResource("19_v2yb1")
 
 [node name="count" type="Label" parent="Panels/Traits_panel/VBoxContainer/Arcane" unique_id=1713433688]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -7.0
-offset_right = 15.0
-offset_bottom = 67.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 55.0
+grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 text = "0"
@@ -412,9 +409,8 @@ text = "/3"
 label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Inventor" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=848283283]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24.5)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Inventor" type="Sprite2D" parent="Panels/Traits_panel/VBoxContainer/Inventor" unique_id=176541261]
 position = Vector2(8, 12)
@@ -423,16 +419,14 @@ texture = ExtResource("21_js0lu")
 
 [node name="count" type="Label" parent="Panels/Traits_panel/VBoxContainer/Inventor" unique_id=946113209]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -7.0
-offset_right = 15.0
-offset_bottom = 67.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 55.0
+grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 text = "0"
@@ -454,9 +448,8 @@ text = "/3"
 label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Guardian" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=1497552596]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24.5)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Guardian" type="Sprite2D" parent="Panels/Traits_panel/VBoxContainer/Guardian" unique_id=456330611]
 position = Vector2(8, 12)
@@ -465,16 +458,14 @@ texture = ExtResource("22_gxtfn")
 
 [node name="count" type="Label" parent="Panels/Traits_panel/VBoxContainer/Guardian" unique_id=772255687]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -7.5
-offset_right = 15.0
-offset_bottom = 66.5
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 55.0
+grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 text = "0"
@@ -496,9 +487,8 @@ text = "/3"
 label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Forest" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=852384024]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24.5)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Forest" type="Sprite2D" parent="Panels/Traits_panel/VBoxContainer/Forest" unique_id=941289213]
 position = Vector2(8, 12)
@@ -507,16 +497,14 @@ texture = ExtResource("17_5newe")
 
 [node name="count" type="Label" parent="Panels/Traits_panel/VBoxContainer/Forest" unique_id=886552483]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -7.0
-offset_right = 15.0
-offset_bottom = 67.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 54.0
+grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 text = "0"
@@ -538,9 +526,8 @@ text = "/3"
 label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Assasins" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=333638055]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24.5)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Assasins" type="Sprite2D" parent="Panels/Traits_panel/VBoxContainer/Assasins" unique_id=780962039]
 position = Vector2(8, 12)
@@ -549,16 +536,14 @@ texture = ExtResource("18_wljb1")
 
 [node name="count" type="Label" parent="Panels/Traits_panel/VBoxContainer/Assasins" unique_id=1842090605]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -7.5
-offset_right = 15.0
-offset_bottom = 66.5
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 55.0
+grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 text = "0"
@@ -580,9 +565,8 @@ text = "/3"
 label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Undead" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=71842721]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24.5)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Undead" type="Sprite2D" parent="Panels/Traits_panel/VBoxContainer/Undead" unique_id=283729424]
 position = Vector2(8, 12)
@@ -591,16 +575,14 @@ texture = ExtResource("15_suyxu")
 
 [node name="count" type="Label" parent="Panels/Traits_panel/VBoxContainer/Undead" unique_id=388466110]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -7.0
-offset_right = 15.0
-offset_bottom = 67.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 55.0
+grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 text = "0"
@@ -622,9 +604,8 @@ text = "/3"
 label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Shield" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=1243720867]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24.5)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Shield" type="Sprite2D" parent="Panels/Traits_panel/VBoxContainer/Shield" unique_id=1591145327]
 position = Vector2(8, 12)
@@ -633,16 +614,14 @@ texture = ExtResource("16_sgl2t")
 
 [node name="count" type="Label" parent="Panels/Traits_panel/VBoxContainer/Shield" unique_id=400231352]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -7.0
-offset_right = 15.0
-offset_bottom = 67.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 55.0
+grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 text = "0"
@@ -664,9 +643,8 @@ text = "/3"
 label_settings = SubResource("LabelSettings_8a11m")
 
 [node name="Inferno" type="Control" parent="Panels/Traits_panel/VBoxContainer" unique_id=729830917]
-custom_minimum_size = Vector2(16, 16)
+custom_minimum_size = Vector2(24, 24.5)
 layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Inferno" type="Sprite2D" parent="Panels/Traits_panel/VBoxContainer/Inferno" unique_id=1871796990]
 position = Vector2(8, 12)
@@ -675,16 +653,14 @@ texture = ExtResource("17_qouja")
 
 [node name="count" type="Label" parent="Panels/Traits_panel/VBoxContainer/Inferno" unique_id=1821836826]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = 15
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -31.0
-offset_top = -7.0
-offset_right = 15.0
-offset_bottom = 67.0
-grow_horizontal = 0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = 5.0
+offset_right = 16.0
+offset_bottom = 54.0
+grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.2, 0.2)
 text = "0"

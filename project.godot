@@ -13,7 +13,10 @@ config_version=5
 config/name="Untitled"
 run/main_scene="uid://devf2tsrifqye"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.010683754, 0.23781833, 0.010662622, 1)
+boot_splash/stretch_mode=0
+boot_splash/image="uid://bxj6iuq2y2b0r"
+config/icon="uid://bxj6iuq2y2b0r"
 
 [display]
 

@@ -35,6 +35,7 @@ var enemy_spin_cost = 3
 var enemy_line_count = 1
 var player_line_count = 1
 
+@onready var trait_container: VBoxContainer = $Panels/Traits_panel/VBoxContainer
 @onready var Arcane_count: Label = $Panels/Traits_panel/VBoxContainer/Arcane/count
 @onready var Inventor_count: Label = $Panels/Traits_panel/VBoxContainer/Inventor/count
 @onready var Guardian_count: Label = $Panels/Traits_panel/VBoxContainer/Guardian/count
@@ -52,6 +53,7 @@ func _ready() -> void:
 	enemy_spin_cost = turn_spin_cost
 	coin.text = str(start_coin)
 	await enemy_move()
+	check_traits()
 	spin_button.disabled = false
 	end_turn_button.disabled = false
 
@@ -260,7 +262,6 @@ func check_traits():
 				Traits[i][1] = 1
 			if card.type == spinning_wheel.Traits[i]["units"][2]["name"]:
 				Traits[i][2] = 1
-
 	for i in range(Trait_counts.size()):
 		if Traits[i][0]:
 			Trait_counts[i].text = str(int(Trait_counts[i].text) + 1)
@@ -268,3 +269,7 @@ func check_traits():
 			Trait_counts[i].text = str(int(Trait_counts[i].text) + 1)
 		if Traits[i][2]:
 			Trait_counts[i].text = str(int(Trait_counts[i].text) + 1)
+		if Trait_counts[i].text == "0":
+			trait_container.get_child(i).set_visible(false)
+		else:
+			trait_container.get_child(i).set_visible(true)

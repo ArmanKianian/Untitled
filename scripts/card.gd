@@ -170,3 +170,7 @@ func level_up(merged_card):
 	level += 1
 	health += merged_card.health
 	damage += merged_card.damage
+
+func detect_area(area):
+	area.mouse_entered.connect(_on_mouse_entered.bind(area))
+	area.mouse_exited.connect(_on_mouse_exited)

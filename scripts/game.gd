@@ -16,6 +16,8 @@ const CARD = preload("uid://dlsbf8fn82egx")
 
 @onready var spinning_wheel: Node2D = $Spinning_Wheel
 
+@onready var war_square: Node2D = $war_square
+
 @onready var spin_cost: Label = $UI/Spin_Button/spin_cost
 @onready var turn: Label = $UI/turn
 @onready var coin: Label = $UI/coin
@@ -165,22 +167,47 @@ func check_win():
 			var enemy_square_slots = enemy_square.get_children()
 			var player_square_slots = player_square.get_children()
 			if player_point > enemy_point:
-				if enemy_square.get_child_count() > 0:
-					for i in range(1, enemy_line_count+1):
-						enemy_square_slots = enemy_square.get_children()
-						if enemy_square_slots[-i]:
-							if enemy_square_slots[-i].item:
-								enemy_square_slots[-i].item.queue_free()
-							enemy_square_slots[-i].queue_free()
-					enemy_line_count += 1
+				if player_square.get_child_count() == 10:
+					if enemy_square.get_child_count() > 0:
+						for i in range(1, enemy_line_count+1):
+							enemy_square_slots = enemy_square.get_children()
+							if enemy_square_slots[-i]:
+								if enemy_square_slots[-i].item:
+									enemy_square_slots[-i].item.queue_free()
+								enemy_square_slots[-i].queue_free()
+						enemy_line_count += 1
+				
+				elif player_square_slots.size() < 10 and player_square_slots.size() >= 2:
+					var first_slot_position = Vector2(war_square.player_first_slot_position.x + (war_square.slot_x_distance/2) * (war_square.line_countt+1 - player_line_count), player_square_slots[-1].position.y) - Vector2(0, war_square.slot_y_distance)
+					war_square.line_spawn(war_square.player_square, war_square.PLAYER_STAND, first_slot_position, player_line_count-1)
+					
+					player_square_slots = player_square.get_children()
+					for card in player_cards.get_children():
+						for i in range(1, player_line_count):
+							card.detect_area(player_square_slots[-i])
+					player_line_count -= 1
+				
 			elif player_point < enemy_point:
-				if player_square.get_child_count() > 0:
-					for i in range(1, player_line_count+1):
-						player_square_slots = player_square.get_children()
-						if player_square_slots[-i]:
-							if player_square_slots[-i].item:
-								player_square_slots[-i].item.queue_free()
-							player_square_slots[-i].queue_free()
-					player_line_count += 1
+				if enemy_square.get_child_count() == 10:
+					if player_square.get_child_count() > 0:
+						for i in range(1, player_line_count+1):
+							player_square_slots = player_square.get_children()
+							if player_square_slots[-i]:
+								if player_square_slots[-i].item:
+									player_square_slots[-i].item.queue_free()
+								player_square_slots[-i].queue_free()
+						player_line_count += 1
+				
+				elif enemy_square.get_child_count() < 10 and enemy_square_slots.size() >= 2:
+					print("enemy: ", enemy_line_count-1)
+					var first_slot_position = Vector2(war_square.enemy_first_slot_position.x + (war_square.slot_x_distance/2) * (war_square.line_countt+1 - enemy_line_count), enemy_square_slots[-1].position.y) + Vector2(0, war_square.slot_y_distance)
+					war_square.line_spawn(war_square.enemy_square, war_square.ENEMY_STAND, first_slot_position, enemy_line_count-1)
+					
+					enemy_square_slots = enemy_square.get_children()
+					for card in player_cards.get_children():
+						for i in range(1, enemy_line_count):
+							card.detect_area(enemy_square_slots[-i])
+					enemy_line_count -= 1
+				
 			break
 	

@@ -80,6 +80,8 @@ func add_card(cards, inventory, square):
 			card.level = chosen["level"]
 			card.health = chosen["health"]
 			card.damage = chosen["damage"]
+			if chosen["texture"]:
+				card.get_child(1).texture = chosen["texture"]
 			cards.add_child(card)
 			return true
 	print("inventory is full!")

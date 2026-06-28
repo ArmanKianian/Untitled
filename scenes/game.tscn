@@ -254,52 +254,52 @@ default_color = Color(0.6119493, 0.2979383, 0, 1)
 position = Vector2(0, -50)
 scale = Vector2(2, 2)
 
-[node name="Line5" type="Sprite2D" parent="War_Line" unique_id=1281064316]
+[node name="Line1" type="Sprite2D" parent="War_Line" unique_id=1281064316]
 position = Vector2(-280, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")
 
-[node name="Line6" type="Sprite2D" parent="War_Line" unique_id=2108983856]
+[node name="Line2" type="Sprite2D" parent="War_Line" unique_id=2108983856]
 position = Vector2(-216, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")
 
-[node name="Line7" type="Sprite2D" parent="War_Line" unique_id=1129193117]
+[node name="Line3" type="Sprite2D" parent="War_Line" unique_id=1129193117]
 position = Vector2(-152, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")
 
-[node name="Line8" type="Sprite2D" parent="War_Line" unique_id=1768834505]
+[node name="Line4" type="Sprite2D" parent="War_Line" unique_id=1768834505]
 position = Vector2(-88, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")
 
-[node name="Line9" type="Sprite2D" parent="War_Line" unique_id=121891878]
+[node name="Line5" type="Sprite2D" parent="War_Line" unique_id=121891878]
 position = Vector2(-24, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")
 
-[node name="Line10" type="Sprite2D" parent="War_Line" unique_id=985312556]
+[node name="Line6" type="Sprite2D" parent="War_Line" unique_id=985312556]
 position = Vector2(40, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")
 
-[node name="Line11" type="Sprite2D" parent="War_Line" unique_id=225332143]
+[node name="Line7" type="Sprite2D" parent="War_Line" unique_id=225332143]
 position = Vector2(104, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")
 
-[node name="Line12" type="Sprite2D" parent="War_Line" unique_id=1664948071]
+[node name="Line8" type="Sprite2D" parent="War_Line" unique_id=1664948071]
 position = Vector2(168, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")
 
-[node name="Line13" type="Sprite2D" parent="War_Line" unique_id=1549400329]
+[node name="Line9" type="Sprite2D" parent="War_Line" unique_id=1549400329]
 position = Vector2(232, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")
 
-[node name="Line14" type="Sprite2D" parent="War_Line" unique_id=1762747125]
+[node name="Line10" type="Sprite2D" parent="War_Line" unique_id=1762747125]
 position = Vector2(296, 0)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("12_gxtfn")

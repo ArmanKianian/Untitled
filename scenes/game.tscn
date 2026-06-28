@@ -173,7 +173,7 @@ color = Color(0, 0, 0, 1)
 energy = 0.7
 blend_mode = 2
 
-[node name="PointLight2D" type="PointLight2D" parent="Lightings" unique_id=2112795559]
+[node name="spin" type="PointLight2D" parent="Lightings" unique_id=2112795559]
 position = Vector2(747.49994, -50.500008)
 scale = Vector2(5.9517045, 5.5823855)
 energy = 1.2
@@ -217,6 +217,18 @@ texture = SubResource("GradientTexture2D_8nxoa")
 [node name="PointLight2D7" type="PointLight2D" parent="Lightings" unique_id=696340313]
 position = Vector2(698.5, -390.5)
 scale = Vector2(2.3593755, 1.4843748)
+energy = 0.4
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="enemy" type="PointLight2D" parent="Lightings" unique_id=1498975056]
+position = Vector2(-3.0000076, -260.5)
+scale = Vector2(18.3125, 6.203125)
+energy = 0.4
+texture = SubResource("GradientTexture2D_8nxoa")
+
+[node name="player" type="PointLight2D" parent="Lightings" unique_id=107336652]
+position = Vector2(-3.0000076, 180)
+scale = Vector2(18.3125, 5.21875)
 energy = 0.4
 texture = SubResource("GradientTexture2D_8nxoa")
 

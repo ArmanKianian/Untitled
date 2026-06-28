@@ -57,6 +57,11 @@ var player_line_count = 1
 @onready var Shield_count: Label = $Panels/Traits_panel/VBoxContainer/Shield/count
 @onready var Inferno_count: Label = $Panels/Traits_panel/VBoxContainer/Inferno/count
 
+# whos turn glow
+@onready var enemy: PointLight2D = $Lightings/enemy
+@onready var player: PointLight2D = $Lightings/player
+@onready var spin: PointLight2D = $Lightings/spin
+
 func _ready() -> void:
 	reset()
 
@@ -86,12 +91,13 @@ func _on_spin_button_pressed() -> void:
 	check_traits()
 	spin_button.disabled = false
 	end_turn_button.disabled = false
-
+	
 func _on_reset_button_pressed() -> void:
 	# Reset Button Pressed
 	reset()
 
 func add_card(cards, inventory, square):
+	spin.set_visible(true)
 	# Add a card random by spinning wheel
 	for child in inventory.get_children():
 		if child.item == null:
@@ -106,10 +112,14 @@ func add_card(cards, inventory, square):
 			if chosen["texture"]:
 				card.get_child(1).texture = chosen["texture"]
 			cards.add_child(card)
+			spin.set_visible(false)
 			return true
 	print("inventory is full!")
+	spin.set_visible(false)
 
 func enemy_move():
+	player.set_visible(false)
+	enemy.set_visible(true)
 	# Enemy spend all coins on buying cards
 	while enemy_coin >= enemy_spin_cost:
 		if await add_card(enemy_cards, enemy_inventory, enemy_square):
@@ -153,7 +163,8 @@ func enemy_move():
 					choice.future_position = choice.current_area.position
 					choice.current_area.item = choice
 					break
-
+	player.set_visible(true)
+	enemy.set_visible(false)
 func check_win():
 	var enemy_slots = enemy_square.get_children()
 	var player_slots = player_square.get_children()

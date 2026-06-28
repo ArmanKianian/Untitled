@@ -5,6 +5,9 @@ const CARD = preload("uid://dlsbf8fn82egx")
 # Camera for screen shake
 @onready var camera: Camera2D = $Camera2D
 
+# Sounds
+@onready var ui_button: AudioStreamPlayer = $Audios/UI_Button
+
 # Slots for removing or adding them for game logic
 @onready var player_inventory: Node2D = $inventory/player_inventory
 @onready var enemy_inventory: Node2D = $inventory/enemy_inventory
@@ -68,6 +71,7 @@ func _ready() -> void:
 
 func _on_end_turn_button_pressed() -> void:
 	# End Turn Button Pressed
+	ui_button.play()
 	spin_button.disabled = true
 	end_turn_button.disabled = true
 	reset_button.disabled = true
@@ -84,6 +88,7 @@ func _on_end_turn_button_pressed() -> void:
 
 func _on_spin_button_pressed() -> void:
 	# Spin Button Pressed
+	ui_button.play()
 	spin_button.disabled = true
 	end_turn_button.disabled = true
 	reset_button.disabled = true
@@ -98,6 +103,8 @@ func _on_spin_button_pressed() -> void:
 	reset_button.disabled = false
 	
 func _on_reset_button_pressed() -> void:
+	# Reset Button Pressed
+	ui_button.play()
 	spin_button.disabled = true
 	end_turn_button.disabled = true
 	reset_button.disabled = true

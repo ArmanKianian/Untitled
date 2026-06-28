@@ -31,10 +31,15 @@
 [ext_resource type="Texture2D" uid="uid://djxpbnt3imyaf" path="res://Assets/UI/panels/inventory box.png" id="16_37s47"]
 [ext_resource type="Texture2D" uid="uid://cogevuph1nl51" path="res://Assets/Traits/shield trait.png" id="16_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://j2hdy0xvuw6r" path="res://Assets/Traits/forest trait.png" id="17_5newe"]
+[ext_resource type="AudioStream" uid="uid://d2oykm6lywaqm" path="res://Sounds/UI/qubodup-DoorClose01.ogg" id="17_8ool0"]
 [ext_resource type="Texture2D" uid="uid://bqwrofmhg2nks" path="res://Assets/Traits/inferno.png" id="17_qouja"]
+[ext_resource type="AudioStream" uid="uid://s3sfjsn6ge2q" path="res://Sounds/UI/qubodup-DoorClose02.ogg" id="18_0sl42"]
 [ext_resource type="Texture2D" uid="uid://ybqx5algql3t" path="res://Assets/Traits/Assasins Trait.png" id="18_wljb1"]
+[ext_resource type="AudioStream" uid="uid://dahs54rq3jyxd" path="res://Sounds/UI/qubodup-DoorClose03.ogg" id="19_oaba0"]
 [ext_resource type="Texture2D" uid="uid://k8q6816j20u3" path="res://Assets/Traits/arcane trait.png" id="19_v2yb1"]
+[ext_resource type="AudioStream" uid="uid://fhev684x7xav" path="res://Sounds/UI/qubodup-DoorClose04.ogg" id="20_458eo"]
 [ext_resource type="Texture2D" uid="uid://cxpvk8wbdothy" path="res://Assets/Traits/Inventor trait.png" id="21_js0lu"]
+[ext_resource type="AudioStream" uid="uid://cq76enrjcuqeu" path="res://Sounds/UI/qubodup-DoorClose05.ogg" id="21_oaba0"]
 [ext_resource type="Texture2D" uid="uid://dyw330y8ot6jq" path="res://Assets/Traits/guardian trait.png" id="22_gxtfn"]
 [ext_resource type="FontFile" uid="uid://cu8e33mndwc28" path="res://pixel-font/tinypixel.otf" id="27_wljb1"]
 [ext_resource type="Texture2D" uid="uid://ddckw86072bt4" path="res://Assets/effects/tree leaf.png" id="28_js0lu"]
@@ -78,6 +83,14 @@ streams_count = 3
 stream_0/stream = ExtResource("14_8ool0")
 stream_1/stream = ExtResource("15_pr1ej")
 stream_2/stream = ExtResource("16_05nbr")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x437s"]
+streams_count = 5
+stream_0/stream = ExtResource("17_8ool0")
+stream_1/stream = ExtResource("18_0sl42")
+stream_2/stream = ExtResource("19_oaba0")
+stream_3/stream = ExtResource("20_458eo")
+stream_4/stream = ExtResource("21_oaba0")
 
 [sub_resource type="Gradient" id="Gradient_1kice"]
 colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
@@ -184,9 +197,12 @@ stream = SubResource("AudioStreamRandomizer_3hxyd")
 stream = SubResource("AudioStreamRandomizer_iqw5e")
 autoplay = true
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audios" unique_id=1560718847]
+[node name="Rain" type="AudioStreamPlayer" parent="Audios" unique_id=1560718847]
 stream = ExtResource("13_m4url")
 autoplay = true
+
+[node name="UI_Button" type="AudioStreamPlayer" parent="Audios" unique_id=663691951]
+stream = SubResource("AudioStreamRandomizer_x437s")
 
 [node name="Lightings" type="Node2D" parent="." unique_id=388862978]
 

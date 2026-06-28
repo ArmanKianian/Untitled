@@ -65,9 +65,9 @@ var player_line_count = 1
 @onready var Inferno_count: Label = $Panels/Traits_panel/VBoxContainer/Inferno/count
 
 # whos turn glow
-@onready var enemy: PointLight2D = $Lightings/enemy
-@onready var player: PointLight2D = $Lightings/player
-@onready var spin: PointLight2D = $Lightings/spin
+@onready var enemy_light: PointLight2D = $Lightings/enemy
+@onready var player_light: PointLight2D = $Lightings/player
+@onready var spin_light: PointLight2D = $Lightings/spin
 
 func _ready() -> void:
 	reset()
@@ -84,6 +84,7 @@ func _on_end_turn_button_pressed() -> void:
 	coin.text = str(int(coin.text) + turn_coin_gain)
 	
 	await check_win()
+	check_traits()
 	await enemy_move()
 	spin_button.disabled = false
 	end_turn_button.disabled = false
@@ -118,7 +119,7 @@ func _on_reset_button_pressed() -> void:
 	reset_button.disabled = false
 
 func add_card(cards, inventory, square):
-	spin.set_visible(true)
+	spin_light.set_visible(true)
 	# Add a card random by spinning wheel
 	for child in inventory.get_children():
 		if child.item == null:
@@ -133,14 +134,14 @@ func add_card(cards, inventory, square):
 			if chosen["texture"]:
 				card.get_child(1).texture = chosen["texture"]
 			cards.add_child(card)
-			spin.set_visible(false)
+			spin_light.set_visible(false)
 			return true
 	print("inventory is full!")
-	spin.set_visible(false)
+	spin_light.set_visible(false)
 
 func enemy_move():
-	player.set_visible(false)
-	enemy.set_visible(true)
+	player_light.set_visible(false)
+	enemy_light.set_visible(true)
 	# Enemy spend all coins on buying cards
 	while enemy_coin >= enemy_spin_cost:
 		if await add_card(enemy_cards, enemy_inventory, enemy_square):
@@ -184,8 +185,8 @@ func enemy_move():
 					choice.future_position = choice.current_area.position
 					choice.current_area.item = choice
 					break
-	player.set_visible(true)
-	enemy.set_visible(false)
+	player_light.set_visible(true)
+	enemy_light.set_visible(false)
 
 func check_win():
 	var enemy_slots = enemy_square.get_children()
@@ -238,14 +239,16 @@ func check_win():
 					while true:
 						player_slots[i].item.health -= enemy_slots[i].item.damage
 						enemy_slots[i].item.health -= player_slots[i].item.damage
+						player_slots[i].item.update_ui()
+						enemy_slots[i].item.update_ui()
 						if enemy_slots[i].item.health <= 0:
 							player_point += 1
-							enemy_slots[i].item.queue_free()
+							enemy_slots[i].item.free()
 							enemy_slots[i].item = null
 							end = true
 						if player_slots[i].item.health <= 0:
 							enemy_point += 1
-							player_slots[i].item.queue_free()
+							player_slots[i].item.free()
 							player_slots[i].item = null
 							end = true
 						if end:
@@ -302,12 +305,12 @@ func check_win():
 			if player_square.get_child_count() > 0:
 				for i in range(1, player_line_count+1):
 					player_square_slots = player_square.get_children()
-					if player_square_slots[-i]:
-						if player_square_slots[-i].item:
-							player_square_slots[-i].item.queue_free()
+					if player_square_slots[-1]:
+						if player_square_slots[-1].item:
+							player_square_slots[-1].item.free()
 						var tween = create_tween()
-						tween.tween_property(war_line, "position", Vector2(0, player_square_slots[-i].position.y), 0.3)
-						player_square_slots[-i].queue_free()
+						tween.tween_property(war_line, "position", Vector2(0, player_square_slots[-1].position.y), 0.3)
+						player_square_slots[-1].free()
 				player_line_count += 1
 		
 		# if enemy has not all of his war_square, enemy gain one line

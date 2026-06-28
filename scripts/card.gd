@@ -1,39 +1,51 @@
 extends Node2D
 
+# Camera for screen shake
+@onready var camera: Camera2D = $"../../../Camera2D"
+
+# Card sprite
 @onready var card: Sprite2D = $Card
 
+# Particles
 @onready var card_particles: CPUParticles2D = $Card_Particles
 @onready var enemy_particles: CPUParticles2D = $Card_Particles2
 @onready var player_particles: CPUParticles2D = $Card_Particles3
 
+# Sounds
 @onready var card_place: AudioStreamPlayer = $"../../../Audios/card_place"
 @onready var card_pick: AudioStreamPlayer = $"../../../Audios/card_pick"
 @onready var card_drag: AudioStreamPlayer = $"../../../Audios/card_drag"
 
-@onready var camera: Camera2D = $"../../../Camera2D"
-
-@onready var player_square: Node2D = $"../../../war_square/player_square"
+# War Square slots
 @onready var square: Node2D
+@onready var player_square: Node2D = $"../../../war_square/player_square"
 @onready var enemy_square: Node2D = $"../../../war_square/enemy_square"
-@onready var player_inventory: Node2D = $"../../../inventory/player_inventory"
+
+# Inventory slots
 @onready var inventory: Node2D
+@onready var player_inventory: Node2D = $"../../../inventory/player_inventory"
 @onready var enemy_inventory: Node2D = $"../../../inventory/enemy_inventory"
+
+# UI
 @onready var Level: Label = $Card/VBoxContainer/HBoxContainer/Level
 @onready var Health: Label = $Card/VBoxContainer/HBoxContainer/Health
 @onready var Damage: Label = $Card/VBoxContainer/HBoxContainer/Damage
 @onready var Type: Label = $Card/VBoxContainer/Type
-var health
-var damage
-var level
-var type
 
+# Stats
+var health: int
+var damage: int
+var level: int
+var type: String
+
+# drag
 var is_dragged = false
 var mouse_offset
-
 var future_position = global_position
+
+# slot state
 var start_area: Area2D
 var current_area: Area2D
-
 var is_on_slot = false
 
 var is_played = false
@@ -50,35 +62,32 @@ var shake_time_speed: float = 20.0
 var noise = FastNoiseLite.new()
 
 func _ready() -> void:
+	update_ui()
 	card_pick.play()
 	# Connect every slot area signals for knowing when card is inside slot
 	for area in inventory.get_children():
-		area.mouse_entered.connect(_on_mouse_entered.bind(area))
-		area.mouse_exited.connect(_on_mouse_exited)
+		detect_area(area)
 	
 	# Connect every player_square slots
 	for area in square.get_children():
-		area.mouse_entered.connect(_on_mouse_entered.bind(area))
-		area.mouse_exited.connect(_on_mouse_exited)
+		detect_area(area)
 	
 	# add card to inventory, when it's init in the scene
 	add_card_to_inventory()
 	
 func _process(delta: float) -> void:
-	Health.text = str(health)
-	Damage.text = str(damage)
-	Level.text = str(level)
-	Type.text = str(type)
+	# little rotation when mouse is on card
 	if card.get_rect().has_point(get_local_mouse_position()) and is_dragged == false and inventory ==  player_inventory:
 		rotation_degrees = -5
 	else:
 		rotation_degrees = 0
+	
 	# move toward the place card must be
 	if is_dragged == true:
 		future_position = get_global_mouse_position() - mouse_offset
-	global_position.x = move_toward(global_position.x, future_position.x, 30)
-	global_position.y = move_toward(global_position.y, future_position.y, 30)
+	global_position = global_position.move_toward(future_position, 30)
 	
+	# --- shake ---
 	if active_shake_time > 0:
 		shake_time += delta * shake_time_speed
 		active_shake_time -= delta
@@ -108,46 +117,43 @@ func _input(event: InputEvent) -> void:
 		is_dragged = false
 		top_level = false
 		card_place.play()
+		
 		# card is not on a slot
 		if is_on_slot == false:
 			camera.screen_shake(8, 0.5)
 			future_position = start_area.position
-		# card is on a slot
-		else:
-			# slot is free
-			camera.screen_shake(8, 0.05)
-			if current_area.item == null:
-				place_card()
-			# there is a card in slot
-			else:
-				# it's the same slot as dragged card slot
-				if current_area.item == self:
-					future_position = start_area.position
-				# level and type of slot card and dragged card are same
-				elif int(current_area.item.Level.text) == int(Level.text) and current_area.item.type == type :
-					camera.screen_shake(8, 0.1)
-					level_up(current_area.item)
-					current_area.item.queue_free()
-					place_card()
-					
-				# level and types are different
-				else:
-					current_area.item.start_area = start_area
-					
-					current_area.item.future_position = start_area.position
-					future_position = current_area.item.position
-					
-					start_area.item = current_area.item
-					current_area.item = self
-					var temp = start_area
-					start_area = current_area
-					current_area = temp
-					
-				
+			return
+		# card is on a slot, so do these:
+		
+		# slot is free
+		camera.screen_shake(8, 0.05)
+		if current_area.item == null:
+			place_card()
+			return
+		# there is a card in slot, so do these:
+		
+		# it's the same slot as dragged card slot
+		if current_area.item == self:
+			future_position = start_area.position
+			return
+		
+		# level and type of slot card and dragged card are same
+		if current_area.item.level == level and current_area.item.type == type :
+			camera.screen_shake(8, 0.1)
+			level_up(current_area.item)
+			current_area.item.queue_free()
+			place_card()
+			return
+			
+		# level and types are different
+		swap_card()
+
+# when mouse entered on a slot
 func _on_mouse_entered(area):
 	current_area = area
 	is_on_slot = true
 
+# when mouse exited on a slot
 func _on_mouse_exited():
 	current_area = start_area
 	is_on_slot = false
@@ -182,7 +188,27 @@ func level_up(merged_card):
 	level += 1
 	health += merged_card.health
 	damage += merged_card.damage
+	update_ui()
 
 func detect_area(area):
 	area.mouse_entered.connect(_on_mouse_entered.bind(area))
 	area.mouse_exited.connect(_on_mouse_exited)
+
+func swap_card():
+	current_area.item.start_area = start_area
+	current_area.item.future_position = start_area.position
+	
+	future_position = current_area.item.position
+	
+	start_area.item = current_area.item
+	current_area.item = self
+	
+	var temp = start_area
+	start_area = current_area
+	current_area = temp
+
+func update_ui():
+	Health.text = str(health)
+	Damage.text = str(damage)
+	Level.text = str(level)
+	Type.text = str(type)

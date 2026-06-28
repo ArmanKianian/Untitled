@@ -195,18 +195,34 @@ func check_win():
 		if enemy_slots[i].item:
 			if player_slots.size() > i:
 				if player_slots[i].item == null:
+					var tween = create_tween()
+					tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position + Vector2(0, +50), 0.5)
+					enemy_slots[i].item.enemy_particles.set_emitting(true)
 					enemy_point+=1
+					tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position, 1)
 			else:
+				var tween = create_tween()
+				tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position + Vector2(0, +50), 0.5)
+				enemy_slots[i].item.enemy_particles.set_emitting(true)
 				enemy_point+=1
+				tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position, 1)
 	
 	# If player has a unit there but enemy don't, add a point to player
 	for i in range(player_slots.size()):
 		if player_slots[i].item:
 			if enemy_slots.size() > i:
 				if enemy_slots[i].item == null:
+					var tween = create_tween()
+					tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position + Vector2(0, -50), 0.5)
+					player_slots[i].item.player_particles.set_emitting(true)
 					player_point+=1
+					tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position, 1)
 			else:
+				var tween = create_tween()
+				tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position + Vector2(0, -50), 0.5)
+				player_slots[i].item.player_particles.set_emitting(true)
 				player_point+=1
+				tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position, 1)
 	
 	# Till all units in same slot are done fighting and got their points
 	for i in range(enemy_slots.size()):
@@ -216,6 +232,13 @@ func check_win():
 				if player_slots[i].item:
 					is_there_any = true
 					var end = false
+					var tween = create_tween()
+					tween.tween_property(player_slots[i].item, "position", enemy_slots[i].item.position, 0.2)
+					tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position, 0.2)
+					player_slots[i].item.player_particles.set_emitting(true)
+					tween.tween_property(enemy_slots[i].item, "position", player_slots[i].item.position, 0.2)
+					tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position, 0.2)
+					enemy_slots[i].item.enemy_particles.set_emitting(true)
 					# Attack each other till at least one unit is died
 					while true:
 						player_slots[i].item.health -= enemy_slots[i].item.damage

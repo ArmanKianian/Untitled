@@ -3,6 +3,8 @@ extends Node2D
 @onready var card: Sprite2D = $Card
 
 @onready var card_particles: CPUParticles2D = $Card_Particles
+@onready var enemy_particles: CPUParticles2D = $Card_Particles2
+@onready var player_particles: CPUParticles2D = $Card_Particles3
 
 @onready var card_place: AudioStreamPlayer = $"../../../Audios/card_place"
 @onready var card_pick: AudioStreamPlayer = $"../../../Audios/card_pick"

@@ -252,13 +252,15 @@ func check_win():
 							break
 					if player_slots[i].item != null:
 						var tween = create_tween()
-						tween.tween_property(player_slots[i].item, "position", enemy_position, 0.2)
-						tween.tween_property(player_slots[i].item, "position", player_position, 0.2)
+						tween.tween_property(player_slots[i].item, "position", enemy_position, 0.4)
+						tween.set_ease(Tween.EASE_IN)
+						tween.tween_property(player_slots[i].item, "position", player_position, 0.4)
 						player_slots[i].item.player_particles.set_emitting(true)
 					if enemy_slots[i].item != null:
 						var tween = create_tween()
-						tween.tween_property(enemy_slots[i].item, "position", player_position, 0.2)
-						tween.tween_property(enemy_slots[i].item, "position", enemy_position, 0.2)
+						tween.tween_property(enemy_slots[i].item, "position", player_position, 0.4)
+						tween.set_ease(Tween.EASE_IN)
+						tween.tween_property(enemy_slots[i].item, "position", enemy_position, 0.4)
 						enemy_slots[i].item.enemy_particles.set_emitting(true)
 				
 	# if there is no fight anymore

@@ -77,29 +77,13 @@ func _ready() -> void:
 	
 func _process(delta: float) -> void:
 	# little rotation when mouse is on card
-	if card.get_rect().has_point(get_local_mouse_position()) and is_dragged == false and inventory ==  player_inventory:
-		rotation_degrees = -5
-	else:
-		rotation_degrees = 0
+	hover()
 	
 	# move toward the place card must be
-	if is_dragged == true:
-		future_position = get_global_mouse_position() - mouse_offset
-	global_position = global_position.move_toward(future_position, 30)
+	move()
 	
 	# --- shake ---
-	if active_shake_time > 0:
-		shake_time += delta * shake_time_speed
-		active_shake_time -= delta
-		
-		card.offset = Vector2(
-			noise.get_noise_2d(shake_time, 0) * shake_intensity,
-			noise.get_noise_2d(0, shake_time) * shake_intensity,
-		)
-		
-		shake_intensity = max(shake_intensity - shake_decay * delta, 0)
-	else:
-		card.offset = lerp(card.offset, Vector2.ZERO, 10.5 * delta)
+	update_shake(delta)
 
 func _input(event: InputEvent) -> void:
 	if inventory !=  player_inventory:
@@ -212,3 +196,28 @@ func update_ui():
 	Damage.text = str(damage)
 	Level.text = str(level)
 	Type.text = str(type)
+
+func update_shake(delta):
+	if active_shake_time > 0:
+		shake_time += delta * shake_time_speed
+		active_shake_time -= delta
+		
+		card.offset = Vector2(
+			noise.get_noise_2d(shake_time, 0) * shake_intensity,
+			noise.get_noise_2d(0, shake_time) * shake_intensity,
+		)
+		
+		shake_intensity = max(shake_intensity - shake_decay * delta, 0)
+	else:
+		card.offset = lerp(card.offset, Vector2.ZERO, 10.5 * delta)
+
+func move():
+	if is_dragged == true:
+		future_position = get_global_mouse_position() - mouse_offset
+	global_position = global_position.move_toward(future_position, 30)
+	
+func hover():
+	if card.get_rect().has_point(get_local_mouse_position()) and is_dragged == false and inventory ==  player_inventory:
+		rotation_degrees = -5
+	else:
+		rotation_degrees = 0

@@ -903,6 +903,8 @@ script = ExtResource("5_iywne")
 
 [node name="player_cards" type="Node2D" parent="cards" unique_id=2115140470]
 
+[connection signal="finished" from="Audios/Music" to="." method="_on_music_finished"]
+[connection signal="finished" from="Audios/Rain" to="." method="_on_rain_finished"]
 [connection signal="pressed" from="UI/Spin_Button" to="." method="_on_spin_button_pressed"]
 [connection signal="pressed" from="UI/End_Turn_button" to="." method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="UI/Reset_button" to="." method="_on_reset_button_pressed"]

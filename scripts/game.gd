@@ -7,6 +7,9 @@ const CARD = preload("uid://dlsbf8fn82egx")
 
 # Sounds
 @onready var ui_button: AudioStreamPlayer = $Audios/UI_Button
+@onready var music: AudioStreamPlayer = $Audios/Music
+@onready var rain: AudioStreamPlayer = $Audios/Rain
+
 
 # Slots for removing or adding them for game logic
 @onready var player_inventory: Node2D = $inventory/player_inventory
@@ -187,7 +190,6 @@ func enemy_move():
 func check_win():
 	var enemy_slots = enemy_square.get_children()
 	var player_slots = player_square.get_children()
-	var is_there_any = false
 	var enemy_point = 0
 	var player_point = 0
 	# If enemy has a unit there but player don't, add a point to enemy
@@ -195,16 +197,16 @@ func check_win():
 		if enemy_slots[i].item:
 			if player_slots.size() > i:
 				if player_slots[i].item == null:
+					enemy_point+=1
 					var tween = create_tween()
 					tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position + Vector2(0, +50), 0.5)
 					enemy_slots[i].item.enemy_particles.set_emitting(true)
-					enemy_point+=1
 					tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position, 1)
 			else:
+				enemy_point+=1
 				var tween = create_tween()
 				tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position + Vector2(0, +50), 0.5)
 				enemy_slots[i].item.enemy_particles.set_emitting(true)
-				enemy_point+=1
 				tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position, 1)
 	
 	# If player has a unit there but enemy don't, add a point to player
@@ -212,33 +214,26 @@ func check_win():
 		if player_slots[i].item:
 			if enemy_slots.size() > i:
 				if enemy_slots[i].item == null:
+					player_point+=1
 					var tween = create_tween()
 					tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position + Vector2(0, -50), 0.5)
 					player_slots[i].item.player_particles.set_emitting(true)
-					player_point+=1
 					tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position, 1)
 			else:
+				player_point+=1
 				var tween = create_tween()
 				tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position + Vector2(0, -50), 0.5)
 				player_slots[i].item.player_particles.set_emitting(true)
-				player_point+=1
 				tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position, 1)
 	
 	# Till all units in same slot are done fighting and got their points
 	for i in range(enemy_slots.size()):
-		is_there_any = false
 		if enemy_slots[i].item:
 			if player_slots.size() > i:
 				if player_slots[i].item:
-					is_there_any = true
 					var end = false
-					var tween = create_tween()
-					tween.tween_property(player_slots[i].item, "position", enemy_slots[i].item.position, 0.2)
-					tween.tween_property(player_slots[i].item, "position", player_slots[i].item.position, 0.2)
-					player_slots[i].item.player_particles.set_emitting(true)
-					tween.tween_property(enemy_slots[i].item, "position", player_slots[i].item.position, 0.2)
-					tween.tween_property(enemy_slots[i].item, "position", enemy_slots[i].item.position, 0.2)
-					enemy_slots[i].item.enemy_particles.set_emitting(true)
+					var enemy_position = enemy_slots[i].item.position
+					var player_position = player_slots[i].item.position
 					# Attack each other till at least one unit is died
 					while true:
 						player_slots[i].item.health -= enemy_slots[i].item.damage
@@ -255,66 +250,76 @@ func check_win():
 							end = true
 						if end:
 							break
+					if player_slots[i].item != null:
+						var tween = create_tween()
+						tween.tween_property(player_slots[i].item, "position", enemy_position, 0.2)
+						tween.tween_property(player_slots[i].item, "position", player_position, 0.2)
+						player_slots[i].item.player_particles.set_emitting(true)
+					if enemy_slots[i].item != null:
+						var tween = create_tween()
+						tween.tween_property(enemy_slots[i].item, "position", player_position, 0.2)
+						tween.tween_property(enemy_slots[i].item, "position", enemy_position, 0.2)
+						enemy_slots[i].item.enemy_particles.set_emitting(true)
+				
 	# if there is no fight anymore
-	if is_there_any == false:
-		var enemy_square_slots = enemy_square.get_children()
-		var player_square_slots = player_square.get_children()
+	var enemy_square_slots = enemy_square.get_children()
+	var player_square_slots = player_square.get_children()
+	
+	# if player won
+	if player_point > enemy_point:
+		# if player has all of his war_square, enemy loses one line
+		if player_square.get_child_count() == 10:
+			if enemy_square.get_child_count() > 0:
+				for i in range(1, enemy_line_count+1):
+					enemy_square_slots = enemy_square.get_children()
+					if enemy_square_slots[-i]:
+						if enemy_square_slots[-i].item:
+							enemy_square_slots[-i].item.queue_free()
+						var tween = create_tween()
+						tween.tween_property(war_line, "position", Vector2(0, enemy_square_slots[-i].position.y + 20), 0.3)
+						enemy_square_slots[-i].queue_free()
+				enemy_line_count += 1
 		
-		# if player won
-		if player_point > enemy_point:
-			# if player has all of his war_square, enemy loses one line
-			if player_square.get_child_count() == 10:
-				if enemy_square.get_child_count() > 0:
-					for i in range(1, enemy_line_count+1):
-						enemy_square_slots = enemy_square.get_children()
-						if enemy_square_slots[-i]:
-							if enemy_square_slots[-i].item:
-								enemy_square_slots[-i].item.queue_free()
-							var tween = create_tween()
-							tween.tween_property(war_line, "position", Vector2(0, enemy_square_slots[-i].position.y + 20), 0.3)
-							enemy_square_slots[-i].queue_free()
-					enemy_line_count += 1
+		# if player has not all of his war_square, player gain one line
+		elif player_square_slots.size() < 10 and player_square_slots.size() >= 2:
+			var first_slot_position = Vector2(war_square.player_first_slot_position.x + (war_square.slot_x_distance/2) * (war_square.line_countt+1 - player_line_count), player_square_slots[-1].position.y) - Vector2(0, war_square.slot_y_distance)
+			war_square.line_spawn(war_square.player_square, war_square.PLAYER_STAND, first_slot_position, player_line_count-1)
 			
-			# if player has not all of his war_square, player gain one line
-			elif player_square_slots.size() < 10 and player_square_slots.size() >= 2:
-				var first_slot_position = Vector2(war_square.player_first_slot_position.x + (war_square.slot_x_distance/2) * (war_square.line_countt+1 - player_line_count), player_square_slots[-1].position.y) - Vector2(0, war_square.slot_y_distance)
-				war_square.line_spawn(war_square.player_square, war_square.PLAYER_STAND, first_slot_position, player_line_count-1)
-				
-				player_square_slots = player_square.get_children()
-				var tween = create_tween()
-				tween.tween_property(war_line, "position", Vector2(0, player_square_slots[-1].position.y - war_square.slot_y_distance), 0.3)
-				for card in player_cards.get_children():
-					for i in range(1, player_line_count):
-						card.detect_area(player_square_slots[-i])
-				player_line_count -= 1
+			player_square_slots = player_square.get_children()
+			var tween = create_tween()
+			tween.tween_property(war_line, "position", Vector2(0, player_square_slots[-1].position.y - war_square.slot_y_distance), 0.3)
+			for card in player_cards.get_children():
+				for i in range(1, player_line_count):
+					card.detect_area(player_square_slots[-i])
+			player_line_count -= 1
+	
+	# if enemy won
+	elif player_point < enemy_point:
+		# if enemy has all of his war_square, player loses one line
+		if enemy_square.get_child_count() == 10:
+			if player_square.get_child_count() > 0:
+				for i in range(1, player_line_count+1):
+					player_square_slots = player_square.get_children()
+					if player_square_slots[-i]:
+						if player_square_slots[-i].item:
+							player_square_slots[-i].item.queue_free()
+						var tween = create_tween()
+						tween.tween_property(war_line, "position", Vector2(0, player_square_slots[-i].position.y), 0.3)
+						player_square_slots[-i].queue_free()
+				player_line_count += 1
 		
-		# if enemy won
-		elif player_point < enemy_point:
-			# if enemy has all of his war_square, player loses one line
-			if enemy_square.get_child_count() == 10:
-				if player_square.get_child_count() > 0:
-					for i in range(1, player_line_count+1):
-						player_square_slots = player_square.get_children()
-						if player_square_slots[-i]:
-							if player_square_slots[-i].item:
-								player_square_slots[-i].item.queue_free()
-							var tween = create_tween()
-							tween.tween_property(war_line, "position", Vector2(0, player_square_slots[-i].position.y), 0.3)
-							player_square_slots[-i].queue_free()
-					player_line_count += 1
+		# if enemy has not all of his war_square, enemy gain one line
+		elif enemy_square.get_child_count() < 10 and enemy_square_slots.size() >= 2:
+			var first_slot_position = Vector2(war_square.enemy_first_slot_position.x + (war_square.slot_x_distance/2) * (war_square.line_countt+1 - enemy_line_count), enemy_square_slots[-1].position.y) + Vector2(0, war_square.slot_y_distance)
+			war_square.line_spawn(war_square.enemy_square, war_square.ENEMY_STAND, first_slot_position, enemy_line_count-1)
 			
-			# if enemy has not all of his war_square, enemy gain one line
-			elif enemy_square.get_child_count() < 10 and enemy_square_slots.size() >= 2:
-				var first_slot_position = Vector2(war_square.enemy_first_slot_position.x + (war_square.slot_x_distance/2) * (war_square.line_countt+1 - enemy_line_count), enemy_square_slots[-1].position.y) + Vector2(0, war_square.slot_y_distance)
-				war_square.line_spawn(war_square.enemy_square, war_square.ENEMY_STAND, first_slot_position, enemy_line_count-1)
-				
-				enemy_square_slots = enemy_square.get_children()
-				var tween = create_tween()
-				tween.tween_property(war_line, "position", Vector2(0, enemy_square_slots[-1].position.y + war_square.slot_y_distance + 20), 0.3)
-				for card in player_cards.get_children():
-					for i in range(1, enemy_line_count):
-						card.detect_area(enemy_square_slots[-i])
-				enemy_line_count -= 1
+			enemy_square_slots = enemy_square.get_children()
+			var tween = create_tween()
+			tween.tween_property(war_line, "position", Vector2(0, enemy_square_slots[-1].position.y + war_square.slot_y_distance + 20), 0.3)
+			for card in player_cards.get_children():
+				for i in range(1, enemy_line_count):
+					card.detect_area(enemy_square_slots[-i])
+			enemy_line_count -= 1
 
 func check_traits():
 	# Set all zero and calculate again
@@ -390,3 +395,11 @@ func reset():
 	spin_button.disabled = false
 	end_turn_button.disabled = false
 	reset_button.disabled = false
+
+
+func _on_music_finished() -> void:
+	music.play()
+
+
+func _on_rain_finished() -> void:
+	rain.play()

@@ -132,7 +132,17 @@ func _input(event: InputEvent) -> void:
 					
 				# level and types are different
 				else:
-					future_position = start_area.position
+					current_area.item.start_area = start_area
+					
+					current_area.item.future_position = start_area.position
+					future_position = current_area.item.position
+					
+					start_area.item = current_area.item
+					current_area.item = self
+					var temp = start_area
+					start_area = current_area
+					current_area = temp
+					
 				
 func _on_mouse_entered(area):
 	current_area = area

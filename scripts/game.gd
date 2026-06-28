@@ -7,9 +7,6 @@ const CARD = preload("uid://dlsbf8fn82egx")
 
 # Sounds
 @onready var ui_button: AudioStreamPlayer = $Audios/UI_Button
-@onready var music: AudioStreamPlayer = $Audios/Music
-@onready var rain: AudioStreamPlayer = $Audios/Rain
-
 
 # Slots for removing or adding them for game logic
 @onready var player_inventory: Node2D = $inventory/player_inventory
@@ -70,6 +67,10 @@ var player_line_count = 1
 @onready var spin_light: PointLight2D = $Lightings/spin
 
 func _ready() -> void:
+	scale = Vector2.ZERO
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1, 1), 1)
+	await tween.finished
 	reset()
 
 func _on_end_turn_button_pressed() -> void:
@@ -402,9 +403,9 @@ func reset():
 	reset_button.disabled = false
 
 
-func _on_music_finished() -> void:
-	music.play()
-
-
-func _on_rain_finished() -> void:
-	rain.play()
+func _on_quit_button_pressed() -> void:
+	ui_button.play()
+	var tween = create_tween()
+	tween.tween_property(self, "scale", Vector2.ZERO, 1)
+	await tween.finished
+	get_tree().change_scene_to_file("res://scenes/game_menu.tscn")

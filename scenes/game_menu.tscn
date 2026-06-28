@@ -1,0 +1,171 @@
+[gd_scene format=3 uid="uid://drjitw27nohkx"]
+
+[ext_resource type="Script" uid="uid://bfgfrab5deshh" path="res://scripts/game_menu.gd" id="1_ddixh"]
+[ext_resource type="Script" uid="uid://crao2hql84nl1" path="res://scripts/camera.gd" id="2_ddixh"]
+[ext_resource type="AudioStream" uid="uid://d2oykm6lywaqm" path="res://Sounds/UI/qubodup-DoorClose01.ogg" id="3_w8xnd"]
+[ext_resource type="AudioStream" uid="uid://s3sfjsn6ge2q" path="res://Sounds/UI/qubodup-DoorClose02.ogg" id="4_tb3b8"]
+[ext_resource type="AudioStream" uid="uid://dahs54rq3jyxd" path="res://Sounds/UI/qubodup-DoorClose03.ogg" id="5_fh6th"]
+[ext_resource type="AudioStream" uid="uid://fhev684x7xav" path="res://Sounds/UI/qubodup-DoorClose04.ogg" id="6_3t1mh"]
+[ext_resource type="AudioStream" uid="uid://cq76enrjcuqeu" path="res://Sounds/UI/qubodup-DoorClose05.ogg" id="7_gw1q4"]
+[ext_resource type="Texture2D" uid="uid://c5dvhivnm8sk7" path="res://Assets/effects/tree leaf2.png" id="8_bd6dg"]
+[ext_resource type="Texture2D" uid="uid://brhciaqrdudrh" path="res://Assets/UI/panels/inventory.png" id="9_rtlw8"]
+[ext_resource type="Texture2D" uid="uid://p0ayad5ehax7" path="res://Assets/UI/panels/button2.png" id="10_w0drc"]
+[ext_resource type="Texture2D" uid="uid://bxj6iuq2y2b0r" path="res://Assets/Units/shield/unit3_shield.png" id="11_ddixh"]
+[ext_resource type="Texture2D" uid="uid://cajsope7ay1nn" path="res://Assets/UI/panels/button1.png" id="11_mf20v"]
+[ext_resource type="FontFile" uid="uid://cu8e33mndwc28" path="res://pixel-font/tinypixel.otf" id="12_mu6x8"]
+[ext_resource type="Texture2D" uid="uid://ddckw86072bt4" path="res://Assets/effects/tree leaf.png" id="13_2t3ut"]
+
+[sub_resource type="Gradient" id="Gradient_mwb40"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xxxaj"]
+gradient = SubResource("Gradient_mwb40")
+width = 1920
+height = 1080
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_wh20h"]
+streams_count = 5
+stream_0/stream = ExtResource("3_w8xnd")
+stream_1/stream = ExtResource("4_tb3b8")
+stream_2/stream = ExtResource("5_fh6th")
+stream_3/stream = ExtResource("6_3t1mh")
+stream_4/stream = ExtResource("7_gw1q4")
+
+[sub_resource type="Curve" id="Curve_wh20h"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 28.314636), 0.0, 0.0, 0, 0, Vector2(1, 44.494415), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ssvqc"]
+texture = ExtResource("10_w0drc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1kice"]
+texture = ExtResource("11_mf20v")
+
+[sub_resource type="LabelSettings" id="LabelSettings_yw4vu"]
+font = ExtResource("12_mu6x8")
+font_size = 60
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7n14g"]
+texture = ExtResource("10_w0drc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_l0nel"]
+texture = ExtResource("11_mf20v")
+
+[sub_resource type="Gradient" id="Gradient_1kice"]
+colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_w8xnd"]
+gradient = SubResource("Gradient_1kice")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.5, 0)
+
+[node name="GameMenu" type="Node2D" unique_id=1338059805]
+script = ExtResource("1_ddixh")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1089910896]
+script = ExtResource("2_ddixh")
+
+[node name="Background" type="Node2D" parent="." unique_id=271042414]
+
+[node name="Background" type="Sprite2D" parent="Background" unique_id=1900803189]
+texture = SubResource("GradientTexture2D_xxxaj")
+
+[node name="UI_Button" type="AudioStreamPlayer" parent="." unique_id=1869465945]
+stream = SubResource("AudioStreamRandomizer_wh20h")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=930875243]
+amount = 10
+texture = ExtResource("13_2t3ut")
+lifetime = 10.0
+emission_shape = 3
+emission_rect_extents = Vector2(960, 540)
+gravity = Vector2(100, 98)
+angle_min = -180.0
+angle_max = 180.0
+angle_curve = SubResource("Curve_wh20h")
+scale_amount_min = 0.5
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="." unique_id=315291424]
+amount = 10
+texture = ExtResource("8_bd6dg")
+lifetime = 10.0
+emission_shape = 3
+emission_rect_extents = Vector2(960, 540)
+gravity = Vector2(100, 98)
+angle_min = -180.0
+angle_max = 180.0
+angle_curve = SubResource("Curve_wh20h")
+scale_amount_min = 0.5
+
+[node name="UI" type="Node2D" parent="." unique_id=1006185612]
+
+[node name="Inventory_panel" type="Sprite2D" parent="UI" unique_id=463765925]
+scale = Vector2(3, 6)
+texture = ExtResource("9_rtlw8")
+
+[node name="Sprite2D" type="Sprite2D" parent="UI" unique_id=1951506362]
+position = Vector2(0, -210)
+scale = Vector2(3, 3)
+texture = ExtResource("11_ddixh")
+
+[node name="start" type="Button" parent="UI" unique_id=277299869]
+offset_left = -664.0
+offset_top = -110.0
+offset_right = -84.0
+offset_bottom = 111.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ssvqc")
+
+[node name="Label" type="Label" parent="UI/start" unique_id=1797697027]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 13.0
+offset_right = 546.0
+offset_bottom = 159.0
+text = "start"
+label_settings = SubResource("LabelSettings_yw4vu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quit" type="Button" parent="UI" unique_id=956647379]
+offset_left = 70.0
+offset_top = -110.0
+offset_right = 658.0
+offset_bottom = 111.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_7n14g")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_l0nel")
+theme_override_styles/hover = SubResource("StyleBoxTexture_7n14g")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_l0nel")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_7n14g")
+
+[node name="Label" type="Label" parent="UI/quit" unique_id=1325821630]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 13.0
+offset_right = 546.0
+offset_bottom = 159.0
+text = "quit"
+label_settings = SubResource("LabelSettings_yw4vu")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lightings" type="Node2D" parent="UI" unique_id=530816630]
+
+[node name="PointLight2D" type="PointLight2D" parent="UI/Lightings" unique_id=575455460]
+position = Vector2(16, -25.499994)
+scale = Vector2(23.6875, 6.203125)
+texture = SubResource("GradientTexture2D_w8xnd")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="UI/Lightings" unique_id=1429138636]
+color = Color(0, 0, 0, 1)
+energy = 0.7
+blend_mode = 2
+
+[connection signal="pressed" from="UI/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="UI/quit" to="." method="_on_quit_pressed"]

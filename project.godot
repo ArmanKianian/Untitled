@@ -11,12 +11,16 @@ config_version=5
 [application]
 
 config/name="Untitled"
-run/main_scene="uid://devf2tsrifqye"
+run/main_scene="res://scenes/game_menu.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 boot_splash/bg_color=Color(0.010683754, 0.23781833, 0.010662622, 1)
 boot_splash/stretch_mode=0
 boot_splash/image="uid://bxj6iuq2y2b0r"
 config/icon="uid://bxj6iuq2y2b0r"
+
+[autoload]
+
+Music="*uid://bkyepmp58e8xh"
 
 [display]
 

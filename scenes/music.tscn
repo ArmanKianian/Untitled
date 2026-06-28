@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://bkyepmp58e8xh"]
+
+[ext_resource type="Script" uid="uid://b37oe3dwbnu48" path="res://scripts/music.gd" id="1_wia2r"]
+[ext_resource type="AudioStream" uid="uid://bfrgooq5hr61c" path="res://Sounds/Musics/forest.ogg" id="2_mobtd"]
+[ext_resource type="AudioStream" uid="uid://b6nhyy7eidafo" path="res://Sounds/Musics/No More Magic.ogg" id="3_keplp"]
+[ext_resource type="AudioStream" uid="uid://lvqg6ygnxqts" path="res://Sounds/Musics/Winds Of Stories.ogg" id="4_d6bcn"]
+[ext_resource type="AudioStream" uid="uid://ckvnd4ujikjui" path="res://Sounds/Musics/Dark_Rainy_Night(ambience).ogg" id="5_okdju"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_qntvw"]
+streams_count = 3
+stream_0/stream = ExtResource("2_mobtd")
+stream_1/stream = ExtResource("3_keplp")
+stream_2/stream = ExtResource("4_d6bcn")
+
+[node name="Music" type="Node2D" unique_id=786092912]
+script = ExtResource("1_wia2r")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=638995295]
+stream = SubResource("AudioStreamRandomizer_qntvw")
+autoplay = true
+
+[node name="Rain" type="AudioStreamPlayer" parent="." unique_id=272444182]
+stream = ExtResource("5_okdju")
+autoplay = true
+
+[connection signal="finished" from="Music" to="." method="_on_music_finished"]
+[connection signal="finished" from="Rain" to="." method="_on_rain_finished"]

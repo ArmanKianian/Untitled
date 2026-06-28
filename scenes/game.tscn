@@ -254,26 +254,6 @@ default_color = Color(0.6119493, 0.2979383, 0, 1)
 position = Vector2(0, -50)
 scale = Vector2(2, 2)
 
-[node name="Line" type="Sprite2D" parent="War_Line" unique_id=1081783667]
-position = Vector2(-536, 0)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("12_gxtfn")
-
-[node name="Line2" type="Sprite2D" parent="War_Line" unique_id=453770166]
-position = Vector2(-472, 0)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("12_gxtfn")
-
-[node name="Line3" type="Sprite2D" parent="War_Line" unique_id=1389297449]
-position = Vector2(-408, 0)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("12_gxtfn")
-
-[node name="Line4" type="Sprite2D" parent="War_Line" unique_id=844629560]
-position = Vector2(-344, 0)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("12_gxtfn")
-
 [node name="Line5" type="Sprite2D" parent="War_Line" unique_id=1281064316]
 position = Vector2(-280, 0)
 scale = Vector2(0.3, 0.3)
@@ -322,26 +302,6 @@ texture = ExtResource("12_gxtfn")
 [node name="Line14" type="Sprite2D" parent="War_Line" unique_id=1762747125]
 position = Vector2(296, 0)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("12_gxtfn")
-
-[node name="Line15" type="Sprite2D" parent="War_Line" unique_id=1168467139]
-position = Vector2(360, 0)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("12_gxtfn")
-
-[node name="Line16" type="Sprite2D" parent="War_Line" unique_id=1178815196]
-position = Vector2(424, 0)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("12_gxtfn")
-
-[node name="Line17" type="Sprite2D" parent="War_Line" unique_id=1314919011]
-position = Vector2(488, 0)
-scale = Vector2(0.3, 0.3)
-texture = ExtResource("12_gxtfn")
-
-[node name="Line18" type="Sprite2D" parent="War_Line" unique_id=133966589]
-position = Vector2(544.3, 0)
-scale = Vector2(0.23984371, 0.3)
 texture = ExtResource("12_gxtfn")
 
 [node name="Panels" type="Node2D" parent="." unique_id=86920020]

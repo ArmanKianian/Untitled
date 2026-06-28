@@ -848,6 +848,27 @@ offset_bottom = 39.0
 text = "End Turn"
 label_settings = SubResource("LabelSettings_wljb1")
 
+[node name="Reset_button" type="Button" parent="UI" unique_id=394359327]
+layout_mode = 0
+offset_left = 1527.0
+offset_top = 23.0
+offset_right = 1694.0
+offset_bottom = 72.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ssvqc")
+
+[node name="Label" type="Label" parent="UI/Reset_button" unique_id=390567681]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 10.0
+offset_right = 136.0
+offset_bottom = 33.0
+text = "Reset"
+label_settings = SubResource("LabelSettings_wljb1")
+
 [node name="inventory" type="Node2D" parent="." unique_id=2128222662]
 
 [node name="player_inventory" type="Node2D" parent="inventory" unique_id=1234125930]
@@ -874,3 +895,4 @@ script = ExtResource("5_iywne")
 
 [connection signal="pressed" from="UI/Spin_Button" to="." method="_on_spin_button_pressed"]
 [connection signal="pressed" from="UI/End_Turn_button" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="UI/Reset_button" to="." method="_on_reset_button_pressed"]

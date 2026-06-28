@@ -21,9 +21,13 @@
 [ext_resource type="Texture2D" uid="uid://5vv8yv6e7kif" path="res://Assets/UI/War line.png" id="12_gxtfn"]
 [ext_resource type="AudioStream" uid="uid://clhtgol0nroxx" path="res://Sounds/SoundPack/Audio/card-shove-1.ogg" id="12_ir15t"]
 [ext_resource type="AudioStream" uid="uid://cbtr8n46fnd5d" path="res://Sounds/SoundPack/Audio/card-shove-2.ogg" id="13_ca42v"]
+[ext_resource type="AudioStream" uid="uid://ckvnd4ujikjui" path="res://Sounds/Musics/Dark_Rainy_Night(ambience).ogg" id="13_m4url"]
+[ext_resource type="AudioStream" uid="uid://bfrgooq5hr61c" path="res://Sounds/Musics/forest.ogg" id="14_8ool0"]
 [ext_resource type="Texture2D" uid="uid://dyqretf4oi0bn" path="res://Assets/UI/coin.png" id="14_qouja"]
 [ext_resource type="AudioStream" uid="uid://c87awitx7cjog" path="res://Sounds/SoundPack/Audio/card-shove-3.ogg" id="14_rysoc"]
+[ext_resource type="AudioStream" uid="uid://b6nhyy7eidafo" path="res://Sounds/Musics/No More Magic.ogg" id="15_pr1ej"]
 [ext_resource type="Texture2D" uid="uid://m1e2sxmmqvbh" path="res://Assets/Traits/Undead trait.png" id="15_suyxu"]
+[ext_resource type="AudioStream" uid="uid://lvqg6ygnxqts" path="res://Sounds/Musics/Winds Of Stories.ogg" id="16_05nbr"]
 [ext_resource type="Texture2D" uid="uid://djxpbnt3imyaf" path="res://Assets/UI/panels/inventory box.png" id="16_37s47"]
 [ext_resource type="Texture2D" uid="uid://cogevuph1nl51" path="res://Assets/Traits/shield trait.png" id="16_sgl2t"]
 [ext_resource type="Texture2D" uid="uid://j2hdy0xvuw6r" path="res://Assets/Traits/forest trait.png" id="17_5newe"]
@@ -68,6 +72,12 @@ stream_0/stream = ExtResource("12_ir15t")
 stream_1/stream = ExtResource("13_ca42v")
 stream_2/stream = ExtResource("14_rysoc")
 stream_3/stream = SubResource("AudioStreamOggVorbis_trtic")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_iqw5e"]
+streams_count = 3
+stream_0/stream = ExtResource("14_8ool0")
+stream_1/stream = ExtResource("15_pr1ej")
+stream_2/stream = ExtResource("16_05nbr")
 
 [sub_resource type="Gradient" id="Gradient_1kice"]
 colors = PackedColorArray(0.9691369, 0.9691369, 0.9691368, 1, 1, 1, 1, 0)
@@ -169,6 +179,14 @@ stream = SubResource("AudioStreamRandomizer_8nxoa")
 
 [node name="card_drag" type="AudioStreamPlayer" parent="Audios" unique_id=1257906305]
 stream = SubResource("AudioStreamRandomizer_3hxyd")
+
+[node name="Music" type="AudioStreamPlayer" parent="Audios" unique_id=279641957]
+stream = SubResource("AudioStreamRandomizer_iqw5e")
+autoplay = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Audios" unique_id=1560718847]
+stream = ExtResource("13_m4url")
+autoplay = true
 
 [node name="Lightings" type="Node2D" parent="." unique_id=388862978]
 

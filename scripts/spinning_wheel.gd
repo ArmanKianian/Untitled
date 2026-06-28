@@ -1,5 +1,7 @@
 extends Node2D
 
+@onready var spinning: AudioStreamPlayer = $"../Audios/Spinning"
+
 const UNIT_1_SHIELD = preload("uid://c6ke12jjs1pm2")
 const UNIT_2_SHIELD = preload("uid://dalq6vjaeqx23")
 const UNIT_3_SHIELD = preload("uid://bxj6iuq2y2b0r")
@@ -49,6 +51,7 @@ var Traits: Array = [
 ]
 
 func spin():
+	spinning.playing = true
 	var chosen = pick_weighted_random_item(Traits)
 	for i in range(Traits.size()):
 		if Traits[i] == chosen:

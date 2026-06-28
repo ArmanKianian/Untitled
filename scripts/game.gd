@@ -18,6 +18,7 @@ const CARD = preload("uid://dlsbf8fn82egx")
 # Buttons
 @onready var spin_button: Button = $UI/Spin_Button
 @onready var end_turn_button: Button = $UI/End_Turn_button
+@onready var reset_button: Button = $UI/Reset_button
 
 # Spinning wheel for a random unit pick war_square
 @onready var spinning_wheel: Node2D = $Spinning_Wheel
@@ -69,6 +70,7 @@ func _on_end_turn_button_pressed() -> void:
 	# End Turn Button Pressed
 	spin_button.disabled = true
 	end_turn_button.disabled = true
+	reset_button.disabled = true
 	camera.screen_shake(50, 0.5)
 	spin_cost.text = str(turn_spin_cost)
 	turn.text = str(int(turn.text) + 1)
@@ -78,11 +80,13 @@ func _on_end_turn_button_pressed() -> void:
 	await enemy_move()
 	spin_button.disabled = false
 	end_turn_button.disabled = false
+	reset_button.disabled = false
 
 func _on_spin_button_pressed() -> void:
 	# Spin Button Pressed
 	spin_button.disabled = true
 	end_turn_button.disabled = true
+	reset_button.disabled = true
 	camera.screen_shake(8, 0.2)
 	if int(coin.text) >= int(spin_cost.text):
 		if await add_card(player_cards, player_inventory, player_square):
@@ -91,10 +95,17 @@ func _on_spin_button_pressed() -> void:
 	check_traits()
 	spin_button.disabled = false
 	end_turn_button.disabled = false
+	reset_button.disabled = false
 	
 func _on_reset_button_pressed() -> void:
+	spin_button.disabled = true
+	end_turn_button.disabled = true
+	reset_button.disabled = true
 	# Reset Button Pressed
-	reset()
+	await reset()
+	spin_button.disabled = false
+	end_turn_button.disabled = false
+	reset_button.disabled = false
 
 func add_card(cards, inventory, square):
 	spin.set_visible(true)
@@ -165,6 +176,7 @@ func enemy_move():
 					break
 	player.set_visible(true)
 	enemy.set_visible(false)
+
 func check_win():
 	var enemy_slots = enemy_square.get_children()
 	var player_slots = player_square.get_children()
@@ -311,6 +323,7 @@ func check_traits():
 func reset():
 	spin_button.disabled = true
 	end_turn_button.disabled = true
+	reset_button.disabled = true
 	
 	war_line.position.y = -50
 
@@ -346,3 +359,4 @@ func reset():
 	
 	spin_button.disabled = false
 	end_turn_button.disabled = false
+	reset_button.disabled = false

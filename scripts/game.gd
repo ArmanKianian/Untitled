@@ -36,10 +36,17 @@ const CARD = preload("uid://dlsbf8fn82egx")
 # UI
 # =============================================================================
 
+@onready var defeat_panel: Sprite2D = $Defeat_panel
+@onready var victory_panel: Sprite2D = $Victory_panel
+@onready var defeat_button: Button = $Defeat_panel/Defeat_button
+@onready var victory_button: Button = $Victory_panel/Victory_button
+
+
 # Buttons
 @onready var spin_button: Button = $UI/Spin_Button
 @onready var end_turn_button: Button = $UI/End_Turn_button
 @onready var reset_button: Button = $UI/Reset_button
+
 
 # Labels
 @onready var spin_cost: Label = $UI/Spin_Button/spin_cost
@@ -89,8 +96,11 @@ func _ready() -> void:
 	var tween = create_tween()
 	tween.tween_property(self, "scale", Vector2(1, 1), 1)
 	await tween.finished
-	reset()
 
+	defeat_button.pressed.connect(_on_reset_button_pressed)
+	victory_button.pressed.connect(_on_reset_button_pressed)
+	
+	reset()
 
 func change_coin(amount: int):
 
@@ -146,11 +156,11 @@ func _on_end_turn_button_pressed() -> void:
 	
 	await change_coin(turn_coin_gain)
 
-	await check_win()
-	check_traits()
-	await enemy_move()
+	if await check_win():
+		check_traits()
+		await enemy_move()
 
-	set_buttons_enabled(true)
+		set_buttons_enabled(true)
 
 func _on_spin_button_pressed() -> void:
 	play_button_press(8, 0.2)
@@ -159,7 +169,7 @@ func _on_spin_button_pressed() -> void:
 		
 		if await add_card(0):
 			
-			await change_coin(-int(spin_cost.text))
+			change_coin(-int(spin_cost.text))
 			
 			spin_cost.text = str(int(spin_cost.text) + spin_cost_gain)
 
@@ -578,15 +588,79 @@ func update_battlefield(enemy_point: int, player_point: int):
 			enemy_line_count -= 1
 
 func check_win():
+
 	var enemy_slots = enemy_square.get_children()
 	var player_slots = player_square.get_children()
 
-	var points = await check_empty_slots(enemy_slots, player_slots)
-	points += await resolve_combat(enemy_slots, player_slots)
 
-	update_battlefield(points.x, points.y)
+	var points = await check_empty_slots(
+		enemy_slots,
+		player_slots
+	)
 
 
+	points += await resolve_combat(
+		enemy_slots,
+		player_slots
+	)
+
+
+	update_battlefield(
+		points.x,
+		points.y
+	)
+
+
+	await get_tree().create_timer(1.0).timeout
+
+
+	if points.y > points.x and enemy_square.get_child_count() <= 0:
+
+		player_win()
+		return false
+
+	elif points.y < points.x and player_square.get_child_count() <= 0:
+
+		player_lose()
+		return false
+
+	return true
+
+func player_win():
+	set_buttons_enabled(false)
+	
+	victory_panel.visible = true
+
+	# optional animation
+	victory_panel.modulate.a = 0
+
+	var tween = create_tween()
+
+	tween.tween_property(
+		victory_panel,
+		"modulate:a",
+		1.0,
+		0.3
+	)
+
+
+
+func player_lose():
+	set_buttons_enabled(false)
+	
+	defeat_panel.visible = true
+
+
+	var tween = create_tween()
+
+	defeat_panel.modulate.a = 0
+
+	tween.tween_property(
+		defeat_panel,
+		"modulate:a",
+		1.0,
+		0.3
+	)
 
 
 func check_traits():
@@ -622,6 +696,8 @@ func clear_container(container: Node):
 
 func reset():
 	set_buttons_enabled(false)
+	victory_panel.visible = false
+	defeat_panel.visible = false
 	
 	# Reset battlefield position
 	war_line.position.y = -50

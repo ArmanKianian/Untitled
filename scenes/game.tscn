@@ -163,6 +163,24 @@ texture = ExtResource("9_5newe")
 [sub_resource type="LabelSettings" id="LabelSettings_gxtfn"]
 font = ExtResource("27_wljb1")
 
+[sub_resource type="LabelSettings" id="LabelSettings_8ool0"]
+font = ExtResource("27_wljb1")
+font_size = 200
+font_color = Color(1, 0, 0, 1)
+outline_size = 50
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_05nbr"]
+font = ExtResource("27_wljb1")
+font_size = 160
+
+[sub_resource type="LabelSettings" id="LabelSettings_pr1ej"]
+font = ExtResource("27_wljb1")
+font_size = 200
+font_color = Color(0, 0.6, 0, 1)
+outline_size = 50
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Game" type="Node2D" unique_id=1207240851]
 script = ExtResource("1_lbhrr")
 
@@ -906,6 +924,84 @@ script = ExtResource("5_iywne")
 [node name="enemy_cards" type="Node2D" parent="cards" unique_id=734597135]
 
 [node name="player_cards" type="Node2D" parent="cards" unique_id=2115140470]
+
+[node name="Defeat_panel" type="Sprite2D" parent="." unique_id=1605561237]
+visible = false
+scale = Vector2(3, 6)
+texture = ExtResource("6_ssvqc")
+
+[node name="Defeat" type="Label" parent="Defeat_panel" unique_id=1720023533]
+offset_left = -85.0
+offset_top = -32.0
+offset_right = 793.3334
+offset_bottom = 424.66666
+scale = Vector2(0.2, 0.1)
+size_flags_horizontal = 4
+text = "Defeat"
+label_settings = SubResource("LabelSettings_8ool0")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Defeat_button" type="Button" parent="Defeat_panel" unique_id=87009685]
+offset_left = -52.0
+offset_top = 3.0
+offset_right = 121.0
+offset_bottom = 52.0
+scale = Vector2(0.6, 0.3)
+theme_override_styles/normal = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ssvqc")
+
+[node name="Label" type="Label" parent="Defeat_panel/Defeat_button" unique_id=603357766]
+layout_mode = 0
+offset_left = 49.999992
+offset_top = 10.0
+offset_right = 828.00006
+offset_bottom = 194.0
+scale = Vector2(0.1, 0.1)
+text = "Restart"
+label_settings = SubResource("LabelSettings_05nbr")
+
+[node name="Victory_panel" type="Sprite2D" parent="." unique_id=1326943900]
+visible = false
+scale = Vector2(3, 6)
+texture = ExtResource("6_ssvqc")
+
+[node name="Victory" type="Label" parent="Victory_panel" unique_id=20137221]
+offset_left = -85.0
+offset_top = -32.0
+offset_right = 793.3334
+offset_bottom = 424.66666
+scale = Vector2(0.2, 0.1)
+size_flags_horizontal = 4
+text = "victory"
+label_settings = SubResource("LabelSettings_pr1ej")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Victory_button" type="Button" parent="Victory_panel" unique_id=268831251]
+offset_left = -52.0
+offset_top = 3.0
+offset_right = 121.0
+offset_bottom = 52.0
+scale = Vector2(0.6, 0.3)
+theme_override_styles/normal = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ssvqc")
+theme_override_styles/hover_pressed = SubResource("StyleBoxTexture_1kice")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_ssvqc")
+
+[node name="Label" type="Label" parent="Victory_panel/Victory_button" unique_id=509422386]
+layout_mode = 0
+offset_left = 49.999992
+offset_top = 10.0
+offset_right = 828.00006
+offset_bottom = 194.0
+scale = Vector2(0.1, 0.1)
+text = "Next AI"
+label_settings = SubResource("LabelSettings_05nbr")
 
 [connection signal="pressed" from="UI/Spin_Button" to="." method="_on_spin_button_pressed"]
 [connection signal="pressed" from="UI/End_Turn_button" to="." method="_on_end_turn_button_pressed"]

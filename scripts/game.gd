@@ -92,6 +92,39 @@ func _ready() -> void:
 	reset()
 
 
+func change_coin(amount: int):
+
+	var current = int(coin.text)
+	var target = current + amount
+
+	var tween = create_tween()
+
+	tween.tween_method(
+		func(value):
+			coin.text = str(round(value)),
+		current,
+		target,
+		0.4
+	)
+
+	# little feedback
+	var original_scale = coin.scale
+
+	tween.parallel().tween_property(
+		coin,
+		"scale",
+		Vector2(2, 2),
+		0.15
+	)
+
+	tween.tween_property(
+		coin,
+		"scale",
+		original_scale,
+		0.15
+	)
+
+	await tween.finished
 
 func set_buttons_enabled(enabled: bool):
 	spin_button.disabled = !enabled
@@ -108,8 +141,10 @@ func _on_end_turn_button_pressed() -> void:
 	play_button_press(50, 0.5)
 
 	spin_cost.text = str(turn_spin_cost)
+	
 	turn.text = str(int(turn.text) + 1)
-	coin.text = str(int(coin.text) + turn_coin_gain)
+	
+	await change_coin(turn_coin_gain)
 
 	await check_win()
 	check_traits()
@@ -121,8 +156,11 @@ func _on_spin_button_pressed() -> void:
 	play_button_press(8, 0.2)
 
 	if int(coin.text) >= int(spin_cost.text):
+		
 		if await add_card(0):
-			coin.text = str(int(coin.text) - int(spin_cost.text))
+			
+			await change_coin(-int(spin_cost.text))
+			
 			spin_cost.text = str(int(spin_cost.text) + spin_cost_gain)
 
 	check_traits()

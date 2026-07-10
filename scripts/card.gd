@@ -1,223 +1,491 @@
 extends Node2D
 
-# Camera for screen shake
+
+# =============================================================================
+# Constants
+# =============================================================================
+
+const MOVE_SPEED := 30.0
+
+
+enum Team {
+	PLAYER,
+	ENEMY
+}
+
+
+
+# =============================================================================
+# References
+# =============================================================================
+
 @onready var camera: Camera2D = $"../../../Camera2D"
 
-# Card sprite
 @onready var card: Sprite2D = $Card
+
 
 # Particles
 @onready var card_particles: CPUParticles2D = $Card_Particles
 @onready var enemy_particles: CPUParticles2D = $Card_Particles2
 @onready var player_particles: CPUParticles2D = $Card_Particles3
 
-# Sounds
+
+# Audio
 @onready var card_place: AudioStreamPlayer = $"../../../Audios/card_place"
 @onready var card_pick: AudioStreamPlayer = $"../../../Audios/card_pick"
 @onready var card_drag: AudioStreamPlayer = $"../../../Audios/card_drag"
 
-# War Square slots
-@onready var square: Node2D
-@onready var player_square: Node2D = $"../../../war_square/player_square"
-@onready var enemy_square: Node2D = $"../../../war_square/enemy_square"
-
-# Inventory slots
-@onready var inventory: Node2D
-@onready var player_inventory: Node2D = $"../../../inventory/player_inventory"
-@onready var enemy_inventory: Node2D = $"../../../inventory/enemy_inventory"
 
 # UI
-@onready var Level: Label = $Card/VBoxContainer/HBoxContainer/Level
-@onready var Health: Label = $Card/VBoxContainer/HBoxContainer/Health
-@onready var Damage: Label = $Card/VBoxContainer/HBoxContainer/Damage
-@onready var Type: Label = $Card/VBoxContainer/Type
+@onready var level_label: Label = $Card/VBoxContainer/HBoxContainer/Level
+@onready var health_label: Label = $Card/VBoxContainer/HBoxContainer/Health
+@onready var damage_label: Label = $Card/VBoxContainer/HBoxContainer/Damage
+@onready var type_label: Label = $Card/VBoxContainer/Type
 
-# Stats
-var health: int
-var damage: int
-var level: int
-var type: String
 
-# drag
-var is_dragged = false
-var mouse_offset
-var future_position = global_position
 
-# slot state
+# =============================================================================
+# Ownership
+# =============================================================================
+
+var team: Team = Team.PLAYER
+
+
+
+func get_inventory() -> Node2D:
+
+	if team == Team.PLAYER:
+		return $"../../../inventory/player_inventory"
+
+	return $"../../../inventory/enemy_inventory"
+
+
+
+func get_square() -> Node2D:
+
+	if team == Team.PLAYER:
+		return $"../../../war_square/player_square"
+
+	return $"../../../war_square/enemy_square"
+
+
+
+func is_player() -> bool:
+
+	return team == Team.PLAYER
+
+
+
+# =============================================================================
+# Card Stats
+# =============================================================================
+
+var health: int = 0
+var damage: int = 0
+var level: int = 1
+var type: String = ""
+
+
+
+# =============================================================================
+# Drag
+# =============================================================================
+
+var is_dragged := false
+
+var mouse_offset := Vector2.ZERO
+
+var future_position := Vector2.ZERO
+
+
+
+# =============================================================================
+# Slots
+# =============================================================================
+
 var start_area: Area2D
 var current_area: Area2D
-var is_on_slot = false
 
-var is_played = false
+var is_on_slot := false
 
-# --- shake ---
-var shake_intensity: float = 0.0
-var active_shake_time: float = 0.0
+var is_played := false
 
-var shake_decay: float = 5.0
 
-var shake_time: float = 0.0
-var shake_time_speed: float = 20.0
 
-var noise = FastNoiseLite.new()
+# =============================================================================
+# Shake
+# =============================================================================
 
-func _ready() -> void:
+var shake_intensity := 0.0
+var active_shake_time := 0.0
+var shake_time := 0.0
+
+
+const SHAKE_DECAY := 5.0
+const SHAKE_SPEED := 20.0
+
+
+var noise := FastNoiseLite.new()
+
+
+
+# =============================================================================
+# Ready
+# =============================================================================
+
+func _ready():
+
 	update_ui()
+
 	card_pick.play()
-	# Connect every slot area signals for knowing when card is inside slot
-	for area in inventory.get_children():
-		detect_area(area)
-	
-	# Connect every player_square slots
-	for area in square.get_children():
-		detect_area(area)
-	
-	# add card to inventory, when it's init in the scene
+
+	if is_player():
+
+		card_pick.play()
+
+
+		for area in get_inventory().get_children():
+			detect_area(area)
+
+
+		for area in get_square().get_children():
+			detect_area(area)
+
+
+
 	add_card_to_inventory()
-	
-func _process(delta: float) -> void:
-	# little rotation when mouse is on card
+
+
+
+func _process(delta):
+
 	hover()
-	
-	# move toward the place card must be
+
 	move()
-	
-	# --- shake ---
+
 	update_shake(delta)
 
-func _input(event: InputEvent) -> void:
-	if inventory !=  player_inventory:
+
+
+# =============================================================================
+# Input
+# =============================================================================
+
+func _input(event):
+
+	# Enemy cards cannot be dragged
+	if not is_player():
 		return
-	# when card is dragged
-	if event.is_action_pressed("LMB") and card.get_rect().has_point(get_local_mouse_position()):
+
+
+	if event.is_action_pressed("LMB") \
+	and card.get_rect().has_point(get_local_mouse_position()):
+
 		mouse_offset = get_local_mouse_position()
+
 		card_drag.play()
+
 		is_dragged = true
+
 		top_level = true
-	# when card is released
-	elif event.is_action_released("LMB") and is_dragged == true:
-		card_particles.emitting = true
-		shake(10, 0.3)
-		is_dragged = false
-		top_level = false
-		card_place.play()
-		
-		# card is not on a slot
-		if is_on_slot == false:
-			camera.screen_shake(8, 0.5)
-			future_position = start_area.position
-			return
-		# card is on a slot, so do these:
-		
-		# slot is free
-		camera.screen_shake(8, 0.05)
-		if current_area.item == null:
-			place_card()
-			return
-		# there is a card in slot, so do these:
-		
-		# it's the same slot as dragged card slot
-		if current_area.item == self:
-			future_position = start_area.position
-			return
-		
-		# level and type of slot card and dragged card are same
-		if current_area.item.level == level and current_area.item.type == type :
-			camera.screen_shake(8, 0.1)
-			level_up(current_area.item)
-			current_area.item.queue_free()
-			place_card()
-			return
-			
-		# level and types are different
-		swap_card()
 
-# when mouse entered on a slot
-func _on_mouse_entered(area):
-	current_area = area
-	is_on_slot = true
 
-# when mouse exited on a slot
-func _on_mouse_exited():
-	current_area = start_area
-	is_on_slot = false
 
-# add card to first empty slot
-func add_card_to_inventory():
-	var children = inventory.get_children()
-	for i in range(children.size()):
-			if children[i].item == null:
-				current_area = children[i]
-				start_area = current_area
-				place_card()
-				break
+	elif event.is_action_released("LMB") and is_dragged:
 
-# place card where it's released
-func place_card():
-	start_area.item = null
-	current_area.item = self
-	start_area = current_area
-	future_position = current_area.position
-	
-func shake(intensity: int, time: float):
-	randomize()
-	noise.seed = randi()
-	noise.frequency = 2.0
-	
-	shake_intensity = intensity
-	active_shake_time = time
-	shake_time = 0.0
-	
-func level_up(merged_card):
-	level += 1
-	health += merged_card.health
-	damage += merged_card.damage
-	update_ui()
+		end_drag()
 
-func detect_area(area):
+
+
+# =============================================================================
+# Drag Logic
+# =============================================================================
+
+func end_drag():
+
+	card_particles.emitting = true
+
+	shake(10,0.3)
+
+
+	is_dragged = false
+
+	top_level = false
+
+
+	card_place.play()
+
+
+
+	if not is_on_slot:
+
+		camera.screen_shake(8,0.5)
+
+		future_position = start_area.position
+
+		return
+
+
+
+	if current_area.item == null:
+
+		camera.screen_shake(8,0.05)
+
+		place_card()
+
+		return
+
+
+
+	if current_area.item == self:
+
+		future_position = start_area.position
+
+		return
+
+
+
+	if current_area.item.level == level \
+	and current_area.item.type == type:
+
+
+		camera.screen_shake(8,0.1)
+
+		level_up(current_area.item)
+
+		current_area.item.queue_free()
+
+		place_card()
+
+		return
+
+
+
+	swap_card()
+
+
+
+# =============================================================================
+# Slot System
+# =============================================================================
+
+func detect_area(area: Area2D):
+
 	area.mouse_entered.connect(_on_mouse_entered.bind(area))
+
 	area.mouse_exited.connect(_on_mouse_exited)
 
-func swap_card():
-	current_area.item.start_area = start_area
-	current_area.item.future_position = start_area.position
-	
-	future_position = current_area.item.position
-	
-	start_area.item = current_area.item
+
+
+func _on_mouse_entered(area):
+
+	current_area = area
+
+	is_on_slot = true
+
+
+
+func _on_mouse_exited():
+
+	current_area = start_area
+
+	is_on_slot = false
+
+
+
+func add_card_to_inventory():
+
+	for slot in get_inventory().get_children():
+
+		if slot.item == null:
+
+			current_area = slot
+
+			start_area = slot
+
+			place_card()
+
+			return
+
+
+
+	push_warning("No empty inventory slot")
+
+
+
+func place_card():
+
+	if start_area:
+
+		start_area.item = null
+
+
+
+	if current_area == null:
+		return
+
+
 	current_area.item = self
-	
-	var temp = start_area
+
 	start_area = current_area
+
+
+	future_position = current_area.position
+
+
+
+func swap_card():
+
+	var other_card = current_area.item
+
+
+	other_card.start_area = start_area
+
+	other_card.future_position = start_area.position
+
+
+	future_position = other_card.position
+
+
+
+	start_area.item = other_card
+
+	current_area.item = self
+
+
+
+	var temp = start_area
+
+	start_area = current_area
+
 	current_area = temp
 
-func update_ui():
-	Health.text = str(health)
-	Damage.text = str(damage)
-	Level.text = str(level)
-	Type.text = str(type)
+func move_to_slot(slot: Area2D):
 
-func update_shake(delta):
-	if active_shake_time > 0:
-		shake_time += delta * shake_time_speed
-		active_shake_time -= delta
-		
-		card.offset = Vector2(
-			noise.get_noise_2d(shake_time, 0) * shake_intensity,
-			noise.get_noise_2d(0, shake_time) * shake_intensity,
-		)
-		
-		shake_intensity = max(shake_intensity - shake_decay * delta, 0)
-	else:
-		card.offset = lerp(card.offset, Vector2.ZERO, 10.5 * delta)
+	if start_area:
+		start_area.item = null
+
+	current_area = slot
+	start_area = slot
+
+	slot.item = self
+
+	future_position = slot.position
+
+	card_place.play()
+
+# =============================================================================
+# Card Logic
+# =============================================================================
+
+func level_up(other_card):
+
+	level += 1
+
+	health += other_card.health
+
+	damage += other_card.damage
+
+
+	update_ui()
+
+
+
+func update_ui():
+
+	health_label.text = str(health)
+
+	damage_label.text = str(damage)
+
+	level_label.text = str(level)
+
+	type_label.text = type
+
+
+
+# =============================================================================
+# Movement
+# =============================================================================
 
 func move():
-	if is_dragged == true:
+
+	if is_dragged:
+
 		future_position = get_global_mouse_position() - mouse_offset
-	global_position = global_position.move_toward(future_position, 30)
-	
+
+
+
+	global_position = global_position.move_toward(
+		future_position,
+		MOVE_SPEED
+	)
+
+
+
 func hover():
-	if card.get_rect().has_point(get_local_mouse_position()) and is_dragged == false and inventory ==  player_inventory:
+
+	if is_player() \
+	and card.get_rect().has_point(get_local_mouse_position()) \
+	and not is_dragged:
+
+
 		rotation_degrees = -5
+
+
 	else:
+
 		rotation_degrees = 0
+
+
+
+# =============================================================================
+# Shake
+# =============================================================================
+
+func shake(intensity: float, time: float):
+
+	noise.seed = randi()
+
+	noise.frequency = 2.0
+
+
+	shake_intensity = intensity
+
+	active_shake_time = time
+
+	shake_time = 0
+
+
+
+func update_shake(delta):
+
+	if active_shake_time > 0:
+
+
+		shake_time += delta * SHAKE_SPEED
+
+		active_shake_time -= delta
+
+
+
+		card.offset = Vector2(
+			noise.get_noise_2d(shake_time,0) * shake_intensity,
+			noise.get_noise_2d(0,shake_time) * shake_intensity
+		)
+
+
+
+		shake_intensity = max(
+			shake_intensity - SHAKE_DECAY * delta,
+			0
+		)
+
+
+
+	else:
+
+
+		card.offset = card.offset.lerp(
+			Vector2.ZERO,
+			10.5 * delta
+		)

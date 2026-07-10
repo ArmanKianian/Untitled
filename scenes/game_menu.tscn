@@ -71,6 +71,7 @@ script = ExtResource("2_ddixh")
 [node name="Background" type="Node2D" parent="." unique_id=271042414]
 
 [node name="Background" type="Sprite2D" parent="Background" unique_id=1900803189]
+scale = Vector2(10, 10)
 texture = SubResource("GradientTexture2D_xxxaj")
 
 [node name="UI_Button" type="AudioStreamPlayer" parent="." unique_id=1869465945]

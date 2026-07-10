@@ -891,8 +891,8 @@ script = ExtResource("3_lnu2h")
 [node name="enemy_inventory" type="Node2D" parent="inventory" unique_id=1019144622]
 visible = false
 script = ExtResource("3_lnu2h")
-slot_position = Vector2(650, -390)
-slot_distance = 10
+first_slot_position = Vector2(650, -400)
+slot_spacing = 20.0
 
 [node name="war_square" type="Node2D" parent="." unique_id=246498192]
 script = ExtResource("5_iywne")

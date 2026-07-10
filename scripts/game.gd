@@ -121,7 +121,7 @@ func _on_spin_button_pressed() -> void:
 	play_button_press(8, 0.2)
 
 	if int(coin.text) >= int(spin_cost.text):
-		if await add_card(player_cards, player_inventory, player_square):
+		if await add_card(0):
 			coin.text = str(int(coin.text) - int(spin_cost.text))
 			spin_cost.text = str(int(spin_cost.text) + spin_cost_gain)
 
@@ -139,111 +139,183 @@ func _on_reset_button_pressed() -> void:
 
 
 
-func add_card(cards, inventory, square):
-	spin_light.set_visible(true)
-	# Add a card random by spinning wheel
+func add_card(team):
+
+	spin_light.visible = true
+
+
+	var inventory
+	var cards
+	if team == 0:
+		inventory = player_inventory
+		cards = player_cards
+	elif team == 1:
+		inventory = enemy_inventory
+		cards = enemy_cards
+
+
 	for child in inventory.get_children():
+
 		if child.item == null:
+
 			var chosen = await spinning_wheel.spin()
+
 			var card = CARD.instantiate()
-			card.inventory = inventory
-			card.square = square
+
+
+			# Assign ownership
+			if team == 0:
+				card.team = card.Team.PLAYER 
+			elif team == 1:
+				card.team = card.Team.ENEMY
+
+
+			# Assign stats
 			card.type = chosen["name"]
 			card.level = chosen["level"]
 			card.health = chosen["health"]
 			card.damage = chosen["damage"]
+
+
+			# Assign texture
 			if chosen["texture"]:
-				card.get_child(1).texture = chosen["texture"]
+				card.get_node("Card").texture = chosen["texture"]
+
+
 			cards.add_child(card)
-			spin_light.set_visible(false)
+
+
+			spin_light.visible = false
+
 			return true
-	print("inventory is full!")
-	spin_light.set_visible(false)
+
+
+
+	print("Inventory is full!")
+
+
+	spin_light.visible = false
+
+	return false
 
 
 
 
 func enemy_buy_phase():
+
 	while enemy_coin >= enemy_spin_cost:
-		if await add_card(enemy_cards, enemy_inventory, enemy_square):
+
+		if await add_card(1):
 			enemy_coin -= enemy_spin_cost
 			enemy_spin_cost += spin_cost_gain
+
 		else:
 			break
 
 func enemy_end_shop_phase():
+
 	enemy_coin += turn_coin_gain
 	enemy_spin_cost = turn_spin_cost
 
 func enemy_merge_cards():
+
 	var merged := true
 
 	while merged:
+
 		merged = false
 
 		for card in enemy_cards.get_children():
+
 			for card2 in enemy_cards.get_children():
 
 				if card == card2:
 					continue
 
-				if card.type == card2.type and card.level == card2.level:
+
+				if (
+					card.type == card2.type
+					and card.level == card2.level
+				):
+
 					card.level_up(card2)
+
 					card2.queue_free()
+
 					merged = true
+
 					await get_tree().process_frame
+
 					break
+
 
 			if merged:
 				break
 
 func get_strongest_unplayed_card():
+
 	var strongest = null
 	var max_stat := -1
+
 
 	for card in enemy_cards.get_children():
 
 		if card.is_played:
 			continue
 
+
 		var stat = card.health + card.damage
 
+
 		if stat > max_stat:
+
 			max_stat = stat
 			strongest = card
+
 
 	return strongest
 
 func enemy_play_cards():
+
 	var enemy_slots = enemy_square.get_children()
 
+
 	while true:
+
 		var strongest = get_strongest_unplayed_card()
+
 
 		if strongest == null:
 			break
 
-		strongest.is_played = true
 
 		for i in range(enemy_slots.size() - 1, -1, -1):
-			if enemy_slots[i].item == null:
 
-				strongest.start_area.item = null
-				strongest.start_area = enemy_slots[i]
-				strongest.current_area = enemy_slots[i]
-				strongest.future_position = enemy_slots[i].position
-				enemy_slots[i].item = strongest
+			var slot = enemy_slots[i]
+
+
+			if slot.item == null:
+
+				strongest.is_played = true
+
+				strongest.move_to_slot(slot)
 
 				break
 
 func enemy_move():
+
 	player_light.visible = false
 	enemy_light.visible = true
 
+
 	await enemy_buy_phase()
+
 	enemy_end_shop_phase()
+
 	enemy_merge_cards()
+
 	enemy_play_cards()
+
 
 	player_light.visible = true
 	enemy_light.visible = false
@@ -511,6 +583,8 @@ func clear_container(container: Node):
 		child.queue_free()
 
 func reset():
+	set_buttons_enabled(false)
+	
 	# Reset battlefield position
 	war_line.position.y = -50
 
@@ -538,12 +612,11 @@ func reset():
 		1,
 		war_square.line_countt
 	)
-
+	
 	# Reset traits UI
 	for traitt in trait_container.get_children():
+		traitt.get_child(1).text = "0"
 		traitt.visible = true
-
-	check_traits()
 
 	# Reset variables
 	player_line_count = 1
@@ -560,6 +633,8 @@ func reset():
 	await enemy_move()
 
 	check_traits()
+	
+	set_buttons_enabled(true)
 
 func _on_quit_button_pressed() -> void:
 	ui_button.play()

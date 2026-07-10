@@ -50,40 +50,81 @@ var Traits: Array = [
 ]},
 ]
 
-func spin():
-	spinning.playing = true
-	var chosen = pick_weighted_random_item(Traits)
-	for i in range(Traits.size()):
-		if Traits[i] == chosen:
-			chosen = pick_weighted_random_item(chosen["units"])
-			return await rotate_wheel(i, chosen)
-	chosen = pick_weighted_random_item(chosen["units"])
-	return chosen
-
-# Normalize Chance then pick one random based on weight(chance)
-func pick_weighted_random_item(items):
+func _ready():
 	randomize()
-	var chance_sum: float = 0
+
+
+
+func spin():
+
+	spinning.play()
+
+	var traitt = pick_weighted_random_item(Traits)
+
+	var trait_index = Traits.find(traitt)
+
+	var unit = pick_weighted_random_item(traitt["units"])
+
+	return await rotate_wheel(trait_index, unit)
+
+
+
+func pick_weighted_random_item(items: Array):
+
+	var total_weight := 0.0
+
 	for item in items:
-		chance_sum += item["chance"]
-	
-	var random_chance = randf_range(0, chance_sum)
+		total_weight += item["chance"]
+
+
+	var roll := randf_range(0, total_weight)
+
+
 	for item in items:
-		random_chance -= item["chance"]
-		if random_chance <= 0:
+
+		roll -= item["chance"]
+
+		if roll <= 0:
 			return item
+
+
 	return items[0]
 
-func rotate_wheel(index, chosen):
-	randomize()
-	var random_rotation = randi_range(3, 6)
-	var degree = 360.0 / 8.0
-	var chosen_degree = index * degree + (degree/2)
+
+
+func rotate_wheel(index: int, chosen):
+
+	var random_rotation = randi_range(3,6)
+
+	var degree = 360.0 / Traits.size()
+
+	var chosen_degree = index * degree + degree / 2
+
+
 	var tween = create_tween()
+
 	tween.set_ease(Tween.EASE_IN_OUT)
+
+
 	for i in range(random_rotation):
-		tween.tween_property(self, "rotation_degrees", 360 * i, 0.1)
-	tween.tween_property(self, "rotation_degrees", chosen_degree + 360*random_rotation, 0.5)
+
+		tween.tween_property(
+			self,
+			"rotation_degrees",
+			360 * i,
+			0.1
+		)
+
+
+	tween.tween_property(
+		self,
+		"rotation_degrees",
+		chosen_degree + 360 * random_rotation,
+		0.5
+	)
+
+
 	await tween.finished
-	
+
+
 	return chosen

@@ -1,17 +1,43 @@
 extends Node2D
 
+
 const SLOT = preload("uid://cu816sfuctxvy")
 
-@export var slots_count = 10
-@export var slot_position = Vector2(-550, 440.0)
-@export var slot_distance = 120
+
+# =============================================================================
+# Settings
+# =============================================================================
+
+@export var slots_count: int = 10
+@export var first_slot_position: Vector2 = Vector2(-550, 440)
+@export var slot_spacing: float = 120.0
+
+
+# =============================================================================
+# Ready
+# =============================================================================
 
 func _ready() -> void:
+	spawn_slots()
+
+
+# =============================================================================
+# Slot Creation
+# =============================================================================
+
+func spawn_slots():
+
 	for i in range(slots_count):
-		add_inventory_slot()
-		
-func add_inventory_slot():
-	var slot_count = get_child_count()
+		add_inventory_slot(i)
+
+
+func add_inventory_slot(index: int):
+
 	var slot = SLOT.instantiate()
-	slot.position = slot_position + Vector2((slot_count * slot_distance), 0)
+
+	slot.position = first_slot_position + Vector2(
+		index * slot_spacing,
+		0
+	)
+
 	add_child(slot)
